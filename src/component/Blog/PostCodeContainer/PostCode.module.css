@@ -1,0 +1,84 @@
+.bannerContainer {
+  /* width: 100%; */
+  background: #8dd8f5; /* light blue background */
+  padding: 25px 30px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-top: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* INPUT + GO BUTTON WRAPPER */
+.inputWrapper {
+  background: white;
+  border-radius: 40px;
+  /* padding: 5px; */
+  display: flex;
+  align-items: center;
+  width: 271px;
+  box-shadow: 0px 15.11px 25.19px 0px #005974e5;
+}
+
+/* INPUT */
+.postcodeInput {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0 0 0 12px;
+  font-size: 14px !important;
+  border-radius: 40px;
+}
+
+/* GO BUTTON */
+.goButton {
+  background: #02d07b;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.goButton:hover {
+  background: #0ec266;
+}
+
+/* RIGHT SIDE TEXT SECTION */
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: white;
+}
+
+.textWrapper h3 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  text-align: left;
+  line-height: 28px;
+}
+
+/* LOGO */
+.logo {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .bannerContainer {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    margin-top: 2px;
+  }
+}

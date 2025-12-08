@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  height: auto;
+  min-height: 172.7px;
+  background: #e3f6fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-bottom: 3.3%;
+  padding: 2% 0;
+}
+
+.frameContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 0;
+  gap: 3.25%;
+  height: auto;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.statsWrapper {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1% 0;
+  min-width: 120px;
+}
+
+.numberText {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2.27vw;
+  line-height: 100%;
+  margin-bottom: 14px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin: 0px 0px 14px 0px;
+}
+
+.descriptionText {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 1.17vw;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin: 0;
+  margin-top: 0.26%;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+  .numberText {
+    font-size: 2.5vw;
+  }
+  .descriptionText {
+    font-size: 1.3vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .frameContainer {
+    gap: 0px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .statsWrapper {
+    width: 200px;
+    border-right: none !important;
+    border-bottom: 2px solid #00afe3;
+    /* padding-right: 0px !important; */
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-right: 0px !important;
+  }
+
+  /* Remove bottom border from last card */
+  .statsWrapper:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .numberText {
+    font-size: 24px;
+  }
+
+  .descriptionText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%;
+    margin-bottom: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .statsWrapper {
+    width: 200px;
+    border-right: none !important; /* Remove all right borders on mobile */
+    border-bottom: 2px solid #00afe3; /* Add bottom border for all cards */
+
+    padding-right: 0px !important;
+  }
+}

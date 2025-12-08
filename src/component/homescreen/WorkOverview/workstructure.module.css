@@ -1,0 +1,343 @@
+.workContainer {
+  background: var(--primary-color);
+  padding: 40px 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 52.5px;
+  text-align: center;
+  margin: 0;
+}
+
+.header span {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.description {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.786rem;
+  line-height: 39.5px;
+  text-align: center;
+  font-size: 27px;
+  margin-top: -27px;
+  margin: auto;
+}
+
+.description span {
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.footer .quoteButton {
+  background: var(--text-color);
+  padding: 12px 32px;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer !important;
+  border-radius: 5px;
+}
+
+.quoteButton:hover {
+  background: #000000cf;
+}
+
+.workstepContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+  margin-top: 71px;
+}
+
+.stepContainer {
+  width: 266px;
+  padding: 0px 25px;
+  height: 250px;
+  position: relative;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.stepDescription {
+  margin-top: 35px;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 32px;
+  /* cursor: pointer !important; */
+}
+
+.descriptionIcon {
+  width: 133px;
+  height: 133px;
+  border-radius: 50%;
+  background: #111637;
+  margin: auto;
+  margin-top: -70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.descriptionIcon img {
+  object-fit: cover;
+  position: relative;
+  width: 60%;
+  /* cursor: pointer !important; */
+}
+
+@media screen and (max-width: 1100px) {
+  .workContainer {
+    padding: 40px 5%;
+  }
+
+  .workstepContainer {
+    gap: 50px;
+  }
+
+  .stepContainer {
+    height: 236px;
+  }
+
+  .descriptionIcon {
+    width: 110px;
+    height: 110px;
+    margin-top: -60px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .workContainer {
+    gap: 24px;
+    padding: 20px 9%;
+  }
+
+  .description {
+    font-size: 1.3rem;
+    line-height: 35px;
+  }
+
+  .workstepContainer {
+    gap: 30px;
+    margin-top: 71px;
+    margin-bottom: 20px;
+  }
+
+  .descriptionIcon {
+    width: 82px;
+    height: 82px;
+    margin-top: -50px;
+  }
+
+  .stepContainer {
+    height: 206px;
+    padding: 0px 20px;
+  }
+
+  .stepDescription {
+    font-size: 18px;
+    line-height: 27px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    font-size: 24px;
+    line-height: 30.5px;
+  }
+
+  .workContainer {
+    gap: 24px;
+    padding: 20px 8%;
+  }
+
+  .description {
+    font-size: 1.3rem;
+    line-height: 35px;
+  }
+
+  .workstepContainer {
+    margin-top: 51px;
+    margin-bottom: 0px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .footer .quoteButton {
+    padding: 10px 21px;
+    font-size: 12.14px;
+    /* margin-bottom: 18px; */
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .header {
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: -20px;
+  }
+  .workContainer {
+    gap: 34px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 28px;
+    margin-top: -6px;
+  }
+
+  .footer .quoteButton {
+    padding: 5.5px 12px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .workstepContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    /* margin-top: 18px; */
+    gap: 70px;
+  }
+
+  .stepContainer {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 16px;
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .descriptionIcon {
+    width: 64.46px;
+    height: 64.46px;
+    background: #000000;
+    border-radius: 50%;
+    position: relative;
+    top: -18px;
+    margin: -50px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .descriptionIcon img {
+    width: 44.99px;
+    height: 44.99px;
+    object-fit: contain;
+  }
+
+  .stepDescription {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: left;
+    font-size: 16px;
+    margin-top: 0;
+    line-height: 20px;
+  }
+
+  .stepDescription {
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .workContainer {
+    padding: 16px 5%;
+    
+    
+  }
+    .description {
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 28px;
+  }
+  
+
+  .stepContainer {
+    width: 78%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .stepContainer {
+    width: 70%;
+  }
+  .workContainer {
+    padding: 16px 5.9%;
+  
+    
+  }
+  .workstepContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+    gap: 50px;
+  }
+   .descriptionIcon {
+    width: 56.46px;
+    height: 56.46px;
+    background: #000000;
+    border-radius: 50%;
+    position: relative;
+    top: -4px;
+    margin: -50px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .descriptionIcon img {
+    width: 36.99px;
+    height: 36.99px;
+    object-fit: contain;
+  }
+    .stepDescription {
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #000;
+    margin-top: 0px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 360px) {
+
+  .workContainer {
+    padding: 16px 8%;
+  }
+}

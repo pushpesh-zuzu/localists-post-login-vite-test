@@ -1,0 +1,124 @@
+.mainContainer {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  margin: 48px 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.mainHeading {
+  margin-bottom: 20px !important;
+}
+.heading {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 52px;
+  /* text-align: center; */
+  margin: 0 0 24px 0;
+}
+.link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.primaryText {
+  color: var(--primary-color);
+}
+
+.textColor {
+  color: var(--text-color);
+}
+
+.content {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  /* text-align: center; */
+  color: var(--text-color);
+  max-width: 76.5%;
+  /* max-width: 1119px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.detail {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  text-align: left;
+  color: var(--text-color);
+  /* max-width: 1119px; */
+  max-width: 76.5%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: "100%";
+  margin-left: 20;
+  text-align: "left";
+}
+.detail h3 {
+  font-size: 24px;
+}
+.detail span {
+  margin: 4px;
+  padding-left: 50px;
+}
+.detail p {
+  /* margin-bottom: 16px; */
+}
+@media (max-width: 1024px) {
+  .content .detail {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    margin: 32px 0;
+  }
+  .detail h3 {
+    font-size: 20px;
+  }
+  .heading {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 20px;
+  }
+
+  .content,
+  .detail {
+    font-size: 16px;
+    padding: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    margin: 16px 0;
+  }
+  .detail span {
+    padding-left: 24px;
+  }
+
+  .heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .content,
+  .detail {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 26px;
+    text-justify: auto;
+  }
+}

@@ -1,0 +1,76 @@
+.containerh {
+  text-align: center;
+  padding: 0px 16px;
+}
+.container h2{
+  font-size: 35px;
+} 
+.containerh h1{
+  font-size: 45px;
+}
+.primaryText {
+  color: var(--primary-color); /* blue */
+  font-weight: 700;
+}
+
+.textColor {
+  color: var(--text-color); /* black */
+  font-weight: 600;
+}
+
+.headingH1{
+  text-align: center;
+}
+/* for heading h1 tag css */
+.primaryTextH1 {
+  color: var(--primary-color); /* blue */
+  font-weight: 700;
+    line-height: 45px;
+
+}
+
+.textColorH1 {
+  color: var(--text-color); /* black */
+  font-weight: 600;
+  line-height: 45px;
+
+}
+@media (max-width:768px) {
+  .containerh h1{
+    font-size: 38px;
+  }
+    .primaryText {
+      color: var(--primary-color); /* blue */
+      font-weight: 700;
+      line-height: 45px;
+    }
+
+    .textColor {
+      color: var(--text-color); /* black */
+      font-weight: 600;
+      line-height: 45px;
+    }
+  .primaryTextH1 {
+  color: var(--primary-color); /* blue */
+  font-weight: 700;
+    line-height: 45px;
+
+}
+
+.textColorH1 {
+  color: var(--text-color); /* black */
+  font-weight: 600;
+    line-height: 45px;
+
+}
+.container h2{
+  font-size: 28px;
+}
+}
+
+@media (max-width:520px) {
+.containerh h1{
+    font-size: 32px;
+
+}
+}

@@ -1,0 +1,342 @@
+.container {
+  max-width: 1030px;
+  padding: 21px 88px;
+}
+
+.backText {
+  color: #000000;
+  margin-bottom: 40px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.heading {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 21px;
+}
+
+.manageWrapper {
+  display: flex;
+  align-items: start;
+  gap: 7px;
+}
+
+.description {
+  font-size: 18px;
+  color: #000000;
+
+  margin-bottom: 36px;
+}
+
+.infoIcon {
+  align-items: start;
+  color: var(--primary-color);
+  margin-top: 5px;
+}
+.description span {
+  margin-top: 4px;
+}
+.infoIcon img {
+  width: 18px;
+  height: 18px;
+}
+.verifyNumberBtn {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  height: 40px;
+  margin-left: 4px;
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+  padding: 8px;
+  cursor: pointer !important;
+}
+
+.link {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.card {
+  max-width: 933px;
+  border: 1px solid #d9d9d9;
+  padding: 24px 21px 40px 21px;
+  margin-bottom: 30px;
+}
+
+.subHeading {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.note {
+  color: #828282;
+  font-size: 14px;
+  margin-bottom: 15px;
+  max-width: 647px;
+}
+
+.label {
+  margin-top: 16px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.input {
+  width: 70%;
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #828282;
+}
+
+.passwordSection {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 8px 22px;
+  font-weight: 500;
+  font-size: 18px;
+  vertical-align: middle;
+  color: #FFF;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  cursor: pointer !important;
+}
+
+.button:hover {
+  background-color: #e6f7ff;
+}
+.btnBox {
+  display: flex;
+  justify-content: start;
+  margin-top: 25px;
+}
+.saveBtn {
+  
+      padding: 4px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    vertical-align: middle;
+    /* color: var(--primary-color); */
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    cursor: pointer !important;
+    width: 70px;
+    color: #FFF;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cameraModal {
+  background: #ffffff;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modalHeader {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.saveButtonWrapperModal {
+  text-align: right;
+}
+
+.modalSaveButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.modalSaveButton:hover {
+  background: #0096c4;
+}
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer !important;
+  font-size: 18px;
+  color: gray;
+}
+
+.eyeIcon:hover {
+  color: black;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.saveButtonWrapper {
+  margin-top: 37px;
+  margin-left: 32px;
+}
+
+.saveButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.saveButton:hover {
+  background: #0096c4;
+}
+
+.modalCancelButton {
+  background: #e8e8e8;
+  color: #000000;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer !important;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.modalCancelButton:hover {
+  background: #b3b3b3;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 21px 32px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  .card {
+    padding: 20px 18px 32px 18px;
+  }
+
+  .input {
+    width: -webkit-fill-available;
+  }
+
+  .button {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .manageWrapper {
+    gap: 4px;
+  }
+
+  .note {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .backText {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+.verifyNumberBtn {
+ margin-left: 0px;
+ margin-top: 4px;
+}
+  .description {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .subHeading {
+    font-size: 14px;
+  }
+
+  .note {
+    font-size: 13px;
+  }
+
+  .label {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 4px 16px;
+  }
+
+  .infoIcon img {
+    width: 16px;
+    height: 16px;
+  }
+  .infoIcon {
+  align-items: start;
+  color: var(--primary-color);
+  margin-top: 2px;
+}
+}

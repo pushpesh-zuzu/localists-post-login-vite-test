@@ -1,0 +1,15 @@
+.pricingContainer {
+  padding: 10px 88px;
+}
+
+@media (max-width: 768px) {
+  .pricingContainer {
+    padding: 10px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricingContainer {
+    padding: 10px 20px;
+  }
+}

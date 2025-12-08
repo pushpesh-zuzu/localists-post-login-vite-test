@@ -1,0 +1,203 @@
+.SettingWrapper {
+  padding: 29px 19px;
+  background-color: #e3f6fc;
+}
+.SettingWrapper h1 {
+  font-weight: 600;
+  font-size: 24px;
+}
+.section {
+  background-color: white;
+  box-shadow: 0px 0px 6px 0px #0000001a;
+  padding: 20px;
+  margin-bottom: 30.7px;
+}
+.section p {
+  color: #989898;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0px 15px;
+  padding-bottom: 16px;
+}
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.myProfileWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  background-color: #ffd5d2;
+}
+.myProfileWrappers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  background-color: #82ffb2;
+}
+
+.myLeadSettingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  background-color: #aac9d2;
+}
+.myLeadSettingWrappers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  background-color: #cbd2aa;
+}
+.myProfileWrapper img {
+  width: 24px;
+  height: 24px;
+}
+.sectionHeader h2 {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.leadSetting {
+  background-color: #fce4ec;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.credits {
+  background-color: #e8f5e9;
+  padding: 15px;
+  /* border-radius: 8px; */
+}
+
+.card {
+  background-color: white;
+  padding: 15px;
+  /* border-radius: 8px; */
+  margin: 6px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer !important;
+}
+
+.card:hover {
+  background-color: #f1f1f1;
+}
+.card h3 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.card span:hover {
+  color: white;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cardDescription {
+  font-size: 14px;
+  color: #555;
+}
+
+.sectionContent {
+  padding-left: 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .sectionContent {
+    padding-left: 43px;
+  }
+  .SettingWrapper h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .sectionHeader {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .myProfileWrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .myLeadSettingWrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 18px;
+  }
+
+  .card h3 {
+    font-size: 15px;
+  }
+
+  .section p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sectionContent {
+    padding-left: 0px;
+  }
+  .SettingWrapper {
+    padding: 20px 10px;
+  }
+
+  .SettingWrapper h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .sectionHeader {
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    margin: 0px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 16px;
+  }
+
+  .section p {
+    font-size: 13px;
+    padding: 0px 4px;
+    padding-bottom: 12px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+  }
+}

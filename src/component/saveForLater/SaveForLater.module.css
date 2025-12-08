@@ -1,0 +1,850 @@
+/* .card {
+  background: #fff;
+
+  margin: 21.08px auto;
+
+  display: grid;
+  grid-template-areas: "info job actions";
+  grid-template-columns: 1fr 1fr 0.3fr;
+  gap: 40px;
+
+} */
+
+.card {
+  width: -webkit-fill-available;
+  background: #fff;
+  /* box-shadow: 0px 0px 6px 0px #0000001a; */
+  margin: 21.08px auto;
+  padding: 18.25px 25.26px 2.25px 34px;
+  display: grid;
+  grid-template-areas: "info job actions";
+  grid-template-columns: 1fr 1fr 0.3fr;
+  gap: 40px;
+}
+.cardParent {
+  background: #fff;
+  box-shadow: 0px 0px 6px 0px #0000001a;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.maincontainer {
+  padding: 22px 42px;
+  /* height: 100%; */
+}
+
+.dualDropdownsContainers {
+  display: none;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  box-shadow: 0px 0px 6px 0px #0000001a;
+  color: white;
+  padding: 20px 45px;
+}
+
+.dualDropdownsContainer {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.textSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 24px;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.actionButtons {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20.62px;
+  vertical-align: middle;
+  cursor: pointer !important;
+  margin-right: 10px;
+  padding-right: 20px;
+}
+
+.filterButton img {
+  margin-right: 8px;
+}
+.filterButton:hover {
+  color: #c4e8f3;
+}
+.filterButton img:hover {
+  color: #c4e8f3;
+}
+
+/* Grid Areas */
+.infoContainer {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 72px;
+}
+.mainCard {
+  background: #fff;
+  box-shadow: 0px 0px 6px 0px #0000001a;
+  padding: 28.25px 25.26px 28.25px 34px;
+}
+.noDataContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+.noDataContainer h2 {
+  text-align: center;
+}
+.highlightText {
+  display: none;
+}
+
+.jobDetails {
+  grid-area: job;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  padding: 0 40px;
+  /* padding: 0 73px 0 44px; */
+}
+
+.leadActions {
+  grid-area: actions;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 24px;
+  /* margin-left: -24px; */
+}
+
+.userDetails {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 72px;
+}
+.desktopOnlyBreak {
+  display: inline;
+}
+
+.avatar {
+  background: #f9b7b7;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.details h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.details p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.contactContainer {
+  display: flex;
+  align-items: center;
+  gap: 15.43px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  font-weight: 400;
+  font-size: 19px;
+  vertical-align: middle;
+  /* cursor: pointer !important; */
+}
+/* .contactItem a {
+  text-decoration: none;
+  list-style: none;
+  color: #000;
+} */
+.category {
+  background: rgb(249, 183, 183);
+  color: white;
+  padding: 8px 10px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  vertical-align: middle;
+  text-wrap: nowrap;
+}
+.saveBtnBox img {
+  margin-right: 4px;
+}
+.saveBtn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 7px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer !important;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  /* cursor: pointer !important; */
+  flex-wrap: wrap;
+}
+
+.verified,
+.additional,
+.frequent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  color: white;
+}
+
+.verified {
+  background: #edb1d5;
+}
+
+.additional {
+  background: #aac9d2;
+}
+
+.frequent {
+  background: #98e6ff;
+}
+
+.jobInfo {
+  display: flex;
+  /* height: 101px; */
+  /* width: 383px; */
+  flex-direction: column;
+  gap: 8px;
+  background-color: #e3f6fc;
+  padding: 10px 16px;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.jobInfo p {
+  font-weight: 400;
+  font-size: 12px;
+  vertical-align: middle;
+  line-height: 25px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.jobInfo {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.jobInfo p {
+  word-break: break-word;
+  white-space: normal;
+}
+.viewDetailsBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 17px;
+  background-color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  display: flex;
+  gap: 8px;
+  /* text-decoration: underline; */
+  cursor: pointer !important;
+}
+.viewDetailsBtn:hover {
+  background-color: #0096c4;
+}
+.viewDetailsBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0px;
+  margin-right: 136px;
+}
+.mainText div {
+  color: #ff9933;
+  font-size: 22px;
+  font-weight: 900;
+  margin-top: -8px;
+}
+.mainText span {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+.purchaseButton {
+  background: #57e202;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.purchaseButton:hover {
+  background-color: #4ecf00;
+}
+
+.credits {
+  display: block;
+  background: #fce5e3;
+  color: black;
+  padding: 4px 10px;
+  font-weight: 400;
+  font-size: 16.91px;
+  width: fit-content;
+  text-align: center;
+}
+
+.responseStatus {
+  font-weight: 400;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.responseStatus img {
+  margin-right: 5px;
+}
+
+.viewMoreBtnWrapper {
+  padding-top: 35.66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 136px;
+}
+
+.viewMoreBtnWrapper button {
+  border-radius: 186.83px;
+  gap: 5px;
+  cursor: pointer !important;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  padding: 11px 18.68px;
+}
+
+.viewMoreBtnWrapper button:hover {
+  background-color: #0096c4;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.filterButtons {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  /* border-right: 1px solid #ffffff; */
+  color: #000000;
+  font-weight: 600;
+  font-size: 12px;
+  vertical-align: middle;
+  cursor: pointer !important;
+  gap: 4px;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .card {
+    gap: 20px;
+  }
+
+  .jobDetails {
+    padding: 0 20px;
+  }
+
+  .userInfo {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card {
+    grid-template-areas:
+      "info"
+      "job"
+      "actions";
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .dualDropdownsContainer {
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+    /* width: 100%; */
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .infoContainer {
+    gap: 30px;
+  }
+
+  .jobDetails {
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .leadActions {
+    margin-left: 0;
+    width: 100%;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .viewDetailsBtnWrapper {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 910px) {
+  .heading {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    align-items: start;
+    padding: 20px;
+    gap: 16px;
+    justify-content: start;
+  }
+  .textSection {
+    align-items: center;
+    gap: 12px;
+  }
+  .heading {
+    font-size: 20px;
+  }
+
+  .filterButton {
+    font-size: 14px;
+    padding-right: 10px;
+    border-right: none;
+    margin-right: 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .card {
+    padding: 16px;
+  }
+
+  .category {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .viewDetailsBtnWrapper {
+    margin-right: 0px;
+  }
+  .avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .details h3 {
+    font-size: 18px;
+  }
+
+  .contactItem {
+    font-size: 14px;
+  }
+
+  .jobInfo p {
+    font-size: 11px;
+  }
+
+  .credits {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 512px) {
+  .container {
+    align-items: start;
+    padding: 20px;
+    gap: 16px;
+    /* justify-content: start; */
+  }
+
+  .filterButton {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .textSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .heading {
+    font-size: 16px;
+  }
+
+  .actionButtons {
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .dualDropdownsContainer {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .dualDropdownsContainers {
+    background-color: #e3f6fc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 13px;
+  }
+
+  .filterButtons {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-right: 12px;
+  }
+
+  .details h3 {
+    font-size: 16px;
+    word-break: auto-phrase;
+  }
+  .card {
+    padding: 4px 16px;
+  }
+  .heading {
+    font-size: 24px;
+  }
+
+  .actionButtons {
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .filterButton {
+    width: 100%;
+    justify-content: center;
+    padding: 0px 0px;
+    font-size: 12px;
+  }
+
+  .filterButton {
+    font-size: 14px;
+    padding-right: 10px;
+    border-right: 1px solid #ffffff;
+    margin-right: 0;
+  }
+
+  .dualDropdownsContainer {
+    display: none;
+  }
+
+  .dualDropdownsContainer {
+    gap: 16px;
+  }
+
+  .container {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .textSection {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details p {
+    font-size: 12px;
+  }
+  .highlightText {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    display: block;
+  }
+  .category {
+    text-wrap: wrap;
+    text-align: center;
+  }
+  .mainText {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .mainText div {
+    margin-bottom: 0px;
+    margin-top: 8px;
+  }
+  .desktopOnlyBreak {
+    display: none;
+  }
+
+  .userInfo {
+    /* flex-direction: column; */
+    /* align-items: center;
+    gap: 4px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contactContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contactItem {
+    font-size: 12px;
+  }
+
+  .infoContainer {
+    gap: 24px;
+  }
+
+  .card {
+    gap: 20px;
+  }
+  .maincontainer {
+    padding: 42px 20px;
+  }
+  .mainText {
+    text-align: center;
+  }
+  .jobDetails {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .badges {
+    margin-top: 0px;
+  }
+  .jobDetails {
+    gap: 20px;
+  }
+  .jobInfo {
+    margin-bottom: 20px;
+  }
+  .leadActions {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .viewDetailsBtnWrapper {
+    margin-right: 0px;
+  }
+  .viewDetailsBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 17px;
+    background-color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    display: flex;
+    /* gap: 8px; */
+    /* text-decoration: underline; */
+    cursor: pointer !important;
+  }
+  .maincontainer {
+    margin-top: -12px;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.1); /* only bottom and sides */
+    margin-bottom: 10px;
+    margin-top: 12px;
+  }
+  .cardParent {
+    margin-top: 8px;
+  }
+  .credits {
+    font-size: 12px;
+    padding: 0px 7px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .dualDropdownsContainers {
+    background-color: #e3f6fc;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .actionButton {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .heading {
+    font-size: 20px;
+  }
+
+  .filterButtons {
+    width: 100%;
+  }
+
+  .actionButton {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  .dualDropdownsContainers {
+    flex-wrap: wrap;
+  }
+
+  .heading {
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .details h3 {
+    font-size: 12px;
+    word-break: auto-phrase;
+  }
+  .userInfo {
+    flex-wrap: wrap;
+  }
+  .desktopOnlyBreak {
+    display: inline;
+  }
+  .heading {
+    font-size: 19px;
+  }
+  .customSelect .ant-select-arrow {
+    color: #000 !important;
+  }
+
+  .selectDropdown .ant-select-arrow {
+    color: #000 !important;
+  }
+
+  .customSelect {
+    color: #000000;
+  }
+
+  .selectDropdown .ant-select-arrow {
+    color: #000 !important;
+  }
+
+  .actionButton {
+    width: 100%;
+  }
+}

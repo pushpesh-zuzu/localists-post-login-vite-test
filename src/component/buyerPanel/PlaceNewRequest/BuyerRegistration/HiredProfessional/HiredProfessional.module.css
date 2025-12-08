@@ -1,0 +1,69 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 24px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  cursor: pointer !important;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between radio and label text */
+  font-size: 16px;
+  cursor: pointer !important;
+}
+
+.radioLabel input[type="radio"] {
+  margin: 0;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cancelBtn,
+.submitBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.cancelBtn {
+  background-color: #ccc;
+  color: black;
+}
+
+.submitBtn {
+  background-color: #1890ff;
+  color: white;
+}

@@ -1,0 +1,34 @@
+.leadsOverlay {
+  background: #f9f9fa;
+  padding: 25px 88px;
+  display: flex;
+}
+.leadSettingsOverlay {
+  display: flex !important;
+}
+
+@media (max-width: 1120px) {
+  .leadsOverlay {
+    padding: 25px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadsOverlay {
+    padding: 20px 40px;
+    flex-direction: column;
+  }
+  .leadSettingsOverlay {
+    width: -webkit-fill-available;
+  }
+
+  .leadSettingsTabView {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadsOverlay {
+    padding: 10px 16px;
+  }
+}

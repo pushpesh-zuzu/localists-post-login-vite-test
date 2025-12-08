@@ -1,0 +1,222 @@
+/* .banner {
+    display: flex;
+    align-items: center;
+    background: var(--primary-color);
+    padding: 20px;
+    
+    color: white;
+    flex-wrap: wrap;
+    gap: 16px;
+  } */
+   /* .banner {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  background: linear-gradient(to right, var(--primary-color) 10%,var(--primary-color) 100%);
+} */
+  .banner {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  background: linear-gradient(to bottom, #00AFE3 0%, #24CDFF 100%);
+}
+
+  /* ======== Left Section ======== */
+  .leftSection {
+    flex: 1 1 200px;
+    min-width: 150px;
+  }
+  
+  .leftSection h3 {
+    font-size: 26px;
+    margin: 0;
+  }
+  
+  .highlight {
+    color: white;
+    font-weight: bold;
+  }
+  
+  strong {
+    color: #000000;
+    font-weight: 600;
+  }
+  
+  /* ======== Divider ======== */
+  .divider {
+    width: 1px;
+    background-color: #ffffff;
+    height: 60px;
+  }
+  
+  /* ======== Center Section ======== */
+  .centerSection {
+    flex: 2 1 300px;
+    min-width: 200px;
+  }
+  
+  .description {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-left: 8px;
+  }
+  
+  /* ======== Right Section ======== */
+  .rightSection {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 150px;
+  }
+  
+  .trialButton {
+    background-color: black;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    /* cursor: pointer !important; */
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 180px;
+    transition: background 0.3s ease;
+  }
+  
+  .trialButton:hover {
+    background-color: #333;
+  }
+  
+  .learnMore {
+    font-size: 12px;
+    color: #e0f7ff;
+    text-align: right;
+  }
+  
+  /* ===================== Responsive Breakpoints ===================== */
+  
+  /* Tablets and below (≤ 1024px) */
+  @media (max-width: 1024px) {
+    .banner {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+  
+    .divider {
+      display: none;
+    }
+  
+    .leftSection,
+    .centerSection,
+    .rightSection {
+      width: 100%;
+      text-align: center;
+    }
+    .leftSection {
+        flex: 1 1 64px;
+        min-width: 150px;
+      }
+      .centerSection {
+        flex: 2 1 64px;
+        min-width: 200px;
+      }
+      .rightSection {
+        flex: 1 1 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 150px;
+      }
+    .rightSection {
+      align-items: center;
+    }
+  
+    .trialButton {
+      max-width: 100%;
+    }
+  }
+  
+  /* Mobile devices (≤ 768px) */
+  @media (max-width: 768px) {
+    .leftSection h3 {
+      font-size: 24px;
+    }
+    .leftSection {
+        flex: 1 1 64px;
+        min-width: 150px;
+      }
+      .centerSection {
+        flex: 2 1 64px;
+        min-width: 200px;
+      }
+      .rightSection {
+        flex: 1 1 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 150px;
+      }
+    .description {
+      font-size: 13px;
+    }
+  
+    .trialButton {
+      font-size: 14px;
+      padding: 10px 14px;
+    }
+  
+    .learnMore {
+      font-size: 11px;
+    }
+  }
+  
+  /* Extra Small Devices (≤ 480px) */
+  @media (max-width: 480px) {
+    .leftSection h3 {
+      font-size: 25px;
+    }
+    .leftSection {
+        flex: 1 1 64px;
+        min-width: 150px;
+      }
+      .centerSection {
+        flex: 2 1 64px;
+        min-width: 200px;
+      }
+      .rightSection {
+        flex: 1 1 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 150px;
+      }
+    .description {
+      font-size: 12px;
+    }
+  
+    .trialButton {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+  
+    .learnMore {
+      font-size: 10px;
+      text-align: center;
+    }
+    .banner{
+       background: linear-gradient(to bottom, #00AFE3 0%, #24CDFF 100%);
+    }
+  }
+  

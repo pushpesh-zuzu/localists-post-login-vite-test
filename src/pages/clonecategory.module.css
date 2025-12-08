@@ -1,0 +1,328 @@
+.findAccountantContainer {
+    height: 400px;
+    background-image: url("../../../assets/Images/subcategory/subcategoryBackground.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  .link {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .searchcontainer {
+    width: 883px;
+    height: auto;
+  }
+  
+  .searchcontainer h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 45px;
+    margin: 0;
+    margin-bottom: 9px;
+    color: var(--text-color);
+  
+  }
+  .active{
+    font-weight: bold;
+  }
+  
+  .searchcontainer span {
+    color: var(--primary-color);
+  }
+  
+  .searchBoxContainer {
+    padding: 50px 44px;
+    border-radius: 10px;
+    background: #ffffffe5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+  }
+  
+  .searchBoxContainer p {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .searchBoxContainer span {
+    color: var(--primary-color);
+    /* line-height: 57px; */
+  }
+  
+  .searchInputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchInput {
+    width: 688px;
+    height: 50px;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0px 0px 2px 0.5px #0000001a;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+    padding-left: 18px;
+  }
+  
+  .searchInput::placeholder {
+    color: #959595;
+  }
+  
+  .searchInputContainer button {
+    width: 187px;
+    height: 40px;
+    box-shadow: 0px 0px 2px 0.5px #0000001a;
+    background: var(--primary-color);
+    color: #ffffff;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    border: none;
+    letter-spacing: 0;
+    vertical-align: middle;
+    cursor: pointer !important;
+    padding: 5px 0px;
+    position: absolute;
+    right: 7px;
+  }
+  
+  .searchInputContainer button:hover {
+    background-color: #008cc0;
+  }
+  
+  /* Account Finding Info css */
+  
+  .findAccountInfoContainer {
+    height: auto;
+    background-image: url("../../../assets/Images/subcategory/accountantInfoBackground.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 27px 88px 18px 88px;
+  }
+  
+  .breadcrumb {
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+   line-height: normal;
+   font-style: normal;
+
+  }
+  
+  .breadcrumb span {
+    /* font-weight: 700; */
+    color: var(--primary-color);
+    cursor: pointer !important;
+    line-height: normal;
+   font-style: normal;
+  }
+  
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+    max-width: 1041px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: var(--text-size-35);
+    font-weight: 400;
+    text-align: center;
+    font-size: 35px;
+  }
+  
+  .highlight {
+    color: var(--primary-color);
+    font-size: var(--text-size-35);
+    font-weight: 700;
+    line-height: 100%;
+  }
+  
+  .descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  
+  .descriptionContainer p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--text-color);
+  }
+  
+  .accountantBtn {
+    font-weight: 700;
+    padding: 13.5px 32.5px;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4.67px;
+    box-shadow: 0px 0px 4px 0px #0000004d;
+    cursor: pointer !important;
+  }
+  
+  .accountantBtn:hover {
+    background-color: #0096c4;
+  }
+  
+  /* media query for responsive */
+  
+  @media (max-width: 980px) {
+    .findAccountantContainer {
+      padding: 0px 100px;
+    }
+  
+    .searchBoxContainer {
+      width: 86%;
+    }
+  
+    .searchInputContainer {
+      width: 100%;
+    }
+  
+    .searchInput {
+      width: 100%;
+    }
+  
+    .searchInputContainer button {
+      width: 157px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .findAccountantContainer {
+      padding: 0px 30px;
+    }
+  
+    .searchcontainer h1 {
+      font-size: 38px;
+    }
+  
+    .searchBoxContainer {
+      padding: 50px 30px;
+    }
+    .searchBoxContainer span {
+    color: var(--primary-color);
+    /* line-height: 57px; */
+  }
+  
+    .searchInputContainer button {
+      width: 120px;
+    }
+  
+    .findAccountInfoContainer {
+      padding: 27px 30px 18px 30px;
+    }
+  
+    .accountantBtn {
+      padding: 8px 25px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .findAccountantContainer {
+      padding: 0px 20px;
+    }
+  
+    .searchcontainer h1 {
+      font-size: 36px;
+      line-height: 45px;
+    }
+  
+    .searchBoxContainer {
+      padding: 20px 15px;
+      gap: 6px;
+    }
+  
+    .searchBoxContainer p {
+      font-size: 18px;
+      
+      
+    }
+  
+    .searchBoxContainer span {
+      line-height: 37px;
+    }
+  
+    .searchInputContainer button {
+      width: 60px;
+      height: 26px;
+      font-size: 12px;
+    }
+  
+    .searchInput {
+      font-size: 12px;
+      height: 36px;
+    }
+  
+    .findAccountInfoContainer {
+      padding: 20px 20px 15px 20px;
+    }
+  
+    .breadcrumb {
+      font-size: 12px;
+    }
+  
+    .infoContainer {
+      gap: 25px;
+      padding: 20px 0px;
+    }
+  
+    .title {
+      font-size: 30px;
+      line-height:45px
+    }
+  
+    .descriptionContainer p {
+      font-size: 14px;
+      line-height: 25px;
+    }
+  
+    .accountantBtn {
+      padding: 7px 21px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .searchInput {
+      font-size: 13px;
+      padding-left: 12px;
+    }
+  
+    .searchInputContainer button {
+      width: 50px;
+      font-size: 14px;
+    }
+  }
+  

@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 92px;
+  padding-bottom: 82px;
+}
+
+.image {
+  max-width: 707px;
+  max-height: 496.23px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+@media (max-width: 768px) {
+  .image {
+    width: 80%;
+  }
+}

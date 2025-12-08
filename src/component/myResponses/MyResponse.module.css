@@ -1,0 +1,881 @@
+.card {
+  background: #fff;
+  box-shadow: 0px 0px 6px 0px #0000001a;
+  margin: 21.08px auto;
+  padding: 28.25px 25.26px 28.25px 34px;
+  display: grid;
+  grid-template-areas: "info job actions";
+  grid-template-columns: 1fr 1fr 0.3fr;
+  gap: 50px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.maincontainer {
+  padding: 16px 88px;
+  background: #f9f9fa;
+}
+
+.accordionOverlay {
+  background: rgba(255, 255, 255, 0.98);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.infoContainer,
+.jobContainer,
+.actionsContainer {
+  min-width: 0; /* Prevents content from forcing column to expand */
+  overflow-wrap: break-word;
+}
+.mainTextBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  /* max-width: 1236px; */
+  margin: 0 auto;
+}
+.headerBox {
+  background-color: #000000;
+  padding: 14px 0;
+  width: -webkit-fill-available;
+  min-width: -moz-available;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.filterButtonsBox {
+  display: none;
+}
+
+.emptySpace {
+  flex-grow: 0.3;
+}
+
+.headerBtn {
+  display: flex;
+  gap: 22px;
+}
+
+/* Grid Areas */
+.infoContainer {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 30px;
+}
+
+.jobDetails {
+  grid-area: job;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  padding: 0 40px;
+  justify-content: center;
+  /* padding: 0 73px 0 44px; */
+}
+.selectBox {
+  width: 150px;
+  margin-left: 10px;
+  padding: 5px;
+  height: 30px;
+}
+
+.leadActions {
+  grid-area: actions;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  /* margin-left: -24px; */
+}
+.leadAction {
+  display: none;
+}
+
+.userDetails {
+  /* display: flex;
+  gap: 11px;
+  align-items: center;
+  width: 220px; */
+  display: flex;
+  gap: 11px;
+  /* cursor: pointer !important; */
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 50px; */
+}
+/* width: "60px",
+    height: "60px",
+    
+    borderRadius: "50%",
+    color: "#fff",
+    fontSize: "40px",
+  fontWeight: 600,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  backgroundColor:"#f9b7b7" */
+
+.avatar {
+  background: #f9b7b7;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 60px !important;
+  height: 60px !important;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .profile_view {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer !important;
+  
+} */
+.profile_view img {
+  margin-right: 0px;
+  margin-top: 0px;
+}
+.profile_view p {
+  background-color: #e3f6fc;
+  padding: 4px 9px;
+  color: #000000;
+  border-radius: 2px;
+  /* cursor: pointer !important; */
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  justify-content: space-between;
+}
+.profile_view div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.profile_view span {
+  background-color: #e3f6fc;
+  padding: 4px 9px;
+  color: #828282;
+  border-radius: 2px;
+  /* cursor: pointer !important; */
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.details h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: middle;
+  white-space: nowrap;
+  /* cursor: pointer !important; */
+}
+
+.details p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.contactContainer {
+  display: flex;
+  align-items: center;
+  gap: 15.43px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  font-weight: 400;
+  font-size: 16px;
+  vertical-align: middle;
+  /* cursor: pointer !important; */
+}
+.contactItem a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  font-size: 16px;
+  vertical-align: middle;
+  /* cursor: pointer !important; */
+}
+.customSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("../../assets/Icons/downArrowIcon.svg");
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  padding-right: 40px;
+  background-size: 14px 14px;
+  outline: none;
+}
+
+.category {
+  background: var(--primary-color);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  vertical-align: middle;
+  /* text-wrap: nowrap; */
+  text-align: center;
+}
+.saveBtnBox img {
+  margin-right: 4px;
+}
+.saveBtn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 7px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  /* cursor: pointer !important; */
+  flex-wrap: wrap;
+}
+
+.verified,
+.additional,
+.frequent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  color: white;
+}
+.frequentHir {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  color: white;
+}
+
+.verified {
+  background: #edb1d5;
+}
+
+.additional {
+  background: #aac9d2;
+}
+
+.frequent {
+  background: #98e6ff;
+}
+.frequentHir {
+  background-color: #ffbebf;
+}
+
+.jobInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #e3f6fc;
+  padding: 10px 16px;
+}
+
+.jobInfo p {
+  font-weight: 400;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.purchaseButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 28px;
+  border-radius: 5px;
+  /* cursor: pointer !important; */
+  font-size: 21px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* .purchaseButton:hover {
+  background-color: #98e6ff90;
+} */
+
+.credits {
+  display: block;
+  background: #fce5e3;
+  color: black;
+  padding: 4px 10px;
+  font-weight: 400;
+  font-size: 18.91px;
+}
+
+.responseStatus {
+  font-weight: 500;
+  font-size: 21px;
+  vertical-align: middle;
+
+  display: flex;
+  padding: 6px 16px;
+  gap: 8px;
+  color: var(--primary-color);
+  /* border: 1px solid var(--primary-color); */
+  white-space: nowrap;
+}
+.moreDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+.moreDetails:hover {
+  color: var(--primary-color);
+}
+.responseStatus img {
+  margin-right: 5px;
+}
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+.viewMoreBtnWrapper {
+  padding-top: 35.66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewMoreBtnWrapper button {
+  border-radius: 186.83px;
+  gap: 5px;
+  cursor: pointer !important;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  padding: 11px 18.68px;
+}
+
+.viewMoreBtnWrapper button:hover {
+  background-color: #0096c4;
+}
+
+.buttonGroup {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.filterButton {
+  padding: 8px 28px;
+  font-size: 21px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border: none;
+}
+
+.activeButton {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+.viewAllText {
+  color: #ffffff;
+  cursor: pointer !important;
+}
+.purchaseText {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.purchaseText button {
+  width: 100px;
+}
+.NoDataText {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 150px;
+}
+
+.popoverBtn {
+  cursor: pointer !important;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .maincontainer {
+    padding: 16px 60px;
+    background: #f9f9fa;
+  }
+  .card {
+    gap: 20px;
+  }
+
+  .jobDetails {
+    padding: 0 20px;
+  }
+
+  .userInfo {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .maincontainer {
+    padding: 16px 40px;
+    background: #f9f9fa;
+  }
+  .card {
+    grid-template-areas:
+      "info"
+      "job"
+      "actions";
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .infoContainer {
+    gap: 30px;
+  }
+
+  .jobDetails {
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .leadActions {
+    margin-left: 0;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .leadAction {
+    margin-left: 0;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+    display: none;
+  }
+  .NoDataText {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainTextBox {
+    width: -webkit-fill-available;
+  }
+  .NoDataText {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 0px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .maincontainer {
+    padding: 8px 10px;
+    background: #f9f9fa;
+  }
+  .card {
+    padding: 16px;
+  }
+
+  .category {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .details h3 {
+    font-size: 18px;
+  }
+
+  .contactItem {
+    font-size: 14px;
+  }
+
+  .jobInfo p {
+    font-size: 11px;
+  }
+
+  .credits {
+    font-size: 16px;
+  }
+  .headerBox {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .NoDataText {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerBox {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+    display: none;
+  }
+  .details h3 {
+    font-size: 16px;
+  }
+  .selectBox {
+    margin-left: 0px;
+  }
+  .category {
+    text-wrap: wrap;
+    text-align: center;
+  }
+  .headerBtn {
+    flex-direction: column;
+    margin-bottom: 5px;
+    gap: 8px;
+  }
+  .filterButtonsBox {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    background-color: #000000;
+    justify-content: space-between;
+    padding: 20px 8px;
+  }
+
+  .mobileTabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+  .filterButton {
+    font-size: 14px;
+    width: 120px;
+    height: 40px;
+  }
+  .selectBox {
+    width: 100px;
+    margin-top: -12px;
+  }
+  .purchaseText {
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+  .filterButton img {
+    width: 12px;
+    height: 12px;
+  }
+  .details p {
+    font-size: 12px;
+  }
+
+  .userInfo {
+    /* flex-direction: column;
+    align-items: flex-start; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contactContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contactItem {
+    font-size: 12px;
+  }
+
+  .infoContainer {
+    gap: 20px;
+  }
+  .leadAction {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .leadActions {
+    display: none;
+  }
+
+  .card {
+    gap: 20px;
+  }
+  .purchaseSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 6px;
+    margin-top: -12px;
+  }
+  .moreDetails {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #828282;
+  }
+
+  .mainTextBox {
+    padding: 0px;
+  }
+  .jobDetails {
+    grid-area: job;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  .purchaseButton {
+    font-size: 16px;
+  }
+  .responseStatus {
+    font-weight: 500;
+    font-size: 16px;
+    vertical-align: middle;
+
+    display: flex;
+    padding: 6px 6px;
+    gap: 8px;
+    color: #828282;
+    /* border: 1px solid var(--primary-color); */
+    white-space: nowrap;
+  }
+  .purchaseText {
+    margin-bottom: 8px;
+  }
+  .responseStatus img {
+    margin-right: 0px;
+  }
+  .NoDataText {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 0px;
+  }
+  /* .profile_view {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer !important;
+  
+} */
+  .profile_view span img {
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+  .profile_view p {
+    background-color: #e3f6fc;
+    padding: 4px 7px;
+    color: #000000;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+  .profile_view span {
+    background-color: #e3f6fc;
+    padding: 4px 9px;
+    color: #828282;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 375px) {
+  .filterButton {
+    font-size: 10px;
+    width: 90px;
+    height: 35px;
+    margin-top: 2px;
+  }
+
+  .filterButtonsBox {
+    padding: 20px 8px;
+  }
+  .profile_view p {
+    background-color: #e3f6fc;
+    padding: 4px 7px;
+    color: #000000;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+  .profile_view span {
+    background-color: #e3f6fc;
+    padding: 4px 9px;
+    color: #828282;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+  }
+  .selectBox {
+    margin-top: -14px;
+  }
+  .details h3 {
+    font-size: 12px;
+  }
+  .userInfo {
+    gap: 12px;
+  }
+  .category {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  .userInfo {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 320px) {
+  .filterButtonsBox {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    justify-content: space-between;
+
+    padding: 20px 8px;
+  }
+  .details h3 {
+    font-size: 12px;
+  }
+  .profile_view p {
+    background-color: #e3f6fc;
+    padding: 4px 7px;
+    color: #000000;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+  .profile_view span {
+    background-color: #e3f6fc;
+    padding: 4px 9px;
+    color: #828282;
+    border-radius: 2px;
+    cursor: pointer !important;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+  }
+  .filterButton {
+    font-size: 10px;
+    width: 80px;
+    height: 35px;
+    margin-top: 2px;
+  }
+  .selectBox {
+    width: 110px;
+    margin-top: -8px;
+  }
+  .purchaseText {
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+  .filterButton img {
+    width: 12px;
+    height: 12px;
+  }
+  .purchaseSelect {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 6px;
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,926 @@
+.container {
+  max-width: 500px;
+  /* margin: 0 auto; */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+.containers {
+  /* max-width: 500px; */
+  /* margin: 0 auto; */
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  padding: 35px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.date {
+  text-align: center;
+  color: #828282;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  margin-top: 10px;
+}
+
+.creditsAmount {
+  display: flex;
+  white-space: nowrap;
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 24px;
+}
+
+.icon {
+  background-color: #fff;
+  z-index: 1;
+}
+
+.topBar {
+  padding: 21px 38px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 0px;
+  width: 2px;
+  height: calc(100% - -70px); /* Or try height: 100% if needed */
+  background-color: #d9d9d9;
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 0; /* Set to -1 to ensure it stays behind content */
+}
+
+.card {
+  flex: 1;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+/* .mainNotesBox {
+
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  
+}
+.notesCard {
+  padding: 10px 20px;
+  background-color: #ccc;
+  color: #000;
+  width: max-content;
+  margin-bottom: 10px;
+} */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #4b5563;
+  font-weight: 600;
+  align-items: center;
+}
+
+.name {
+  color: #828282;
+  font-weight: 600;
+}
+
+.time {
+  color: #828282;
+  font-weight: 400;
+}
+
+.title {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #828282;
+  font-weight: 500;
+}
+
+.desc {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  /* Ensure there's enough height */
+}
+.mobileresponseheadbox {
+  display: none;
+}
+.iconWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-width: 24px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btnBox {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.buttonSms {
+  background-color: var(--primary-color);
+  padding: 7px 25px;
+  border-radius: 3px;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  display: flex;
+  gap: 8px;
+  cursor: pointer !important;
+}
+.selectBox {
+  padding: 8px 8px;
+  width: 150px;
+  font-size: 14px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer !important;
+  background-color: #fff;
+  color: #333;
+}
+.customSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("../../../assets/Icons/downArrowIcon.svg");
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  padding-right: 40px;
+  background-size: 14px 14px;
+}
+
+.selectBox option {
+  padding: 10px;
+}
+.mainSlectBox {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.currentStatusText {
+  font-size: 14px;
+  margin-right: 10px;
+  margin-bottom: -12px;
+}
+.headerBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 21px;
+  padding: 1px 32px;
+}
+.lastActivityText {
+  font-size: 14px;
+  font-weight: 500;
+}
+.lastActivityTexts {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.lastActivityText span {
+  border: 1px solid #e3f6fc;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: white;
+  margin-left: 14px;
+  font-size: 14px;
+}
+
+.ProfileImgBox {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+}
+.ProfileImgBox img {
+  width: 29px;
+  height: 29px;
+}
+.ProfileImgBox span {
+  font-size: 24px;
+  font-weight: 600;
+}
+.serviceText {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 24px;
+}
+.serviceText span {
+  color: #bbbbbb;
+  font-size: 18px;
+  font-weight: 500;
+}
+.phoneNumberText {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer !important;
+}
+.phoneNumberTexts {
+  text-decoration: none;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer !important;
+  color: #000000;
+}
+.phoneNumberTexts span {
+  margin-top: 4px;
+}
+.phoneNumberText img {
+  width: 17px;
+  height: 17px;
+  margin-top: 4px;
+}
+.verifiedText {
+  display: flex;
+  gap: 8px;
+  background-color: #e3f6fc;
+  padding: 2px 9px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--primary-color);
+}
+.contactBox {
+  justify-content: start;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.urgentText {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 600;
+}
+.locationTag {
+  border: 2px solid var(--primary-color);
+  border-radius: 2.42px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px;
+  max-width: 90px;
+  margin-top: 40px;
+}
+
+.locationTag img {
+  width: 66px;
+  height: 26px;
+}
+.tabSection {
+  margin-top: 48px;
+}
+.hrline {
+  margin-left: 20px;
+  color: "#e9e9e9";
+}
+.tabButtons {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  border-top: 1px solid #e0e0e0;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 12px 20px 8px; /* reduced bottom padding to bring text closer to border */
+  cursor: pointer !important;
+}
+
+.tabLabel {
+  position: relative;
+  font-size: 16px;
+  color: #828282;
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.tabButton:hover .tabLabel {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.activeTab {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.tabContent {
+  /* border-top: 1px solid #e0e0e0; */
+  padding-top: 10px;
+}
+.leadContent {
+  display: flex;
+  gap: 40px;
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+}
+.mainNotesBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0px 20px 0px 0px;
+}
+
+.noteItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 14px;
+  /* background-color: #f9f9f9; */
+  font-size: 14px;
+}
+
+.noteText {
+  flex: 1;
+  color: #333;
+}
+
+.noteActions {
+  font-size: 13px;
+  color: #999;
+  display: flex;
+  gap: 10px;
+  cursor: pointer !important;
+}
+
+.noteActions span:hover {
+  color: #000;
+}
+
+.notesContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.notesInner {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  gap: 1rem;
+}
+
+.textArea {
+  max-width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.UpdateBtn {
+  background-color: var(--primary-color, #00bfff);
+  padding: 6px 20px;
+  border-radius: 4px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer !important;
+  font-weight: 500;
+}
+
+.CancelBtn {
+  background-color: #ffffff;
+  padding: 6px 20px;
+  border-radius: 4px;
+  color: #828282;
+  border: none;
+  cursor: pointer !important;
+  font-weight: 500;
+}
+
+/* .notesContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column
+}
+
+.notesInner {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  gap: 1rem;
+}
+
+.textArea {
+  max-width: 500px;
+  min-height: 120px;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.UpdateBtn {
+  background-color: var(--primary-color);
+  padding: 5px 21px;
+  border-radius: 3px;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  gap: 4px;
+  cursor: pointer !important;
+}
+.CancelBtn {
+  background-color: #ffffff;
+  padding: 5px 21px;
+  border-radius: 3px;
+  color: #828282;
+  border: none;
+  display: flex;
+  gap: 4px;
+  cursor: pointer !important;
+} */
+.bullet {
+  color: #000;
+  font-size: 20px;
+  /* margin-right: 8px; */
+  line-height: 1.5;
+  margin-top: 0.6rem;
+}
+.answerText {
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #828282;
+}
+.questionText {
+  margin-left: 10px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+
+  color: #000000;
+}
+
+@media screen and (max-width: 1024px) {
+  .leadContent {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .headerBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 21px;
+    padding: 1px 3px;
+  }
+  .containers {
+    padding: 24px;
+  }
+
+  .btnBox {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* .ProfileImgBox {
+    flex-direction: column;
+    align-items: flex-start;
+  } */
+
+  .phoneNumberText,
+  .serviceText {
+    font-size: 14px;
+  }
+
+  .textArea {
+    width: 100%;
+  }
+
+  .leadContent {
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .leadContent > div {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .leadContent {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .leadContent > div {
+    width: 100%;
+  }
+
+  .leadContent p {
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  .textArea {
+    width: 92%;
+  }
+  .headerBox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    display: none;
+  }
+  .headerBox {
+    padding: 16px 8px;
+  }
+  .mobileresponseheadbox {
+    display: flex;
+    /* flex-direction: column; */
+    margin-bottom: 16px;
+    align-items: center;
+    gap: 16px;
+  }
+  .tabLabel {
+    position: relative;
+    font-size: 14px;
+    color: #828282;
+    font-weight: 600;
+    padding-bottom: 2px;
+  }
+  .lastActivityTexts {
+    /* text-align: center; */
+    /* margin-bottom: 16px; */
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .selectBox {
+    width: 130px;
+    font-weight: 600;
+    color: #000000;
+  }
+  .serviceText {
+    margin-bottom: 16px;
+  }
+  .phoneNumberText img {
+    margin-top: 4px;
+  }
+  .dropdownMoblieBox {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .mobileresponseheadbox h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+  }
+  .mobileresponseheadbox img {
+    width: 24px;
+    height: 24px;
+  }
+  .container {
+    gap: 0px;
+  }
+  .title {
+    font-size: 12px;
+    margin-top: 0px;
+    font-weight: 500;
+  }
+  .date {
+    margin-bottom: 0px;
+  }
+  .tabContent {
+    padding-top: 0px;
+  }
+  .customSelects {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* background-image: url('../../../assets/Icons/arrow-down.svg');
+  background-repeat: no-repeat; */
+    background-position: right 5px center;
+    padding-right: 40px;
+    background-size: 18px 18px;
+  }
+
+  .verticalLine {
+    /* display: none; */
+    position: absolute;
+    top: 0px;
+    width: 2px;
+    height: calc(100% - -42px); /* Or try height: 100% if needed */
+    background-color: #d9d9d9;
+    left: 45%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  .containers {
+    padding: 16px;
+  }
+  .time {
+    color: #000000;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .tabButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .card {
+    padding: 14px 16px;
+    border-radius: 0px;
+  }
+  .iconWrapper {
+    margin-left: 18px;
+    align-items: start;
+    justify-content: start;
+  }
+
+  .iconWrapper img {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: -4px;
+  }
+
+  .UpdateBtn,
+  .CancelBtn {
+    font-size: 14px;
+    padding: 10px 19px;
+  }
+
+  .buttonSms {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .timelineItem {
+    /* flex-direction: column;
+    align-items: flex-start; */
+    width: 365px;
+    margin-left: -40px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+  .lastActivityText {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: start;
+    gap: 2px;
+    font-size: 10px;
+  }
+  .lastActivityText span {
+    margin-left: 0px;
+    width: 125px;
+    border: 1px solid #ccc;
+    padding: 8px 8px;
+  }
+  /* .dropdownMainBox{
+    /* display: flex; 
+    gap: 24px;
+  } */
+  .tabSection {
+    margin-top: 40px;
+  }
+  .phoneNumberText {
+    margin-bottom: 16px;
+  }
+  .phoneNumberTexts {
+    text-decoration: none;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer !important;
+    color: #000000;
+  }
+  .currentStatusText {
+    font-size: 12px;
+    color: #c0c0c0;
+  }
+
+  /* .currentStatusText {
+  font-size: 10px;
+  margin-right: 10px;
+  margin-bottom: -12px;
+} */
+
+  .hrline {
+    margin-left: 0px;
+    color: "#e9e9e9";
+  }
+  .answerText {
+    margin-left: 0px;
+  }
+  .questionText {
+    margin-left: 4px;
+  }
+  .bullet {
+    margin-left: -12px;
+  }
+  .notesContent {
+    padding: 0rem;
+  }
+  .btnBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+    flex-direction: row;
+  }
+  .buttonSms {
+    background-color: var(--primary-color);
+    padding: 4px 26px;
+    border-radius: 3px;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    gap: 6px;
+    cursor: pointer !important;
+    width: 150px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .locationTag {
+    margin-top: 24px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .mobileresponseheadbox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 0px;
+  }
+  .selectBox {
+    width: 150px;
+  }
+  .tabLabel {
+    position: relative;
+    font-size: 12px;
+    color: #828282;
+    font-weight: 600;
+    padding-bottom: 2px;
+  }
+  .btnBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+    flex-direction: row;
+  }
+  .buttonSms {
+    background-color: var(--primary-color);
+    padding: 4px 26px;
+    border-radius: 3px;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    gap: 6px;
+    cursor: pointer !important;
+    width: 125px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .timelineItem {
+    /* flex-direction: column;
+    align-items: flex-start; */
+    width: 310px;
+
+    margin-left: -40px;
+  }
+  .lastActivityTexts {
+    margin-bottom: 16px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .lastActivityText span {
+    width: 100px;
+    font-size: 10px;
+  }
+  .lastActivityTexts {
+    color: #000000;
+    font-weight: 600;
+  }
+  .selectBox {
+    height: 33px;
+    padding: 4px 8px;
+    width: 137px;
+    color: #000000;
+    font-size: 12px;
+  }
+  .timelineItem {
+    /* flex-direction: column;
+    align-items: flex-start; */
+    width: 285px;
+    margin-left: -40px;
+  }
+  .tabLabel {
+    position: relative;
+    font-size: 11px;
+    color: #828282;
+    font-weight: 600;
+    padding-bottom: 3px;
+  }
+}

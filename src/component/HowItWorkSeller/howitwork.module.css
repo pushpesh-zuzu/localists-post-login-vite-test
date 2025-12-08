@@ -1,0 +1,263 @@
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 73px;
+  padding: 0 88px;
+  margin-top: 96px;
+  margin-bottom: 96px;
+}
+
+.stepWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 50px;
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-height: 356px;
+}
+
+.stepImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popover {
+  position: absolute;
+  top: 36%;
+  left: 85%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.overlayIcons {
+  position: absolute;
+  top: -15%;
+  left: 26%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchIcon {
+  width: 71.32px;
+  height: 71.32px;
+  position: absolute;
+  top: 13%;
+  left: 44%;
+  z-index: 2;
+}
+
+.formIcon {
+  width: 57.52px;
+  height: 82.18px;
+  position: relative;
+  z-index: 1;
+}
+
+.imageContainer:nth-child(even) {
+  flex: 1;
+  padding-left: 0%;
+}
+
+.imageContainer:nth-child(odd) {
+  flex: 1;
+}
+
+.textContainer:nth-child(odd) {
+  flex: 1;
+}
+.textContainer:nth-child(even) {
+  flex: 1;
+}
+.titleContainer {
+  max-width: 70%;
+}
+.paragraphsContainer {
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+  max-width: 100%;
+}
+.stepTitle {
+  /* color: var(--primary-color); */
+  font-size: 35px;
+  margin-bottom: 3.04px;
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+/* .stepTitle::after {
+  content: "";
+  display: block;
+  width: 0.88px;
+  height: 52.11px;
+  background-color: #d9d9d9;
+  margin-top: 5px;
+} */
+
+.stepHeading {
+  font-size: var(--text-size-18);
+  font-weight: 400;
+  color: #000;
+  width: 100%;
+  max-width: 404px;
+}
+
+@media screen and (max-width: 1220px) {
+  .overlayIcons {
+    top: -14%;
+    left: 25%;
+  }
+
+  .searchIcon {
+    width: 60px;
+    height: 60px;
+    top: 10%;
+    left: 35%;
+  }
+
+  .formIcon {
+    width: 50px;
+    height: 70px;
+  }
+
+  .imageContainer {
+    flex: 1 !important;
+  }
+
+  .textContainer {
+    flex: 1;
+    padding: 0 !important;
+  }
+  .popover::after {
+    content: "";
+    position: absolute;
+    bottom: -16px;
+    left: 20%;
+    transform: translateX(-50%);
+    border-width: 12px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .popover {
+    position: absolute;
+    top: 36%;
+    left: 85%;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .popover::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 20%;
+    transform: translateX(-50%);
+    border-width: 10px;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .singleImageDisplayed {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .stepsContainer {
+    padding: 0 40px;
+    gap: 50px;
+  }
+  .singleImageDisplayed {
+    display: none !important;
+  }
+
+  .stepHeading {
+    font-size: 28px;
+    max-width: 100%;
+  }
+
+  .overlayIcons {
+    top: -8%;
+    left: 32%;
+  }
+
+  .searchIcon {
+    width: 40px;
+    height: 40px;
+    top: 18%;
+    left: 40%;
+  }
+
+  .formIcon {
+    width: 35px;
+    height: 55px;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .stepsContainer {
+    padding: 0 30px;
+    gap: 30px;
+  }
+  .singleImageDisplayed {
+    display: block !important;
+  }
+  .stepWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+  }
+  .stepWrapper:nth-child(odd) {
+    flex-direction: column-reverse;
+  }
+}
+@media screen and (max-width: 540px) {
+  .singleImageDisplayed {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .stepHeading {
+    font-size: 16px;
+  }
+
+  .stepTitle {
+    font-size: 28px;
+  }
+
+  .popover {
+    top: 26%;
+    left: 70%;
+  }
+  .titleContainer {
+    min-width: 100%;
+  }
+  .paragraphsContainer {
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .singleImageDisplayed {
+    display: none !important;
+  }
+}

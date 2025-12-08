@@ -1,0 +1,9 @@
+.mainContainer {
+  align-items: center;
+  padding: 0;
+  gap: 10px;
+  width: 100%;
+  max-width: 1120px;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+}

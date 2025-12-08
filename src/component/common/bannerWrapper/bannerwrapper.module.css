@@ -1,0 +1,54 @@
+.bannerImage {
+  width: 100%;
+  height: clamp(250px, 40vw, 400px);
+  /* height: 360px; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 49px;
+}
+
+.contactSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.bannerTitle {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 700;
+  text-align: center;
+  font-size: 45px;
+  font-family: "Poppins", sans-serif;
+  padding: 0 20px;
+}
+.bannerContent {
+  width: 72%;
+}
+@media (max-width: 768px) {
+  .bannerContent {
+    width: 92%;
+  }
+  .bannerImage {
+    padding: 0px;
+  }
+  .bannerTitle{
+    font-size: 38px;
+    font-weight: 600;
+  }
+}
+@media (max-width: 540px) {
+  .bannerTitle{
+    font-size: 32px;
+  }
+}

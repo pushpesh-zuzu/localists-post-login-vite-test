@@ -1,0 +1,191 @@
+.tellUsHowContainer {
+  height: 400px;
+  background-image: url("../../../assets/Images/HelpCenter/TellUsHowImg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.searchcontainer {
+  width: 883px;
+  height: auto;
+}
+
+.searchcontainer h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 57px;
+  letter-spacing: 0;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+.firstLine {
+  color: #ffffff;
+
+}
+.secondLine {
+    color: #000000;
+}
+/* .searchcontainer span {
+  color: #000000;
+} */
+
+.searchBoxContainer {
+  padding: 44px 91px;
+  border-radius: 10px;
+  background: #ffffffe5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBoxContainer span {
+  color: var(--primary-color);
+  line-height: 57px;
+}
+
+.searchInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  width: 688px;
+  height: 50px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  padding-left: 18px;
+}
+
+.searchInput::placeholder {
+  color: #959595;
+}
+
+.searchInputContainer button {
+  width: 187px;
+  height: 40px;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  background: var(--primary-color);
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  border: none;
+  letter-spacing: 0;
+  vertical-align: middle;
+  cursor: pointer !important;
+  padding: 5px 0px;
+  position: absolute;
+  right: 6.8px;
+}
+
+.searchInputContainer button:hover {
+  background-color: #008cc0;
+}
+
+@media (max-width: 980px) {
+  .findAccountantContainer {
+    padding: 0px 100px;
+  }
+
+  .searchInputContainer {
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .searchInputContainer button {
+    width: 157px;
+  }
+}
+
+@media (max-width: 768px) {
+  .findAccountantContainer {
+    padding: 0px 30px;
+  }
+
+  .searchBoxContainer {
+    padding: 20px 30px;
+    margin: 0px 10px;
+    border-radius: 4px;
+  }
+
+  .searchInputContainer button {
+    width: 120px;
+  }
+
+  .findAccountInfoContainer {
+    padding: 27px 30px 10px 30px;
+  }
+
+  .accountantBtn {
+    padding: 10px 25px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .findAccountantContainer {
+    padding: 0px 20px;
+    
+  }
+
+  .searchcontainer h1 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .searchBoxContainer {
+    padding: 20px 15px;
+    gap: 10px;
+    margin: 0px 10px;
+  }
+
+  .searchBoxContainer span {
+    line-height: 37px;
+  }
+
+  .searchInputContainer button {
+    width: 60px;
+    font-size: 16px;
+  }
+  .firstLine,
+  .secondLine {
+    display: block;
+    text-align: center;
+  }
+
+  /* .searchcontainer h1 {
+    font-size: 32px;
+    line-height: 38px;
+  } */
+}
+
+@media (max-width: 400px) {
+  .searchcontainer h1 {
+    font-size: 30px;
+  }
+  .searchInput {
+    font-size: 13px;
+    padding-left: 12px;
+  }
+
+  .searchInputContainer button {
+    width: 50px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,131 @@
+.container {
+  padding: 40px 0px;
+  background-color: white;
+  border-radius: 8px;
+  padding-bottom: 0px;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 11px;
+  color: #828282;
+}
+
+.subheading {
+  font-weight: 500;
+  font-size: 14px;
+  color: #828282;
+  margin-bottom: 12px;
+  max-width: 831px;
+}
+
+.subheading2 {
+  font-weight: 500;
+  font-size: 14px;
+  color: #828282;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.qaItem {
+  margin-bottom: 23px;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 14px;
+  color: #000000;
+}
+
+.textarea {
+  width: -webkit-fill-available;
+  min-width: -moz-available;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical;
+  color: #828282;
+}
+
+.helperText {
+  font-weight: 500;
+  font-size: 16px;
+  color: #dedede;
+  margin-top: -5px;
+}
+
+.suggestion {
+  margin-top: 5px;
+}
+
+.link {
+  color: var(--primary-color);
+  cursor: pointer !important;
+  font-weight: 600;
+  font-size: 16px;
+  vertical-align: middle;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0%;
+  text-decoration-skip-ink: auto;
+}
+.lastBoxContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.liftBoxContainer {
+  display: flex;
+  flex-direction: column;
+}
+.buttonRow {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  /* margin-top: 16px; */
+  margin-bottom: 30px;
+}
+
+.cancelBtn {
+  background-color: #c6c6c6;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 3px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.saveBtn {
+  background-color: var(--primary-color);
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  color: #fff;
+  border: none;
+  padding: 8px 21px;
+  border-radius: 3px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+.saveBtn:hover {
+  background-color: #0096c4;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 20px 2px 0px 2px;
+  }
+  .lastBoxContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .qaItem {
+    margin-bottom: 0px;
+  }
+}

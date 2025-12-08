@@ -1,0 +1,109 @@
+.container {
+  text-align: center;
+  padding: 38px 0 40px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.parentContainer {
+  width: 100%;
+  height: auto;
+  background-image: url("../../../assets/Images/subcategory/accountantInfoBackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.title {
+  font-size: var(--text-size-35);
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 29px 0px;
+}
+
+.descriptionContainer p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--text-color);
+}
+
+.button {
+  background-color: var(--primary-color) !important;
+  border: none;
+  color: #fff;
+  border-radius: 4.67px;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 11px 31px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer !important;
+}
+
+.button:hover {
+  background-color: #0096c4 !important;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .title {
+    line-height: 40px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 26px 30px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .descriptionContainer p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 26px 20px;
+  }
+
+  /* .title {
+    line-height: 30px;
+  } */
+
+  .descriptionContainer {
+    margin: 20px 0px;
+  }
+
+  .descriptionContainer p {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

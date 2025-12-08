@@ -1,0 +1,69 @@
+.photoContainer {
+  border-bottom: 1px solid rgb(238, 238, 238);
+  margin-bottom: 12px;
+}
+
+.photosContainer {
+  margin-top: 12px;
+  height: 120px;
+  display: flex;
+  gap: 12px;
+  width: -webkit-fill-available;
+  overflow-x: scroll;
+}
+
+.photoContainer h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: start;
+}
+.profileImg {
+  width: 129px;
+  height: 92px;
+  object-fit: contain;
+}
+.paginationBox {
+  display: flex;
+  justify-content: end;
+  margin-right: 24px;
+  gap: 4px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+  position: relative;
+  background: transparent; /* 👈 bg nahi rahega */
+}
+
+.previewImg {
+  max-width: 400px; /* 👈 choti size */
+  max-height: 400px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--primary-color);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 20px;
+  text-align: center;
+}

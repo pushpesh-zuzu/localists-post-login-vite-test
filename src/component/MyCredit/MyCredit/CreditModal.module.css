@@ -1,0 +1,436 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  width: 90%;
+  max-width: 860px;
+  /* height: 644px; */
+  border-radius: 8px;
+  padding: 24px;
+  /* position: relative; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  /* background-color: white; */
+  max-height: 75vh;
+  overflow-y: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modalContent::-webkit-scrollbar {
+  display: none;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 20px;
+  border: none;
+  background: none;
+  cursor: pointer !important;
+}
+
+.title h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #000000;
+}
+.title p {
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 34px;
+  font-weight: 500;
+}
+
+/* .subtitle {
+    
+  } */
+
+.infoBar {
+  display: flex;
+  justify-content: space-between;
+  background: #eef8fd;
+  padding: 38px 20px;
+  margin-bottom: 40px;
+  gap: 8px;
+}
+
+.credits {
+  background: var(--primary-color);
+  padding: 7.5px 12px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 500;
+  border: 3px solid #ffffff;
+}
+
+.responses {
+  background: var(--primary-color);
+  padding: 7.5px 12px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 500;
+  border: 3px solid #ffffff;
+}
+
+.cost {
+  background: var(--primary-color);
+  padding: 7.5px 12px;
+  border: 3px solid #ffffff;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.sliderWrapper {
+  position: relative;
+  width: 90%;
+  margin: 16px auto;
+  z-index: 2;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--primary-color);
+  /* border-radius: 5px; */
+  outline: none;
+  transition: background 450ms ease-in;
+}
+
+/* For Webkit Browsers (Chrome, Safari, Edge) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer !important;
+  /* border: 2px solid white; */
+  margin-top: 1px; /* Align thumb vertically */
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer !important;
+  border: 2px solid white;
+}
+
+.sliderMarkers {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transform: translateY(-50%);
+  z-index: 0;
+  /* pointer !important-events: none; */
+}
+
+.sliderMarkers span {
+  position: absolute;
+  top: -5.5px;
+  height: 16px;
+  width: 4px;
+  background: var(--primary-color);
+}
+
+.rangeLabels {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  height: 20px;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.rangeLabels span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+}
+
+/* Position each label manually */
+.rangeLabels span:nth-child(1) {
+  left: 8%;
+}
+.rangeLabels span:nth-child(2) {
+  left: 27.5%;
+}
+.rangeLabels span:nth-child(3) {
+  left: 50%;
+}
+.rangeLabels span:nth-child(4) {
+  left: 72.5%;
+}
+.rangeLabels span:nth-child(5) {
+  left: 93.5%;
+}
+.centerBtn {
+  text-align: center;
+  margin-bottom: 39px;
+}
+
+.buyBtn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 43px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.partnerSection {
+  background: #f9f9f9;
+  padding: 16px;
+
+  display: flex;
+  justify-content: space-around;
+
+  align-items: center;
+  margin-top: 39px;
+}
+
+.partnerSection h4 {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.partnerSection p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.partnerSection ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 16px;
+}
+
+.partnerSection li {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  color: #000000;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.partnerSection li img {
+  width: 18px;
+  height: 18px;
+}
+
+.callbackBtn {
+  background-color: #ffffff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 6px 15px;
+
+  font-weight: 600;
+  cursor: pointer !important;
+  font-size: 24px;
+}
+.adjustText {
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.btnbelowText {
+  text-align: center;
+  color: #989898;
+  font-size: 16px;
+  font-weight: 500;
+  width: 80%;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 16px;
+  }
+
+  .title h2 {
+    font-size: 20px;
+  }
+
+  .title p {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .infoBar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 12px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .credits,
+  .responses,
+  .cost {
+    font-size: 18px;
+    padding: 6px 10px;
+  }
+
+  .rangeLabels {
+    font-size: 12px;
+  }
+
+  .buyBtn {
+    font-size: 18px;
+    padding: 6px 30px;
+  }
+
+  .callbackBtn {
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+
+  .partnerSection {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .partnerSection h4,
+  .partnerSection p {
+    font-size: 16px;
+  }
+
+  .partnerSection li {
+    font-size: 13px;
+    justify-content: center;
+  }
+  .partnerSection ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 425px) {
+  .modalOverlay {
+    overflow-x: scroll;
+    background: rgba(0, 0, 0, 0.5) !important;
+  }
+  /* 
+  .modalContent {
+    margin: 0px 10px;
+    overflow-x: scroll;
+  } */
+
+  /* .title h2 {
+    font-size: 24px;
+  } */
+
+  /* .title p {
+    font-size: 18px;
+  } */
+
+  .credits,
+  .responses,
+  .cost {
+    font-size: 16px;
+  }
+
+  .rangeLabels {
+    font-size: 11px;
+    margin-bottom: 30px;
+  }
+  .centerBtn {
+    margin-bottom: 30px;
+  }
+  .buyBtn {
+    font-size: 16px;
+    padding: 5px 20px;
+  }
+
+  .callbackBtn {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+  .sliderMarkers span {
+    position: absolute;
+    top: -6px;
+    height: 16px;
+    width: 4px;
+    background: var(--primary-color);
+  }
+
+  .partnerSection h4 {
+    font-size: 14px;
+    text-align: start;
+  }
+  .partnerSection {
+    align-items: start;
+  }
+  .partnerSection p {
+    font-size: 13px;
+    text-align: start;
+    margin-bottom: 15px;
+  }
+
+  .partnerSection li {
+    font-size: 12px;
+  }
+  .partnerSection ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  .closeButton {
+    position: absolute;
+    top: 1px;
+    right: 6px;
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer !important;
+  }
+  .rangeLabels span {
+    font-size: 13px;
+  }
+}
+
+@media (max-height: 820px) {
+  .modalOverlay {
+    align-items: unset !important;
+    height: fit-content;
+    /* overflow-y: auto; */
+  }
+  /* .modalContent {
+    overflow-y: auto;
+  } */
+}

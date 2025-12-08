@@ -1,0 +1,485 @@
+.container {
+    padding: 41.39px 88px;
+    position: relative;
+    /* width: 100%; */
+  }
+  .card {
+    background: #fff;
+    box-shadow: 0px 0px 6px 0px #0000001a;
+    margin: 21.08px auto;
+    padding: 28.25px 25.26px 28.25px 34px;
+    display: grid;
+    grid-template-areas: "info job actions";
+    grid-template-columns: 1fr 1fr 0.3fr;
+    gap: 40px;
+  }
+  
+  .backBtnWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    width: fit-content;
+  }
+  
+  .backBtn {
+    background: #d9d9d9;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 11px;
+    margin-bottom: 10px;
+    cursor: pointer !important;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  
+  .backBtn:hover {
+    background-color: #d9d9d9df;
+  }
+  
+  .heading {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 50px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin: 22px 0 19px;
+    gap: 11px;
+  }
+  
+  .noBidText {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 20px;
+  }
+  
+  .tab,
+  .activeTab {
+    padding: 8px 29px;
+    border: none;
+    cursor: pointer !important;
+  }
+  
+  .activeTab {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+  }
+  .viewQuestion {
+    font-weight: 400;
+    font-size: 12px;
+  }
+  .backBtn {
+    background: #d9d9d9;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 11px;
+    margin-bottom: 10px;
+    cursor: pointer !important;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  
+  .backBtn:hover {
+    background-color: #d9d9d9df;
+  }
+  .activeTab:hover {
+    background-color: #0096c4;
+  }
+  .credits {
+    display: block;
+    background: #fce5e3;
+    color: black;
+    padding: 4px 10px;
+    font-weight: 400;
+    font-size: 18.91px;
+  }
+  
+  .tab {
+    background-color: #000000;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .tab:hover {
+    background-color: #000000cf;
+  }
+  
+  .filters {
+    background-color: #e3f6fc;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 11px;
+    padding: 19.71px 22px;
+  }
+  
+  .filters select {
+    width: 188px;
+    padding: 8px 10px;
+    border: 1px solid #d9d9d9;
+  }
+  
+  .matchCount {
+    font-weight: 600;
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 24px;
+  }
+  
+  .sortDropdown {
+    margin-left: auto;
+  }
+  
+  .recommendBar {
+    background: linear-gradient(90deg, #8ed5ec 0%, #00afe3 100%);
+    color: white;
+    padding: 19.19px 27.12px 23.02px 27.12px;
+    margin-bottom: 35.84px;
+    font-weight: 400;
+    font-size: 22px;
+    vertical-align: middle;
+  }
+  
+  .recommendBar span {
+    color: #fff600;
+    font-weight: 600;
+  }
+  .recommendBar strong {
+    font-weight: 700;
+  }
+  
+  .card {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid #d9d9d9;
+    overflow: hidden;
+    gap: 15px;
+    margin-bottom: 16px;
+  }
+  
+  .cardLeft {
+    display: flex;
+    gap: 25.54px;
+    width: 100%;
+  }
+  
+  .image {
+    width: 260.6px;
+    height: 186.8px;
+    object-fit: cover;
+    margin: 30px 0 30px 22px;
+  }
+  
+  .details {
+    flex: 1;
+    padding: 20px 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .header h3 {
+    font-weight: 600;
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  
+  .header h3 img {
+    height: 17.47px;
+    width: 17.47px;
+    margin-right: 7px;
+    margin-bottom: -2px;
+  }
+  
+  .header p {
+    font-weight: 600;
+    font-size: 12px;
+    vertical-align: middle;
+  }
+  
+  .header p img {
+    height: 12px;
+    width: 12px;
+    margin-right: 11px;
+    margin-bottom: -2px;
+  }
+  
+  .distance {
+    color: #888;
+    font-size: 0.9rem;
+  }
+  
+  .badges {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .badges span {
+    border: 1px solid #b3b3b3;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 10px;
+    vertical-align: middle;
+    color: #b3b3b3;
+    text-wrap: nowrap;
+  }
+  
+  .description {
+    font-weight: 500;
+    font-size: 12px;
+    color: #828282;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .profileLink {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 12px;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+  
+  .sidebar {
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .rating {
+    display: flex;
+    font-size: 1.2rem;
+    text-align: center;
+    gap: 5px;
+  }
+  
+  .stars {
+    color: #ffd633;
+    font-size: 35px;
+  }
+  
+  .ratingCount {
+    display: flex;
+    font-weight: 600;
+    font-size: 22px;
+    color: #000000 !important;
+    align-items: center;
+  }
+  
+  .quickToRespondWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .quickToRespond {
+    background-color: #aac9d2;
+    color: #ffffff;
+    border-radius: 100px;
+    padding: 5px 10px;
+    font-weight: 600;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+  
+  .quickToRespond img {
+    width: 14.2px;
+    height: 14.2px;
+    margin-right: 5px;
+    margin-bottom: -4px;
+  }
+  
+  .replyBtnWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e3f6fc;
+    width: 265.4px;
+  }
+  
+  .replyBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer !important;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .replyBtn:hover {
+    background-color: #0096c4;
+  }
+  
+  @media (max-width: 1200px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .imageWrapper {
+      display: flex;
+      justify-content: start;
+      width: 100%;
+    }
+    .image {
+      width: 30%;
+      height: auto;
+      margin: 0;
+    }
+  
+    .card {
+      border-bottom: none;
+      margin-bottom: 16px;
+    }
+  
+    .cardLeft {
+      gap: 0;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .container {
+      padding: 30px 40px;
+    }
+  
+    .card {
+      flex-direction: column;
+    }
+  
+    .cardLeft {
+      flex-direction: column;
+      align-items: start;
+    }
+  
+    .sidebar {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .replyBtnWrapper {
+      width: 100%;
+      height: auto;
+      padding: 20px 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+  
+    .heading {
+      font-size: 24px;
+    }
+  
+    .image {
+      width: 100%;
+    }
+  
+    .filters {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .filters select,
+    .sortDropdown {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    .matchCount {
+      margin-left: 0;
+      align-self: flex-start;
+    }
+  
+    .tabs {
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+  
+    .tab,
+    .activeTab {
+      text-align: center;
+      width: 40%;
+    }
+  
+    .quickToRespondWrapper {
+      gap: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .heading {
+      font-size: 20px;
+    }
+  
+    .recommendBar {
+      font-size: 16px;
+      padding: 15px;
+      text-align: left;
+    }
+  
+    .badges {
+      flex-wrap: wrap;
+    }
+  
+    .badges span {
+      font-size: 9px;
+      padding: 4px 8px;
+    }
+  
+    .description {
+      font-size: 11px;
+    }
+  
+    .tab,
+    .activeTab {
+      text-align: center;
+      width: 100%;
+    }
+  
+    .profileLink {
+      font-size: 11px;
+    }
+  
+    .replyBtn {
+      font-size: 16px;
+      padding: 8px 20px;
+    }
+  
+    .backBtnWrapper {
+      position: static;
+      margin-bottom: 10px;
+    }
+  }
+  

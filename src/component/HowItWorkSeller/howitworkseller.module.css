@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 89px;
+  padding-bottom: 61px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  gap: 30px;
+}
+
+.search {
+  max-width: 82%;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  .container {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+}

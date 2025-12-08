@@ -1,0 +1,105 @@
+/* Fonts are loaded via index.html to avoid duplication and FOUC */
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+  padding-top: 40px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  scrollbar-gutter: stable both-edges;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+:root {
+  --primary-color: #00afe3;
+  --text-color: #000000;
+  --stroke-color: #dedede;
+  --background-color: #ffffff;
+
+  /* font family */
+  --font-Rubik: "Rubik", sans-serif;
+  --font-Poppins: "Poppins", sans-serif;
+  /* text font and weight */
+  --primary-font-size: 30px;
+  --primary-font-weight: 400;
+  --secondary-font-size: 16px;
+  --secondary-font-weight: 700;
+  --text-font-weight: 500;
+
+  --text-size-35: 35px;
+}
+
+.myCustomCarousel .slick-arrow {
+  color: #070606 !important;
+  border: none;
+  outline: none;
+  background: #242424 !important;
+}
+
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+}
+
+.slick-slider {
+  height: 100%;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px !important;
+}
+
+/* input {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+} */
+
+.slick-slide {
+  display: flex !important;
+  gap: 5px !important;
+  width: 300px !important;
+}
+.no-scroll {
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .slick-slide {
+    gap: 10px !important;
+    width: 280px !important;
+  }
+}
+/* *:not(input):not(textarea):not([contenteditable="true"]) {
+  cursor: default ;
+} */

@@ -1,0 +1,234 @@
+.container {
+  padding: 45px 31px;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000000;
+}
+.VerifyText {
+  margin-bottom: 12px;
+  color: #000000;
+}
+
+.otpInputs {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 19px;
+}
+
+.otpInput {
+  width: 28px;
+  height: 28px;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+  /* box-shadow: 0px 0px 2px 0.5px #0000001a;
+  border-radius: 4px; */
+  border-bottom: 1px solid rgba(188, 188, 188, 1);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+.otpInput:focus-visible {
+  outline: none;
+}
+.resendDescriptionText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: rgba(150, 150, 150, 1);
+}
+.reenterDescription {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: rgba(150, 150, 150, 1);
+  margin-bottom: 5px;
+  margin-top: 26px;
+}
+.goBack {
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 35px;
+  margin-right: 5px;
+}
+.instruction {
+  font-family: Poppins;
+  font-weight: 500;
+  text-align: center;
+  color: #828282;
+  margin-bottom: 23px;
+  font-size: 16px;
+  line-height: 14px;
+}
+.instructionVerify {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+.instruction span {
+  color: #000000;
+}
+
+.timerText {
+  font-family: Poppins;
+  color: #828282;
+  font-weight: 500;
+  margin-bottom: 16px;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.submitBtn {
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  background: var(--primary-color);
+  border-radius: 3px;
+  color: white;
+  padding: 8px 23px;
+  border: none;
+  cursor: pointer !important;
+  font-weight: 600;
+  font-size: 14px;
+  vertical-align: middle;
+  width: 200px;
+  margin-top: 18px;
+}
+
+.submitBtn:hover {
+  background-color: #0096c4;
+}
+
+.resendBtn {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--primary-color);
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 14px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.phoneZero {
+  /* style={{marginTop:'16.33px',fontSize:'14px',fontWeight:'500px !important'}} */
+  font-weight: 500;
+  margin-top: 0px;
+  text-align: center;
+  background: rgba(245, 245, 245, 1);
+  padding: 6px 7px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
+  font-size: 16px;
+  margin-bottom: 21px;
+}
+.img {
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  top: 26%;
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 24px;
+    max-width: 400px;
+  }
+
+  .title {
+    /* font-size: 18px; */
+    margin-bottom: 20px;
+  }
+
+  .otpInputs {
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .otpInput {
+    width: 40px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .submitBtn {
+    padding: 10px 24px;
+    /* font-size: 15px; */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 16px;
+    max-width: 320px;
+  }
+
+  .title {
+    margin-bottom: 16px;
+    font-size: 18px;
+  }
+
+  .otpInputs {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .otpInput {
+    width: 36px;
+    height: 32px;
+    font-size: 18px;
+  }
+  .phoneZero {
+    font-size: 10px;
+    margin-bottom: 19px;
+  }
+  .instruction {
+    font-size: 10px;
+    margin-bottom: 13px;
+  }
+
+  .submitBtn {
+    /* width: 84px; */
+    margin-top: 10px;
+    width: 70%;
+    /* font-size: 14px; */
+    padding: 8px 10px;
+    /* font-weight: 500; */
+  }
+
+  .resendBtn {
+    /* width: 104px; */
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .resendDescriptionText {
+    font-size: 10px;
+  }
+  .instructionVerify {
+    font-size: 10px;
+  }
+  .goBack {
+    font-size: 10px;
+  }
+  .img {
+    height: 9.88px;
+    width: 9.88px;
+    top: 40%;
+  }
+  .reenterDescription {
+    font-size: 10px;
+    margin-top: 14px;
+  }
+  .timerText {
+    font-size: 10px;
+  }
+}

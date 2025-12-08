@@ -1,0 +1,186 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 85px;
+  margin-bottom: 95px;
+}
+
+.card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: #e9f9ff;
+  position: relative;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+  background-color: #f9f9fa;
+}
+
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageSection img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.image1 img {
+  margin-top: -70px;
+}
+
+.image2 img {
+  margin-top: -60px;
+}
+
+.image3 img {
+  padding: 35px 0;
+}
+
+.image4 img {
+  padding: 38px 0;
+}
+
+.centerLine {
+  width: 2px;
+  margin: 0 2rem;
+  position: relative;
+}
+
+/* Apply dynamic styles using index-based classes */
+.card .line0::after,
+.card .line1::after,
+.card .line2::after,
+.card .line3::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 64px;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background-color: #ccc; /* default color (can be overridden below) */
+}
+
+/* Override background color for each index */
+.card .line0::after {
+  background-color: white;
+}
+
+.card .line1::after {
+  background-color: #ccc;
+}
+
+.card .line2::after {
+  background-color: white;
+}
+
+.card .line3::after {
+  background-color: #ccc;
+}
+
+.textSectionContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textSection {
+  display: flex;
+  max-width: 440px;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 34px;
+}
+
+.shiftLeft {
+  margin-left: 100px;
+}
+
+.textSection h3 {
+  text-wrap: nowrap;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  font-size: 35px;
+}
+
+.textSection p {
+  font-weight: 400;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.textSection span {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 1060px) {
+  .textSection {
+    padding: 0 30px 30px 30px;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card,
+  .reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+  .textSectionContainer {
+    align-items: center;
+  }
+
+  .textSection h3 {
+    font-size: 24px;
+  }
+
+  .textSection p {
+    font-size: 15.2px;
+  }
+
+  .imageSection img {
+    max-width: 250px;
+  }
+
+  .shiftLeft {
+    margin-left: 0px;
+  }
+
+  .textSection {
+    margin-left: 0px;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .image1 img {
+    margin-top: -40px;
+  }
+
+  .image2 img {
+    margin-top: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin-bottom: 35px;
+  }
+  .textSection h3{
+    text-wrap: wrap;
+  }
+}

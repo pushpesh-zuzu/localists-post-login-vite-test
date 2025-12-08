@@ -1,0 +1,288 @@
+.container {
+  background: #fff;
+  padding: 40px 0 30px 0;
+}
+
+.section {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+.paraText {
+  padding: 12px;
+  color: #828282;
+  font-size: 20px;
+  font-weight: 500;
+}
+.description {
+  font-size: 14px;
+  font-weight: 500;
+  color: #828282;
+  margin-bottom: 22px;
+  max-width: 840px;
+}
+
+.uploadBtn {
+  display: inline-block;
+  background-color: #00b3e3; /* or #00aeef */
+  color: white;
+  padding: 8px 18px;
+   font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer !important;
+  text-align: center;
+}
+.uploadBtn:hover{
+  background-color: #0096c4;
+}
+
+.fileInput {
+  display: none;
+}
+
+.placeholder {
+  color: #828282;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+.videoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optional {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 11px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #00b6f0;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background-color: #c6c6c6;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 3px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+.cancelButton:hover{
+  background-color: #ccc;
+}
+
+.saveButton {
+  background-color: var(--primary-color);
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  color: #fff;
+  border: none;
+  padding: 8px 21px;
+  border-radius: 3px;
+  cursor: pointer !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+.imageContainer {
+  background-color: #F9F9FA;
+  margin-top: 12px;
+}
+.previewImage {
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.videoPreview {
+  /* margin-top: 16px; */
+  padding: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.videoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media screen and (max-width:480px) {
+  .paraText{
+    font-size: 14px;
+  }
+  
+.uploadBtn {
+  display: inline-block;
+  background-color: #00b3e3; /* or #00aeef */
+  color: white;
+  padding: 8px 18px;
+   font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer !important;
+  text-align: center;
+}
+.cancelButton,
+.saveButton {
+   width: 84px;
+     padding: 8px 10px;
+     font-size: 14px;
+}
+}
+@media screen and (max-width:380px) {
+  .videoHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+}
+
+
+/* 
+<------- Custom Modal Css ------> */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modalContent {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.modalTitle {
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.youtubeInput {
+  width: 94.9%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cancelBtn {
+  background-color: #ccc;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer !important;
+  font-size: 16px;
+}
+
+.saveBtn {
+  background-color: #00aeef;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer !important;
+   font-size: 16px;
+}
+.saveBtn:hover{
+  background-color: #0096c4;
+}
+.saveButton:hover{
+  background-color: #0096c4;
+}
+@media screen and (max-width:480px) {
+  .modalContent{
+    margin: 0px 10px;
+  }
+}
+
+/* 
+<------- End Custom Modal CSS ----> */

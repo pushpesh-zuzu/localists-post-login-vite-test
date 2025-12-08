@@ -1,0 +1,302 @@
+.container {
+    margin-top: 12px;
+    width: 50%;
+    padding: 40px 80px;
+}
+
+.toggle {
+    border: 1px solid #d9d9d9;
+  padding: 20px 18.66px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25.63px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer !important;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  /* Slider handle */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  /* Checked styles */
+  input:checked + .slider {
+    background-color: var(--primary-color);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .form {
+    padding: 24px;
+    background: #fff;
+    
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .field {
+    margin-bottom: 20px;
+  }
+  .inputGroup {
+    /* flex: 1; */
+    min-width: 388px;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+ 
+ .cvvInputWrapper{
+    position: relative;
+    width: 100%;
+  }
+  
+ 
+  
+  .cvvIcon {
+    position: absolute;
+    right: 10px;
+    top: 47%;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 18px;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .cardInput {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    
+  }
+  
+  .halfField {
+    flex: 1 1 48%;
+    min-width: 140px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .cancelBtn {
+    background-color: #ccc;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+  
+  .submitBtn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer !important;
+  }
+  
+  .footer {
+    margin-top: 24px;
+    padding: 16px;
+    background-color: #eaf6ff;
+    border-radius: 4px;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .securityText {
+    margin: 0;
+    font-size: 12px;
+  }
+  
+  .cardIcons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  /* ✅ Responsive breakpoints */
+  @media screen and (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  
+    .halfField {
+      flex: 1 1 100%;
+    }
+  
+    .actions {
+      /* flex-direction: column; */
+      align-items: stretch;
+    }
+  
+    .cancelBtn,
+    .submitBtn {
+      /* width: 100px; */
+      padding:8px 10px;
+      font-size: 14px;
+    }
+  
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .title {
+      font-size: 18px;
+    }
+    .form{
+      padding: 0px;
+    }
+  
+    .input {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .submitBtn,
+    .cancelBtn {
+      padding: 10px;
+      font-size: 14px;
+    }
+    .cvvIcon {
+      position: absolute;
+      right: 10px;
+      top: 46%;
+      transform: translateY(-50%);
+      height: 18px;
+      /* pointer !important-events: none;  */
+    }
+  }
+ 
+  @media screen and (max-width: 375px) {
+    .title {
+      font-size: 18px;
+    }
+    .form{
+      padding: 0px;
+    }
+  
+    .input {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .submitBtn,
+    .cancelBtn {
+      padding: 10px;
+      font-size: 14px;
+    }
+    .cvvIcon {
+      position: absolute;
+      right: 10px;
+      top: 45.5%;
+      transform: translateY(-50%);
+      height: 18px;
+      /* pointer !important-events: none;  */
+    }
+  }
+  @media screen and (max-width: 320px) {
+    .title {
+      font-size: 18px;
+    }
+    .form{
+      padding: 0px;
+    }
+  
+    .input {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .submitBtn,
+    .cancelBtn {
+      padding: 10px;
+      font-size: 14px;
+    }
+    .cvvIcon {
+      position: absolute;
+      right: 10px;
+      top: 45%;
+      transform: translateY(-50%);
+      height: 18px;
+      /* pointer !important-events: none;  */
+    }
+  }
+  

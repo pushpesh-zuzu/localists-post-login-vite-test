@@ -1,0 +1,307 @@
+.container {
+  padding: 49px 88px;
+  max-width: 791px;
+  width: -webkit-fill-available;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 24px;
+  vertical-align: middle;
+  margin-bottom: 15px;
+}
+
+.infoBox {
+  background: #e3f6fc;
+  padding: 20px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoBox p {
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.infoBox p span {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.infoBox p span img {
+  margin-top: 4px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.CompanyText {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #000;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.requestButton {
+  text-decoration: none;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 8px 29px;
+  border-radius: 4px;
+  cursor: pointer !important;
+  margin-top: 20px;
+  align-self: flex-start;
+  margin-left: 20px;
+  font-size: 13.5px;
+}
+.requestButton:hover {
+  background-color: #0096c4;
+}
+
+.detailsBox {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px #0000000f;
+}
+
+.subHeading {
+  font-weight: 700;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-bottom: 15px;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profileImage img {
+  height: 62.36px;
+  width: 62.36px;
+  object-fit: cover;
+  cursor: pointer !important;
+}
+
+.uploadButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 5.7px;
+  margin-left: 29.64px;
+}
+
+.uploadButton {
+  background: #ffffff;
+  color: var(--primary-color);
+  border: 0.83px solid var(--primary-color);
+  box-shadow: 0px 0px 1.26px 0.32px #0000001a;
+  padding: 5px 16px;
+  border-radius: 1.9px;
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 12.64px;
+  vertical-align: middle;
+  text-align: center;
+}
+.uploadButton:hover {
+  background-color: #0096c4;
+  color: #ffffff;
+}
+
+.formGroup {
+  width: 438px;
+  margin-bottom: 22px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #828282;
+}
+
+.formGroupPassword {
+  width: 438px;
+  margin-bottom: 22px;
+  padding-top: 20px;
+}
+
+.formGroupPassword label {
+  font-weight: 500;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.changePasswordButton {
+  background: #ffffff;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer !important;
+}
+.changePasswordButton:hover {
+  color: #0096c490;
+  border: 1px solid #0096c490;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cameraModal {
+  background: #ffffff;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modalHeader {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.saveButtonWrapperModal {
+  text-align: right;
+}
+
+.modalSaveButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.modalSaveButton:hover {
+  background: #0096c4;
+}
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer !important;
+  font-size: 18px;
+  color: gray;
+}
+
+.eyeIcon:hover {
+  color: black;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.saveButtonWrapper {
+  margin-top: 37px;
+  margin-left: 20px;
+}
+
+.saveButton {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.saveButton:hover {
+  background: #0096c4;
+}
+
+.modalCancelButton {
+  background: #e8e8e8;
+  color: #000000;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer !important;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.modalCancelButton:hover {
+  background: #b3b3b3;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 40px;
+  }
+
+  .formGroup {
+    width: -webkit-fill-available;
+  }
+
+  .inputField {
+    width: -webkit-fill-available;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+  }
+  .detailsBox {
+    background: #ffffff;
+    padding: 24px;
+    box-shadow: 0px 0px 10px 0px #0000000f;
+  }
+  .saveButtonWrapper {
+    margin-top: 37px;
+    margin-left: 20px;
+  }
+}

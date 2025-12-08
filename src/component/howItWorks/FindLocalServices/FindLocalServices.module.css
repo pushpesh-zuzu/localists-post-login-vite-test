@@ -1,0 +1,26 @@
+.container {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.heading {
+  font-size: var(--text-size-35);
+  font-weight: 400;
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.subText {
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 12px;
+  margin-bottom: 25px;
+}
+
+.boldText {
+  font-weight: 700;
+  color: var(--primary-color);
+}

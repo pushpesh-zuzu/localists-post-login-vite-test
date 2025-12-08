@@ -1,0 +1,322 @@
+.contactSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.buttonlable {
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-family: "poppins";
+  margin-bottom: 7px;
+}
+.bannerImage {
+  width: 100%;
+  height: clamp(250px, 40vw, 400px);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.bannerTitle {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: clamp(28px, 6vw, 45px);
+  font-weight: 600;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  padding: 0 20px;
+  font-size: 45px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(20px, 4vw, 32px);
+  gap: clamp(20px, 4vw, 35px);
+  width: 100%;
+  max-width: min(100%, 85%);
+  margin-top: clamp(50px, 6vw, 83px);
+  margin-bottom: clamp(50px, 6vw, 89px);
+  min-height: 570px;
+  background: var(--primary-color);
+  box-sizing: border-box;
+}
+
+.formTitle {
+  color: white;
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  padding: 0 20px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+  width: 100%;
+  /* max-width: 800px; */
+}
+
+/* ===== Updated Input Row & Group ===== */
+.inputRow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 20px); /* responsive gap */
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .inputRow {
+    flex-direction: row;
+  }
+}
+
+.inputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 14px); /* responsive label-input gap */
+}
+
+.inputLabel {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.input {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  background: white;
+  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.customerTypeGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 300px;
+}
+
+.buttonContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 44.52px;
+  background: #ffffff;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.buttonSlider {
+  position: absolute;
+  width: 50%;
+  height: 38.41px;
+  top: 3.06px;
+  left: 3.54px;
+  background: var(--primary-color);
+  border-radius: 100px;
+  transition: transform 0.3s ease;
+}
+
+.buttonSlider.professional {
+  transform: translateX(calc(100% - 7.08px));
+}
+
+.customerButton {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+  height: 100%;
+  transition: color 0.3s ease;
+}
+
+.customerButton.active {
+  color: #ffffff;
+}
+
+.textareaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textarea {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  background: white;
+  color: var(--text-color);
+  resize: vertical;
+  min-height: 120px;
+  font-family: "Poppins", sans-serif;
+}
+
+.textarea:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.submitButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+
+  width: 89px;
+  height: 45px;
+
+  background: #000000;
+  border-radius: 4px;
+  margin: auto;
+  /* Inside auto layout */
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.submitButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.mapSection {
+  width: 100%;
+  height: clamp(200px, 40vw, 405px);
+  background: #f0f0f0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top: 1px solid #ddd;
+  margin-bottom: clamp(32px, 5vw, 63px);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 18px;
+}
+
+@media (max-width: 1200px) {
+  .formContainer {
+    max-width: 90%;
+    gap: 28px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+@media (max-width: 600px) {
+  .formContainer {
+    max-width: 95%;
+    gap: 28px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .formContainer {
+    padding: 20px;
+    gap: 24px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .inputRow {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .buttonlable {
+    display: none;
+  }
+  .customerTypeGroup {
+    margin-bottom: 24px;
+  }
+  .inputRow {
+    gap: 0px;
+  }
+    .bannerTitle {
+    font-size: 38px;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .formContainer {
+    padding: 16px;
+    gap: 16px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .inputRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mapSection {
+    height: 100px;
+  }
+  .bannerTitle {
+    font-size: 32px;
+  }
+}

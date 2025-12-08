@@ -1,0 +1,329 @@
+.pageContainer {
+  background-color: #f9f9fa;
+  padding: 0 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 100px 0;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.subheading {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.formContainer {
+  background: white;
+  padding: 37px 50px;
+  width: inherit;
+  max-width: 630px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.labelInputWrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  color: #000000;
+}
+
+.helperText {
+  font-weight: 500;
+  font-size: 14px;
+  gap: 10px;
+  color: #bababa;
+}
+
+.input {
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 0px;
+  height: 20px;
+  font-size: 14px;
+  color: #858585;
+}
+
+.toggleGroup,
+.optionGroup {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+}
+
+.toggleButton,
+.optionButton {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  padding: 11px 23px;
+  border-radius: 100px;
+  cursor: pointer !important;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s;
+  color: #828282;
+}
+
+.activeButton,
+.activeOption {
+  background: var(--primary-color);
+  border: 1px solid #d9d9d9;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 100px;
+  cursor: pointer !important;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 26px;
+}
+
+.backButton {
+  background: black;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  color: white;
+  padding: 10px 20.5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.backButton:hover {
+  background-color: #000000cf;
+}
+
+.nextButton {
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  background: var(--primary-color);
+  border-radius: 3px;
+  color: white;
+  padding: 10px 23px;
+  border: none;
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.nextButton:hover {
+  background-color: #0096c4;
+}
+
+.errorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.errorBorder {
+  border: 2px solid red !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+/* 1024px (Tablets, Small Laptops) */
+@media (max-width: 1024px) {
+  .formContainer {
+    padding: 30px 40px;
+    max-width: 580px;
+  }
+  .container {
+    padding: 60px 0;
+  }
+
+  .heading {
+    font-size: 22px;
+  }
+
+  .subheading {
+    font-size: 15px;
+  }
+
+  .input {
+    height: 18px;
+    font-size: 14px;
+  }
+
+  .toggleButton,
+  .optionButton,
+  .activeButton,
+  .activeOption {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .nextButton,
+  .backButton {
+    font-size: 18px;
+    padding: 9px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 25px 30px;
+    max-width: 500px;
+    width: -webkit-fill-available;
+  }
+  .container {
+    padding: 40px 0;
+  }
+  .heading {
+    font-size: 20px;
+  }
+
+  .subheading {
+    font-size: 14px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .input {
+    height: 18px;
+    font-size: 13px;
+  }
+
+  .toggleGroup,
+  .optionGroup {
+    flex-wrap: wrap;
+  }
+
+  .toggleButton,
+  .optionButton,
+  .activeButton,
+  .activeOption {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .buttonContainer {
+    gap: 15px;
+  }
+
+  .nextButton,
+  .backButton {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 20px 20px;
+    max-width: 100%;
+    width: -webkit-fill-available;
+  }
+  .container {
+    padding: 20px 0;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .subheading {
+    font-size: 13px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .input {
+    height: 16px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .toggleGroup,
+  .optionGroup {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggleButton,
+  .optionButton,
+  .activeButton,
+  .activeOption {
+    width: 100%;
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .buttonContainer {
+    /* flex-direction: column; */
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .nextButton,
+  .backButton {
+    /* width: 100%; */
+    width: 84px;
+    font-size: 14px;
+    padding: 8px 10px;
+    font-weight: 500;
+  }
+}

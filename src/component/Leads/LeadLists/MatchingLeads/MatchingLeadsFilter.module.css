@@ -1,0 +1,267 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+label {
+  color: #959595;
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.modal {
+  /* position: relative; */
+  background: #fff;
+  width: 400px;
+  max-height: 60vh;
+  padding: 49.08px 0 31px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header {
+  padding-left: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  vertical-align: middle;
+  color: black;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer !important;
+  color: #000000;
+}
+
+.scrollable {
+  padding: 0 8px 0 16px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.accordion {
+  margin-top: 16px;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer !important;
+  font-weight: 600;
+  padding: 8px 0;
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 10px;
+}
+
+.accordionHeader span {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.accordionBody {
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subCheckboxes {
+  margin-left: 24px;
+}
+
+.checkboxLabel {
+  color: #000000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.checkboxInput {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  border: 1px solid #c90909;
+}
+.checkboxInputs {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000000;
+}
+
+/* Checkbox ka default appearance hide karo (optional) */
+.scrollable input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1px solid #959595;
+  width: 18px;
+  height: 18px;
+  cursor: pointer !important;
+  display: inline-block;
+  position: relative;
+}
+
+/* Jab checkbox checked ho tab background color change ho */
+.scrollable input[type="checkbox"]:checked {
+  background-color: var(--primary-color); /* ya koi bhi color */
+  border-color: var(--primary-color);
+}
+
+/* Checkmark banana (optional but stylish banane ke liye) */
+.scrollable input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+  transform: translate(-50%, -50%);
+}
+
+.searchRow {
+  display: flex;
+  position: relative;
+  gap: 8px;
+}
+
+.searchRow input {
+  flex-grow: 1;
+  padding: 14px 9px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+}
+
+.searchRow input::placeholder {
+  font-weight: 600;
+  font-size: 13px;
+  color: #959595;
+}
+
+.searchBtn {
+  position: absolute;
+  right: 5px;
+  top: 5.51px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  color: white;
+  border: none;
+  padding: 6px 40px;
+  border-radius: 4px;
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-top: 1px solid #eee;
+}
+
+.cancelBtn {
+  background: #eee;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.cancelBtn:hover {
+  background: #ddd;
+}
+
+.applyBtn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer !important;
+}
+
+.applyBtn:hover {
+  background: #028db7;
+}
+
+/* For tablets and up */
+@media (min-width: 600px) {
+  .modal {
+    width: 400px;
+  }
+}
+
+/* For smaller screens like mobile */
+@media (max-width: 599px) {
+  .modal {
+    width: 90%;
+  }
+
+  .searchRow {
+    flex-direction: column;
+  }
+
+  .searchRow input {
+    flex-basis: 100%;
+  }
+
+  .searchBtn {
+    width: 100%;
+    position: static;
+    margin-top: 8px;
+  }
+
+  .footer {
+    /* flex-direction: column; */
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .cancelBtn,
+  .applyBtn {
+    width: 84px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .header h3 {
+    font-size: 20px;
+  }
+}

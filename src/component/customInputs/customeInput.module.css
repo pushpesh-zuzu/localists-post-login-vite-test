@@ -1,0 +1,48 @@
+.inputFiled {
+  border: 1px solid #dedede;
+  height: 45px;
+  gap: 1px;
+  padding: 10px;
+  border-radius: 3px;
+  border-width: 1px;
+  box-shadow: 0px 0px 2px 1px #0000001a;
+  color: #828282;
+  font-family: "poppins";
+  width: 100%;
+}
+
+.lablename {
+  color: var(--text-color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-family: "poppins";
+  margin-bottom: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .inputFiled {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .lablename {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .inputFiled {
+    height: 38px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .lablename {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

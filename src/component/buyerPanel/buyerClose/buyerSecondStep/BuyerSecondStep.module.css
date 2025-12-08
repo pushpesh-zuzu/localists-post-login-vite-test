@@ -1,0 +1,193 @@
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 80px auto;
+  font-family: 'Arial', sans-serif;
+  padding: 0 16px;
+}
+
+.infoBox {
+  background-color: #eaf7fe;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+}
+.question {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.subtext {
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.priceInput {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  flex: 1 1 100%;
+  background-color: #fff;
+}
+
+.priceInput span {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.priceInput input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.dropdown {
+
+}
+
+.checkboxGroup {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.backBtn,
+.submitBtn {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer !important;
+  font-size: 14px;
+}
+
+.backBtn {
+  background-color: #000;
+  color: #fff;
+}
+
+.submitBtn {
+  background-color: #00bfff;
+  color: #fff;
+}
+ .customSelect {
+  appearance: none;           
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../../../../assets/Icons/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 5px center; 
+  padding-right: 40px;
+  background-size: 18px 18px;
+    flex: 1 1 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+} 
+
+/* 🔻 Responsive for tablets and below */
+@media (max-width: 768px) {
+  .inputGroup {
+    flex-direction: column;
+  }
+
+  .priceInput,
+  .dropdown {
+    flex: 1 1 100%;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .backBtn,
+  .submitBtn {
+    width: 100%;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .subtext {
+    font-size: 12px;
+  }
+}
+
+/* 🔻 Extra small screens */
+@media (max-width: 480px) {
+       .container {
+    margin: 30px 0px;
+    padding: 0px 0px;
+  }
+  .infoBox {
+    font-size: 13px;
+    padding: 16px;
+     margin: 10px;
+  }
+    .subtext  {
+    margin: 10px 10px 20px 10px;
+  }
+  /* .subtext {
+    margin: 10px;
+  } */
+  .checkboxGroup {
+    margin: 10px;
+  }
+  .inputGroup {
+    margin: 10px;
+  }
+
+  .question {
+    font-size: 16px;
+    margin-top: 16px;
+    margin-bottom: -4px;
+  }
+  .buttonGroup {
+    margin: 14px;
+  }
+
+  .backBtn,
+  .submitBtn {
+    font-size: 13px;
+    padding: 10px;
+  }
+}

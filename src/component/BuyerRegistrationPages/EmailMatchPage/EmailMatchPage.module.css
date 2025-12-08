@@ -1,0 +1,373 @@
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.modalOverlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: -webkit-fill-available;
+  height: 100%;
+  box-shadow: 0px 0px 10px 0px #0000000f;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.phoneWrapper {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.phoneWrapper::before {
+  content: "+44";
+  position: absolute;
+  top: 47.5%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #000;
+  pointer-events: none;
+}
+
+.error44::before {
+  content: "+44";
+  position: absolute;
+  top: 33.5%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #000;
+  pointer-events: none;
+}
+
+.prefix {
+  padding: 12px;
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer !important;
+  color: #000000;
+}
+
+.emailPage {
+  background: #ffffff;
+  padding: 24px 31px 24px 31px;
+  /* width: 500px; */
+  text-align: center;
+}
+.infoWrapper {
+  margin-bottom: 8px;
+}
+
+.label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+
+.header h2 {
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  color: var(--text-color);
+  vertical-align: middle;
+  margin-bottom: 12px;
+}
+
+.input {
+  display: flex;
+  justify-content: start;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  border: 1px solid #d9d9d9;
+  width: -webkit-fill-available;
+  padding: 12px;
+  border: 1px solid #ccc;
+  color: #828282;
+}
+
+.phoneInput {
+  display: flex;
+  justify-content: start;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  border: 1px solid #d9d9d9;
+  width: -webkit-fill-available;
+  padding: 12px;
+  padding-left: 48px;
+  border: 1px solid #ccc;
+  color: #828282;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+
+.errorMessage {
+  color: red !important;
+  font-size: 12px;
+  display: block;
+  text-align: left;
+  margin-top: 5px;
+}
+.errorText {
+  background-color: pink;
+  color: #000000;
+  padding: 12px 12px;
+  text-align: start;
+  font-size: 12px;
+}
+
+.buttonContainer {
+  margin-bottom: 0px;
+  margin-top: 37px;
+}
+
+.backButton {
+  background: #000000;
+  color: #ffffff;
+  padding: 8px 29px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer !important;
+}
+
+.backButton:hover {
+  background-color: #000000cf;
+}
+
+.nextButton {
+  /* background: var(--primary-color);
+  color: #ffffff;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer !important; */
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  background: var(--primary-color);
+  border-radius: 3px;
+  color: white;
+  padding: 10px 23px;
+  border: none;
+  cursor: pointer !important;
+  font-weight: 500;
+  font-size: 20px;
+  vertical-align: middle;
+  min-width: 138px;
+}
+
+.nextButton:hover {
+  background-color: #0096c4;
+}
+@media screen and (max-width: 1024px) {
+  .closeButton {
+    /* position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out; */
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer !important;
+    color: #000000;
+  }
+}
+
+@media (max-width: 768px) {
+  /* .emailPage {
+    width: 70%;
+    padding: 30px;
+
+  } */
+  .emailPage {
+    background: #ffffff;
+    padding: 41px 31px;
+    /* width: 500px; */
+    text-align: center;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .label {
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    font-size: 14px;
+    color: #828282;
+    margin-bottom: 5px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .checkboxContainer input {
+    height: 20px;
+    width: 20px;
+  }
+
+  .checkboxContainer label {
+    font-size: 10px;
+  }
+
+  .backButton,
+  .nextButton {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+  .closeButton {
+    /* position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out; */
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer !important;
+    color: #000000;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+  .emailPage {
+    padding: 24px 12px;
+  }
+
+  .header h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .checkboxContainer {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .label {
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .buttonContainer {
+    margin-bottom: 0px;
+  }
+  .infoWrapper {
+    margin-bottom: 0px;
+  }
+
+  .backButton,
+  .nextButton {
+    /* background: var(--primary-color);
+  color: #ffffff;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer !important; */
+    width: 84px;
+    font-size: 14px;
+    padding: 8px 10px;
+    font-weight: 500;
+  }
+  .closeButton {
+    /* position: absolute;
+    top: 2px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out; */
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer !important;
+    color: #000000;
+  }
+}

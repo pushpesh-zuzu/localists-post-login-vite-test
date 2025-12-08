@@ -1,0 +1,169 @@
+.container {
+  padding: 50px 88px;
+  max-width: 791px;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 24px;
+  vertical-align: middle;
+  margin-bottom: 32px;
+}
+
+.infoBox {
+  display: flex;
+  align-items: center;
+  background-color: #e3f6fc;
+  padding: 23px 18px;
+  margin: 16px 0;
+}
+
+.infoIcon {
+  margin-right: 8px;
+  font-size: 16px;
+  color: var(--primary-color);
+}
+
+.notificationList {
+  box-shadow: 0px 0px 10px 0px #0000000f;
+  padding: 47px 31px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  margin-top: 48px;
+}
+
+.notificationItem {
+  max-width: 544px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  background-color: #ffffff;
+  padding: 18px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d9d9d9;
+  border-radius: 34px;
+  transition: background-color 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transition: transform 0.4s, background-color 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider::before {
+  transform: translateX(14px);
+  background-color: #d9d9d9;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 40px;
+  }
+
+  .notificationList {
+    padding: 32px 24px;
+  }
+
+  /* .notificationItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  } */
+
+  .heading {
+    font-size: 22px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 16px;
+  }
+
+  .notificationList {
+    padding: 24px 16px;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .notificationItem {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .heading {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+
+  .infoBox {
+    padding: 16px 12px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .item1 .switch,
+  .item0 .slider,
+  .item2 .switch {
+    width: 37px; /* or whatever width fits best on mobile */
+    height: 20px;
+  }
+.item0 .slider,
+  .item1 .slider,
+  .item2 .slider {
+    height: 20px;
+    width: 37px;
+  }
+  
+}
+@media screen and (max-width: 350px) {
+  .item1 .switch,
+  .item2 .switch {
+    width: 36px; /* or whatever width fits best on mobile */
+    height: 20px;
+  }
+
+  .item1 .slider,
+  .item2 .slider {
+    height: 20px;
+    width: 36px;
+  }
+  
+}

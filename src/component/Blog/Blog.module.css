@@ -1,0 +1,295 @@
+.blogHeader {
+  position: relative;
+  height: 707px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerContainer {
+  max-width: 800px;
+  margin: auto;
+  text-align: justify;
+  padding: 30px 0;
+}
+
+.overlay {
+  width: 100%;
+  /* height: 100%; */
+  /* display: flex;
+  justify-content: space-between;
+  align-items: end !important; */
+  position: absolute;
+  bottom: 0;
+  height: auto;
+}
+.overlayWrap {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 66px 120px;
+  text-align: center;
+}
+
+.single_tree_img {
+  padding-top: 40px;
+  width: 100%;
+}
+
+.headerContent {
+  max-width: 600px;
+  /* margin-bottom: 20px; */
+}
+
+.header_service {
+  text-align: start;
+  background: #ffffff80;
+  width: fit-content;
+  border-radius: 100px;
+  padding: 11px 16px;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.headerContent h1 {
+  font-size: 50px;
+  font-weight: 800;
+  text-align: start;
+  line-height: 50px;
+  margin-top: 16px;
+  width: 103%;
+}
+
+.headerContent p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.profileInner > div > p > a {
+  color: #fff;
+}
+
+.authorInfo {
+  color: #fff;
+  font-size: 1rem;
+  height: -webkit-fill-available;
+}
+
+.authorInfo p {
+  margin: 5px 0;
+}
+
+.blogSectionDes {
+  padding: 40px 20px 0px;
+}
+
+.blogSection {
+  padding: 20px 20px 0px;
+}
+
+.profileWrap {
+  height: 100%;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  /* margin-bottom: 32px; */
+}
+
+.profileInner {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60%;
+}
+
+.GreenBar {
+  width: 18%;
+  height: 16px;
+  background-color: #03d17b;
+}
+
+.social_Icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 16px;
+}
+.social_wrap > span {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+}
+.timeWrap {
+  text-align: end;
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.descriptionText {
+  font-size: 24px;
+  line-height: 30px;
+  font-family: inter;
+  text-align: initial;
+}
+
+.blogSection h2 {
+  font-size: 48px;
+  font-weight: 600;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: max-content;
+  color: #253238;
+  width: 100%;
+}
+
+.blogSection h3,
+h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #253238;
+}
+.blogSection p {
+  font-size: 24px;
+  line-height: 30px;
+  color: #253238;
+
+  /* font-weight: 500; */
+}
+
+.blogSection h4 {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .blogHeader {
+    height: 420px;
+  }
+
+  .overlayWrap {
+    padding: 28px;
+  }
+  .headerContent h1 {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: start;
+    line-height: 40px;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .header_service {
+    font-size: 16px !important;
+    padding: 6px 16px;
+  }
+  .descriptionText {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: inter;
+    text-align: initial;
+  }
+
+  .profileInner > div > p {
+    font-size: 14px;
+  }
+  .blogSection h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #253238;
+    width: 100%;
+  }
+
+  .blogSection h3,
+  h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #253238;
+    text-align: initial;
+  }
+  .blogSection p {
+    font-size: 20px;
+    line-height: 30px;
+    color: #253238;
+    text-align: initial;
+
+    /* font-weight: 500; */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .blogHeader {
+    height: 360px;
+  }
+
+  .blogSectionDes {
+    padding: 0px 20px 0px;
+  }
+  .headerContent h1 {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: start;
+    line-height: 30px;
+    margin-top: 16px;
+    width: 100%;
+  }
+  .descriptionText {
+    font-size: 16px;
+    line-height: 30px;
+    font-family: inter;
+    text-align: initial;
+  }
+
+  .social_Icons img {
+    width: 60px;
+  }
+
+  .header_service {
+    font-size: 14px !important;
+    padding: 6px 16px;
+  }
+
+  .profileInner > div > p {
+    font-size: 12px;
+  }
+
+  .blogSection h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #253238;
+    width: 100%;
+  }
+
+  .blogSection h3,
+  h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #253238;
+    text-align: initial;
+  }
+  .blogSection p {
+    font-size: 16px;
+    line-height: 30px;
+    color: #253238;
+    text-align: initial;
+
+    /* font-weight: 500; */
+  }
+
+  .timeWrap {
+    text-align: end;
+    margin: 12px 0;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 25px;
+  }
+}

@@ -1,0 +1,93 @@
+.container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f9fdff;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 700;
+  font-size: 40px;
+  padding: 8px 23px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-family: "poppins" !important;
+}
+
+.button:hover {
+  background-color: #0096c4;
+}
+
+.text {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 40px;
+  color: #000000;
+  line-height: 100%;
+  font-family: "poppins" !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .button {
+    font-size: 26px;
+    padding: 10px 20px;
+  }
+
+  .text {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin-bottom: 15px;
+  }
+  .button {
+    font-size: 28px;
+    padding: 8px 16px;
+  }
+
+  .text {
+    font-size: 28px;
+    line-height: 27px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin-bottom: 15px;
+  }
+  .button {
+    font-size: 24px;
+    padding: 6px 14px;
+  }
+
+  .text {
+    font-size: 24px;
+    line-height: 27px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    margin-bottom: 15px;
+  }
+  .button {
+    font-size: 20px;
+    padding: 5px 12px;
+  }
+
+  .text {
+    font-size: 20px;
+    line-height: 27px;
+  }
+}

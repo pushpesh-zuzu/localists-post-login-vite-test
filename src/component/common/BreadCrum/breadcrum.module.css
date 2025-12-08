@@ -1,0 +1,40 @@
+.breadcrumb {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+/* Last item - active state */
+.lastItem {
+  color: var(--primary-color) !important; /* Force black color */
+font-weight: 600;
+}
+
+.active {
+  font-weight: 600 !important; /* Force bold */
+}
+
+/* Clickable items */
+.link {
+  color: var(--text-color) !important; /* Force blue color */
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer !important;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  color: var(--text-color);
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .breadcrumb {
+    font-size: 12px;
+  }
+}

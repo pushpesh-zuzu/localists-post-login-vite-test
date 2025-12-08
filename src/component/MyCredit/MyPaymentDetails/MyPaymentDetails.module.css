@@ -1,0 +1,284 @@
+.container {
+  max-width: 1030px;
+  padding: 21px 88px;
+}
+
+.backText {
+  color: #000000;
+  cursor: pointer !important;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.ant-spin-text {
+  color: #fff !important;
+  font-size: 16px;
+}
+
+.headingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.addCardBtnRight {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.heading {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 21px;
+}
+
+.manageWrapper {
+  display: flex;
+  align-items: start;
+  gap: 7px;
+}
+
+.description {
+  font-size: 18px;
+  color: #000000;
+
+  margin-bottom: 6px;
+}
+.addCardText {
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 16px;
+  margin-left: 24px;
+}
+
+.infoIcon {
+  align-items: start;
+  color: var(--primary-color);
+  margin-top: 5px;
+}
+.description span {
+  margin-top: 4px;
+}
+.infoIcon img {
+  width: 18px;
+  height: 18px;
+}
+.btnBox {
+  margin-left: 29px;
+}
+.cardWrapper {
+  /* flex: 1 1 calc(33.333% - 20px); */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 80vw;
+}
+
+/* .card {
+  background: linear-gradient(to bottom right, #0d74ff, #0a5bd3);
+  border-radius: 16px;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  } */
+.card {
+  width: 320px;
+  height: 190px;
+  position: relative;
+  background: linear-gradient(to bottom right, #0d74ff, #0a5bd3);
+  border: 1px solid #ddd;
+  color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.primaryBadge {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  gap: 16px;
+}
+
+.linkText {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+.linkText:hover {
+  color: #004a99;
+}
+
+.separator {
+  width: 2px;
+  height: 20px;
+  background-color: #d9d9d9;
+}
+
+.primaryBtn,
+.removeBtn,
+.addCardBtn {
+  background-color: transparent;
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.addMoreCardBox {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cardBrand {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.cardChange {
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer !important;
+}
+
+.cardNumber {
+  margin-top: 40px;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.lastDigits {
+  font-weight: bold;
+}
+
+.cardExpiry {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.addCardBtn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+
+  font-size: 20px;
+  cursor: pointer !important;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 21px 20px;
+  }
+  .heading {
+    font-size: 28px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .addCardBtn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    padding: 20px 16px;
+  }
+  .heading {
+    font-size: 28px;
+  }
+
+  .cardGrid {
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+  .description {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .addCardBtn {
+    width: 100%;
+    margin-top: 10px;
+    /* white-space: nowrap; */
+    font-size: 18px;
+  }
+  .btnBox {
+    margin-left: 27px;
+  }
+  .backText {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .headingRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card {
+    width: 100%;
+  }
+}

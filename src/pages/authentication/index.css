@@ -1,0 +1,206 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 51px;
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+
+.login-container :where(.ant-form-item:last-child) {
+  margin-bottom: 0 !important;
+}
+
+.login-box {
+  background: #fff;
+  padding: 40px 40px;
+  box-shadow: 0px 0px 4px 1px #0000001a;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-title {
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 82.5px;
+  letter-spacing: 0;
+  color: var(--text-color);
+  margin: 0;
+  font-family: "poppins";
+}
+
+.loginBtn {
+  height: 49px;
+  width: 100%;
+  gap: 10px;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "poppins";
+}
+
+.loginBtn img {
+  cursor: pointer !important;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 29px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--text-color);
+  font-family: "poppins";
+}
+.login-options label {
+  gap: 0px;
+}
+
+.forgot-password {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-family: "poppins";
+}
+
+.or-divider {
+  text-align: center;
+  font-size: 20px;
+  color: #ababab;
+  margin: 29px 0px 17px 0px;
+  font-weight: 400;
+  font-family: "poppins";
+}
+
+.btnLink {
+  border: 1px solid #dedede;
+  gap: 10px;
+  height: 49px;
+  border-radius: 3px;
+  border-width: 1px;
+  color: #000000;
+  font-weight: 400;
+  margin-top: 12px;
+  font-size: 16px;
+  font-family: "poppins";
+  cursor: pointer !important;
+}
+
+.btnLink span {
+  cursor: pointer !important;
+}
+.bottom-links {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+.text {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.linkText {
+  color: var(--primary-color) !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 515px) {
+  .login-box {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 10px 30px 30px 30px;
+  }
+
+  .login-title {
+    font-size: 38px;
+  }
+
+  .or-divider {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  ._lablename_1dclo_23 .bottom-links {
+    font-size: 14px;
+  }
+  .login-container {
+    gap: 35px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .loginBtn {
+    font-size: 14px;
+    height: 45px;
+  }
+  .btnLink {
+    font-size: 14px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 10px 20px 20px 20px;
+  }
+
+  .login-title {
+    font-size: 32px;
+    line-height: normal;
+  }
+
+  .login-container {
+    gap: 20px;
+  }
+
+  .or-divider {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+
+  .btnLink {
+    font-size: 14px;
+  }
+
+  .bottom-links {
+    font-size: 12px;
+  }
+  .text {
+    font-size: 14px;
+  }
+
+  .loginBtn {
+    font-size: 12px;
+    height: 40px;
+  }
+  .btnLink {
+    font-size: 12px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,154 @@
+.formContainer {
+  background: #ffffffe5;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.innerformContainer {
+  padding: 32px 33px 33.5px;
+}
+
+.innerformContainer p {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 37px;
+  letter-spacing: 0;
+  text-align: center;
+}
+.titleContainer {
+  text-align: center;
+  max-width: 70%;
+  margin: auto;
+  color: var(--primary-color);
+}
+.titleContainer p {
+  margin: auto;
+}
+.inputGroup {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  max-width: 50%;
+  margin: auto;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.inputBox label {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: var(--text-color);
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inputBox input {
+  height: 30px;
+  padding: 10px 15px;
+  box-shadow: 0px 0px 2px 0.5px #0000001a;
+  border: 1px solid #d9d9d9;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.inputBox input::placeholder {
+  color: #959595;
+}
+
+.button {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0px 0px 4px 0px #0000004d;
+  padding: 11px 31px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer !important;
+}
+
+.searchResults {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-height: 200px;
+  top: 100%;
+  left: 0;
+  overflow-y: auto;
+  z-index: 10;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.searchItem {
+  padding: 8px;
+  cursor: pointer !important;
+  border-bottom: 1px solid #eee;
+  font-size: 14px !important;
+  color: #000 !important;
+}
+
+.searchItem:hover {
+  background: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .inputGroup {
+    /* flex-direction: column; */
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 9px 16px;
+  }
+
+  .innerformContainer {
+    padding: 32px 33px 33.5px;
+  }
+
+  .innerformContainer p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0px;
+    min-width: fit-content;
+    width: fit-content;
+  }
+  .titleContainer {
+    width: fit-content;
+  }
+  .formContainer {
+    width: 100%;
+    max-width: 90% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .inputBox input {
+    padding: 5px 10px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+}
