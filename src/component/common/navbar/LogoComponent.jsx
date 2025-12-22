@@ -381,7 +381,7 @@ const LogoComponent = () => {
         className={styles.mainLogo}
         onClick={(e) => {
           e.preventDefault();
-          const baseURL = import.meta.env.VITE_PRELOGIN_URL;
+          const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
           window.location.href = `${baseURL}en/gb/`;
         }}
       />

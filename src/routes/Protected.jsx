@@ -39,7 +39,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   const isAuthenticated = token !== "undefined" ? Boolean(token) : false;
-  const baseURL = import.meta.env.VITE_PRELOGIN_URL;
+  const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
   if (!isAuthenticated) {
     window.location.href = `${baseURL}en/gb/login`;
     return null;

@@ -68,7 +68,7 @@ const Footer = () => {
 
   const handleFooterLinksNavigate = (path) => {
     if (typeof window !== "undefined") {
-      const baseURL = import.meta.env.VITE_PRELOGIN_URL;
+      const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
       window.location.href = `${baseURL}en/gb/${path}`;
     }
   };

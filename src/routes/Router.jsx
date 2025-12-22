@@ -40,7 +40,7 @@ import WhatServiceYouNeed from "../component/buyerPanel/PlaceNewRequest/BuyerReg
 import ConversionRedirect from "../component/buyerPanel/PlaceNewRequest/BuyerRegistration/ConversionRedirect/ConversionRedirect";
 import ThankuPage from "../component/common/ThankuPage/ThankuPage";
 import ContactUs from "../component/ContactUs/ContactUs";
-const baseURL = import.meta.env.VITE_PRELOGIN_URL;
+const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
 const routes = [
  
   {

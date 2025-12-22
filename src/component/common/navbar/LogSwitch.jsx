@@ -212,7 +212,7 @@ const LogSwitch = () => {
         if (result) {
           showToast("info", "Logout successful!");
           // handleNavigation("/en/gb/login");
-          const baseURL = import.meta.env.VITE_PRELOGIN_URL;
+          const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
           window.location.href = `${baseURL}en/gb/login`;
           localStorage.removeItem("pendingBuyerModal");
           setCookie('logout',true)
