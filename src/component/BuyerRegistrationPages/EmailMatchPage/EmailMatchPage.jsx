@@ -192,7 +192,6 @@ const EmailMatchPage = ({
   }, [resetTrigger]);
 
   useEffect(() => {
-    console.log(isEmailAvailable, "sss");
     if (!isEmailAvailable) {
       setEmail("");
       dispatch(

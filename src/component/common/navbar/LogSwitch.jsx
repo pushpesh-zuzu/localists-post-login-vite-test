@@ -223,7 +223,6 @@ const LogSwitch = () => {
       }
     });
   };
-console.log(registerToken,'registerToken')
   const notifications = useSelector(
     (state) => state.notification.notificationList
   );
