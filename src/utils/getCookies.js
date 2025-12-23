@@ -13,7 +13,29 @@ const ENV_COOKIE_DOMAIN =
 
 function resolveCookieDomain() {
   if (!isBrowser()) return "";
-  if (ENV_COOKIE_DOMAIN && ENV_COOKIE_DOMAIN.length) return ENV_COOKIE_DOMAIN;
+
+  if (ENV_COOKIE_DOMAIN && ENV_COOKIE_DOMAIN.length) {
+    // Clean the domain
+    let cleanDomain = ENV_COOKIE_DOMAIN.replace(/^https?:\/\//, "") // Remove protocol
+      .replace(/:\d+/, "") // Remove port
+      .replace(/\/.*$/, "") // Remove path
+      .trim();
+
+    // Skip localhost
+    if (cleanDomain === "localhost" || cleanDomain === "127.0.0.1") {
+      return "";
+    }
+    // Extract base domain (dev1.localistsbooster.com → .localistsbooster.com)
+    if (cleanDomain.includes(".")) {
+      const parts = cleanDomain.split(".");
+      if (parts.length >= 2) {
+        return "." + parts.slice(-2).join(".");
+      }
+    }
+
+    return cleanDomain;
+  }
+
   try {
     const host = window.location.hostname || "";
     if (host === "localhost" || host === "127.0.0.1") return "";
