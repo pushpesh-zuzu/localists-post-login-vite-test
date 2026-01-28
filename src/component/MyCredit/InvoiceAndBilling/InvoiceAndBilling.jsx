@@ -12,6 +12,10 @@ import { showToast } from "../../../utils";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import blackArrow from "../../../assets/Images/Leads/blackArrowRight.svg";
+import {
+  formatUKPhoneNumber,
+  validateUKPhoneNumber,
+} from "../../../utils/formatUKPhoneNumber";
 
 const InvoiceAndBilling = () => {
   const dispatch = useDispatch();
@@ -41,7 +45,7 @@ const InvoiceAndBilling = () => {
         city: userData?.city || "",
         postcode: userData?.zipcode || "",
         country: userData?.country || "",
-        phoneNumber: userData?.phone || "",
+        phoneNumber: formatUKPhoneNumber(userData?.phone) || "",
         vatRegister: userData?.billing_vat_register ? 1 : 0,
       });
     }
@@ -61,6 +65,9 @@ const InvoiceAndBilling = () => {
     navigate("/settings");
   };
   const handleSaveData = () => {
+    if (!validateUKPhoneNumber(formData.phoneNumber)) {
+      return;
+    }
     const data = {
       user_id: userToken?.remember_tokens
         ? userToken?.remember_tokens
@@ -173,6 +180,7 @@ const InvoiceAndBilling = () => {
             className={styles.input}
             value={formData.phoneNumber}
             onChange={handleChange}
+            maxLength={11}
           />
           <div className={styles.vatRegisterBox}>
             <input

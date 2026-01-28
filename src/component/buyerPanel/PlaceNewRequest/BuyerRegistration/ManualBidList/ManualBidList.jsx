@@ -1,3 +1,7 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ */
 import { useEffect, useState } from "react";
 import styles from "./ManualBidsList.module.css";
 import GreenTickIcon from "../../../../../assets/Images/GreenTickIcon.svg";
@@ -12,7 +16,7 @@ import { BASE_IMAGE } from "../../../../../utils";
 import ContactSuccessModal from "../../../../Leads/LeadLists/ContactSuccessModal";
 import { Helmet } from "react-helmet-async";
 import { Tabs } from "antd";
-import moment from "moment";
+import dayjs from "../../../../../utils/dayjs";
 
 const ManualBidList = () => {
   const dispatch = useDispatch();
@@ -244,6 +248,7 @@ const ManualBidList = () => {
                         {item?.company_logo ? (
                           <img
                             alt="Profile"
+                            src={`${BASE_IMAGE}/users/${item.company_logo}`}
                             style={{
                               width: "100px",
                               height: "100px",
@@ -342,7 +347,7 @@ const ManualBidList = () => {
                         </div>
                         <div className={styles.timestamp}>
                           {item?.activty_log?.date_time
-                            ? moment(
+                            ? dayjs(
                                 item.activty_log.date_time,
                                 "DD MMM YYYY, hh:mm"
                               ).format("DD MMM YYYY, HH:mm")

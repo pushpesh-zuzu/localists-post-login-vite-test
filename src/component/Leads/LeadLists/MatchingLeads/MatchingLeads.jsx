@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./MatchingLeads.module.css";
 import SettingIcon from "../../../../assets/Images/Leads/SettingIcon.svg";
 import LocationIcon from "../../../../assets/Images/Leads/WhiteLocationIcon.svg";
-import FilterIcon from "../../../../assets/Images/Leads/FilterIcon.svg";
+// import FilterIcon from "../../../../assets/Images/Leads/FilterIcon.svg";
+import FilterIcon from "../../../../assets/Icons/whitefilter.svg";
+import blackfilter from "../../../../assets/Icons/blackfilter.svg";
 import EditIcon from "../../../../assets/Images/Leads/EditIconWhite.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -191,7 +193,7 @@ const MatchingLeads = () => {
   };
 
   const handleEdit = () => {
-    navigate("/settings/leads/my-services");
+    navigate("/settings/billing/my-credits");
   };
 
   const handleFilterClick = () => {
@@ -340,7 +342,15 @@ const MatchingLeads = () => {
 
           <div className={styles.actionButtons}>
             <button className={styles.filterButton} onClick={handleFilterClick}>
-              <img style={{ cursor: "pointer" }} src={FilterIcon} alt="" />{" "}
+              <img
+                style={{
+                  cursor: "pointer",
+                  width: "22px",
+                  // filter: "brightness(0) invert(1)",
+                }}
+                src={FilterIcon}
+                alt=""
+              />{" "}
               Filter
             </button>
             <Link
@@ -413,7 +423,8 @@ const MatchingLeads = () => {
 
         <div className={styles.actionButton}>
           <button className={styles.filterButtons} onClick={handleFilterClick}>
-            <img src={FilterBlackIcon} alt="" /> Filter
+            <img src={blackfilter} style={{ width: "20px" }} alt="filter" />{" "}
+            <span>Filter</span>
           </button>
         </div>
       </div>

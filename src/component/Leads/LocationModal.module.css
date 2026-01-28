@@ -142,7 +142,7 @@
 }
 .customSelect {
   appearance: none;
-  height: 43px;
+  height: 36px;
   width: -webkit-fill-available;
   /* height: -webkit-fill-available; */
 }

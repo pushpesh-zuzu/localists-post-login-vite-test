@@ -1,3 +1,7 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ */
 import { useEffect, useState } from "react";
 import { BASE_IMAGE_URL, showToast } from "../../../utils";
 import styles from "./viewProfile.module.css";
@@ -10,7 +14,7 @@ import {
   getLeadProfileRequestList,
   sellerResponseStatusApi,
 } from "../../../store/LeadSetting/leadSettingSlice";
-import moment from "moment";
+import dayjs from "../../../utils/dayjs";
 
 const ViewProfile = () => {
   const navigate = useNavigate();
@@ -287,7 +291,7 @@ const ViewProfile = () => {
                             <p>{profileLeadViewData?.name}</p>
                             <p>{item?.activity_name}</p>
                           </div>
-                          <p>{moment(item?.created_at).format("HH:mm")}</p>
+                          <p>{dayjs(item?.created_at).format("HH:mm")}</p>
                         </div>
                       ))
                     ) : (

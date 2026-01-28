@@ -1,3 +1,7 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ */
 import { useEffect, useState } from "react";
 import styles from "./MyResponse.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,23 +15,26 @@ import {
   purchaseTypeStatusApi,
   setLeadListProfileLoader,
   getSellerNotesApi,
+  archivePendingLead,
 } from "../../store/LeadSetting/leadSettingSlice";
 import BlueSmsIcon from "../../assets/Images/Leads/BlueSmsIcon.svg";
 import BluePhoneIcon from "../../assets/Images/Leads/BluePhoneIcon.svg";
 import VerifiedPhoneIcon from "../../assets/Images/Leads/VerifiedPhoneIcon.svg";
 import AdditionalDetailsIcon from "../../assets/Images/Leads/AdditionalDetailsIcon.svg";
 import FrequentUserIcon from "../../assets/Images/Leads/FrequentUserIcon.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pendingImg from "../../assets/Images/MyResponse/PendingBtnImg.svg";
 import HiredImg from "../../assets/Images/MyResponse/HiredBtnImg.svg";
 import HiredClickImg from "../../assets/Images/MyResponse/RightClickHiredImg.svg";
 import MyResponseAccordion from "./MyResponseAccordian/MyResponseAccordian";
 import pendingArrowIcon from "../../assets/Images/Leads/arrowLeadImg.svg";
-import { Select } from "antd";
-import moment from "moment";
+import { Select, Spin } from "antd";
+import dayjs from "../../utils/dayjs";
 import HireUserIcon from "../../assets/Images/MyResponse/hiringbadge.svg";
 import { showToast } from "../../utils";
 import FeelingStuckFooter from "../Leads/LeadLists/FeelingStuckFooter/FeelingStuckFooter";
+import { LoadingOutlined } from "@ant-design/icons";
+import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const purchaseOptions = [
   "All Purchase Types",
@@ -42,6 +49,8 @@ const MyResponse = () => {
   const [selectedTab, setSelectedTab] = useState("pending");
   const [selectedLead, setSelectedLead] = useState(null);
   const [purchaseType, setPurchaseType] = useState("All Purchase Types");
+
+  const [archiveLoader, setArchiveLoader] = useState(null);
 
   const { userToken } = useSelector((state) => state.auth);
   const { registerData } = useSelector((state) => state.findJobs);
@@ -167,6 +176,22 @@ const MyResponse = () => {
     }
   };
 
+  const handleArchive = (item) => {
+    setArchiveLoader(item.id);
+
+    const payload = {
+      lead_id: item?.id,
+      customer_id: item?.customer_id,
+    };
+
+    dispatch(archivePendingLead(payload)).then((res) => {
+      showToast("success", "Lead archived successfully!");
+
+      setArchiveLoader(null);
+      dispatch(getPendingLeadDataApi({ user_id }));
+    });
+  };
+
   return (
     <div className={styles.maincontainer}>
       <div className={styles.mainTextBox}>
@@ -257,6 +282,10 @@ const MyResponse = () => {
         </div>
       </div>
 
+      <Link to="/sellers/leads/archive-leads" className={styles.archive_leads}>
+        Archive Leads
+      </Link>
+
       {getLeadsToDisplay()?.length ? (
         getLeadsToDisplay()?.map((item, idx) => (
           <div key={idx}>
@@ -280,7 +309,7 @@ const MyResponse = () => {
                   <div className={styles.contactItem}>
                     <img src={BluePhoneIcon} alt="" />
                     <span onClick={() => handlePhoneOpen(item)}>
-                      +44{item?.phone}
+                      {formatUKPhoneNumber(item?.phone)}
                     </span>
                   </div>
                   <div className={styles.contactItem}>
@@ -346,6 +375,7 @@ const MyResponse = () => {
                         .join("/")}
                     </p>
                   )}
+                  {item?.details && <p><strong>Additional Details:</strong> {item?.details}</p>}
                 </div>
               </div>
 
@@ -366,9 +396,36 @@ const MyResponse = () => {
                   </>
                 )}
 
+                {selectedTab !== "hired" ? (
+                  <div
+                    className={styles.saveBtnBox}
+                    style={{ position: "relative" }}
+                  >
+                    <button
+                      style={{
+                        position: "absolute",
+                      }}
+                      className={styles.saveBtn}
+                      onClick={() => handleArchive(item)}
+                    >
+                      {archiveLoader === item.id ? (
+                        <Spin
+                          indicator={
+                            <LoadingOutlined spin style={{ color: "white" }} />
+                          }
+                          size="small"
+                        />
+                      ) : (
+                        "Archive"
+                      )}
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+
                 <div className={styles.responseStatus}>
-                  Responded {moment().diff(moment(item?.created_at), "days")}d
-                  ago
+                  Responded {dayjs().diff(dayjs(item?.created_at), "day")}d ago
                 </div>
                 <div
                   className={styles.moreDetails}
@@ -386,9 +443,35 @@ const MyResponse = () => {
               </div>
 
               <div className={styles.leadAction}>
+                {selectedTab !== "hired" ? (
+                  <div
+                    className={styles.saveBtnBox}
+                    style={{ position: "relative", paddingBottom: "30px" }}
+                  >
+                    <button
+                      style={{
+                        position: "absolute",
+                      }}
+                      className={styles.saveBtn}
+                      onClick={() => handleArchive(item)}
+                    >
+                      {archiveLoader === item.id ? (
+                        <Spin
+                          indicator={
+                            <LoadingOutlined spin style={{ color: "white" }} />
+                          }
+                          size="small"
+                        />
+                      ) : (
+                        "Archive"
+                      )}
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <div className={styles.responseStatus}>
-                  Responded {moment().diff(moment(item?.created_at), "days")}d
-                  ago
+                  Responded {dayjs().diff(dayjs(item?.created_at), "day")}d ago
                 </div>
                 {selectedTab === "pending" ? (
                   <>

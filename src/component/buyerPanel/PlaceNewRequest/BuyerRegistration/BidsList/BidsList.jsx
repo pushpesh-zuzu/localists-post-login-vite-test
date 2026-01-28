@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./BidsList.module.css";
 import GreenTickIcon from "../../../../../assets/Images/GreenTickIcon.svg";
 import AutoBidLocationIcon from "../../../../../assets/Images/AutoBidLocationIcon.svg";
@@ -285,6 +285,31 @@ const BidsList = () => {
     dispatch(ratingFilterApi(ratingData));
   };
 
+  const titleRef = useRef(null);
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth > 480) return; // mobile only
+
+    const handleScroll = () => {
+      if (!titleRef.current) return;
+
+      // element ki position get karo
+      const elementTop = titleRef.current.getBoundingClientRect().top;
+
+      // Jab element top se 70px par pahunch jaye → fixed
+      if (elementTop <= 70) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -316,15 +341,14 @@ const BidsList = () => {
 
                 {isMobile ? (
                   <div className={styles.mobileMiddleText}>
-                    Your Top 5 local professional matches are below. Request
-                    replies from your top matches to hear back faster
+                    You can contact any of the professionals to get more
+                    information using the contact button.
                   </div>
                 ) : (
                   <div className={styles.middleText}>
-                    Your Top 5 local professional matches are below. You can
-                    contact any of the <br className={styles.lineBreak} />{" "}
-                    professionals to get more information using the contact
-                    button.
+                    You can contact any of the professionals to
+                    <br className={styles.lineBreak} /> get more information
+                    using the contact button.
                   </div>
                 )}
 
@@ -374,11 +398,11 @@ const BidsList = () => {
             </div>
 
             <div className={styles.filters}>
-              <div className={styles.matchCountWrapper}>
+              {/* <div className={styles.matchCountWrapper}>
                 <span className={styles.matchCount}>
                   {matchingLength} matches
                 </span>
-              </div>
+              </div> */}
 
               {!isMobile ? (
                 <div className={styles.selectsWrapper}>
@@ -405,7 +429,7 @@ const BidsList = () => {
                   </Select>
 
                   <Select
-                    value={locationSort || "Farthest to Nearest"}
+                    value={locationSort || "Sort by Distance"}
                     onChange={(value) => {
                       setLocationSort(value);
                       handelChangeSort({ target: { value } });
@@ -549,14 +573,24 @@ const BidsList = () => {
                 )}
               </div>
             </div>
-            <div className={styles.requestMatchBox}>
+            <div ref={titleRef} className={styles.requestMatchBox}>
               {matchingLength > 0 && (
+                // <button
+                //   className={styles.requestBtnMatchBox}
+                //   onClick={handleMultple}
+                //   disabled={isButtonDisabled}
+                // >
+                //   Request Your 5 Top Matches Here
+                // </button>
                 <button
-                  className={styles.requestBtnMatchBox}
+                  className={`${styles.requestBtnMatchBox} ${
+                    isFixed ? styles.fixedRequestBtn : ""
+                  }`}
                   onClick={handleMultple}
                   disabled={isButtonDisabled}
                 >
-                  Request Your 5 Top Matches Here
+                  {/* Request Your 5 Top Matches Here */}
+                  Request Free Quotes Now
                 </button>
               )}
             </div>
@@ -807,7 +841,7 @@ const BidsList = () => {
                             handleContinue(seller);
                           }}
                         >
-                          Contact the Professional Now
+                          Request A Free Quote Now
                         </button>
                       </div>
                     </div>

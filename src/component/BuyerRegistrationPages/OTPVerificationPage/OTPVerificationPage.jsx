@@ -10,6 +10,7 @@ import { showToast } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import backIcon from "../../../assets/Icons/backIcon.svg";
+import { formatUKPhoneNumber } from "../../../utils/formatUKPhoneNumber";
 
 const OTPVerificationPage = ({
   open,
@@ -179,7 +180,7 @@ const OTPVerificationPage = ({
       <h2 className={styles.title}>OTP Verification</h2>
       {/* <div className={styles.VerifyText}>Please verify your account</div> */}
       <p className={styles.instruction}>
-        Enter the OTP sent to <span>{requestUserPhone}</span>
+        Enter the OTP sent to <span>{formatUKPhoneNumber(requestUserPhone)}</span>
       </p>
       <p style={{ color: "#000" }} className={styles.phoneZero}>
         **Please check the above number is correct**

@@ -9,6 +9,10 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { showToast } from "../../../../../utils";
 import { clearBuyerRegisterFormData } from "../../../../../store/FindJobs/findJobSlice";
+import {
+  formatUKPhoneNumber,
+  validateUKPhoneNumber,
+} from "../../../../../utils/formatUKPhoneNumber";
 
 const ViewYourMatches = ({
   onClose,
@@ -30,9 +34,11 @@ const ViewYourMatches = ({
   const { userToken } = useSelector((state) => state.auth);
   useEffect(() => {
     if (requestDataList?.phone) {
-      setPhoneNumber(requestDataList?.phone.replace(/^\+44/, ""));
+      // setPhoneNumber(requestDataList?.phone.replace(/^\+44/, ""));
+      setPhoneNumber(formatUKPhoneNumber(requestDataList?.phone));
     } else if (userToken?.phone) {
-      setPhoneNumber(userToken?.phone.replace(/^\+44/, ""));
+      // setPhoneNumber(userToken?.phone.replace(/^\+44/, ""));
+      setPhoneNumber(formatUKPhoneNumber(userToken?.phone));
     }
   }, [requestDataList?.phone, userToken?.phone]);
   const handleInputChange = (e) => {
@@ -41,16 +47,18 @@ const ViewYourMatches = ({
     setError(false);
   };
   const handleSubmit = () => {
-    if (phoneNumber.startsWith("0")) {
-      showToast("error", "Please enter phone number without '0'.");
-      return;
-    }
+    // if (phoneNumber.startsWith("0")) {
+    //   showToast("error", "Please enter phone number without '0'.");
+    //   return;
+    // }
 
-    if (phoneNumber.length !== 10) {
+    if (phoneNumber.length !== 11) {
       setError(true);
       return;
     }
-
+    if (!validateUKPhoneNumber(phoneNumber)) {
+      return;
+    }
     const formData = new FormData();
     formData.append("service_id", buyerRequest?.service_id);
     formData.append("postcode", buyerRequest?.postcode);
@@ -72,7 +80,6 @@ const ViewYourMatches = ({
     onClose();
     dispatch(clearSetbuyerRequestData());
     dispatch(clearBuyerRegisterFormData());
- 
   };
 
   return (
@@ -98,10 +105,10 @@ const ViewYourMatches = ({
             <input
               type="text"
               id="phoneNumber"
-              placeholder="+44 Phone Number"
+              placeholder="Phone Number"
               className={styles.input}
-              maxLength={14} 
-              value={"+44 " + phoneNumber}
+              maxLength={14}
+              value={phoneNumber}
               onChange={(e) => {
                 let value = e.target.value;
 
@@ -128,7 +135,7 @@ const ViewYourMatches = ({
 
             {error && (
               <span className={styles.errorMessage}>
-                Please enter a valid 10-digit phone number.
+                Please enter a valid 11-digit phone number.
               </span>
             )}
           </div>

@@ -2,7 +2,6 @@ import { createBrowserRouter, createMemoryRouter } from "react-router-dom";
 import React, { lazy } from "react";
 import MainLayout from "../layouts/MainLayout";
 import NotFound from "../pages/NotFound";
-import InProgressPage from "../pages/InProgressPage";
 import Dashboard from "../component/dashboard/dashboard";
 import ProtectedRoute from "./Protected";
 import BuyerPanelPage from "../pages/BuyerPanelPage";
@@ -12,10 +11,8 @@ import Leads from "../component/Leads/Leads";
 import Settings from "../component/settings/Settings";
 import LeadSetting from "../component/Leads/LeadSetting";
 import BidsList from "../component/buyerPanel/PlaceNewRequest/BuyerRegistration/BidsList/BidsList";
-import ProtectedLogin from "./ProtectedLogin";
 import HelpCenterPage from "../pages/HelpCenterPage";
 import SuggestQuestions from "../component/Leads/LeadSettings/SuggestQuestions/SuggestQuestions";
-import PricingPage from "../pages/PricingPage";
 import NewQuestion from "../component/Leads/LeadSettings/SuggestQuestions/NewQuestion/NewQuestion";
 import EditQuestion from "../component/Leads/LeadSettings/SuggestQuestions/EditQuestion/EditQuestion";
 import RemoveQuestion from "../component/Leads/LeadSettings/SuggestQuestions/RemoveQuestion/RemoveQuestion";
@@ -40,6 +37,7 @@ import WhatServiceYouNeed from "../component/buyerPanel/PlaceNewRequest/BuyerReg
 import ConversionRedirect from "../component/buyerPanel/PlaceNewRequest/BuyerRegistration/ConversionRedirect/ConversionRedirect";
 import ThankuPage from "../component/common/ThankuPage/ThankuPage";
 import ContactUs from "../component/ContactUs/ContactUs";
+import ArchiveLeads from "../component/ArchiveLeads/ArchiveLeads";
 const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
 const routes = [
  
@@ -223,6 +221,14 @@ const routes = [
         ),
       },
       {
+        path: "/sellers/leads/archive-leads",
+        element: (
+          <ProtectedRoute>
+            <ArchiveLeads />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "sellers/leads/save-for-later",
         element: (
           <ProtectedRoute>
@@ -295,14 +301,6 @@ const routes = [
         element: (
           <ProtectedRoute>
             <BrowserNotification />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "/inprogress",
-        element: (
-          <ProtectedRoute>
-            <InProgressPage />
           </ProtectedRoute>
         ),
       },

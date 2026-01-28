@@ -4,7 +4,6 @@ import Footer from "../component/common/footer/Footer";
 import MetaHelmet from "../component/common/helmet/metaHelmet";
 import { useEffect } from "react";
 import ScrollToTop from "../routes/ScrollToTop";
-import NavigationDetectorWithConfirmations from "../component/common/navigationDetected/NavigationDetectorWithConfirmations";
 
 const pageTitles = {
   "/": {

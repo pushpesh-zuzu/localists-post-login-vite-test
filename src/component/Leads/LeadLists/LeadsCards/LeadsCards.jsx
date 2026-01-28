@@ -21,6 +21,8 @@ import ContactConfirmModal from "../ContactConfirmModal";
 import ContactSuccessModal from "../ContactSuccessModal";
 import viewDetailsArrow from "../../../../assets/Images/Setting/viewDetailsArrow.svg";
 import LeadViewDetails from "../LeadViewDetails/LeadViewDetails";
+import { formatUKPhoneNumber } from "../../../../utils/formatUKPhoneNumber";
+import Expired from "../../../../assets/Images/Leads/expired.png";
 
 const LeadsCards = () => {
   const dispatch = useDispatch();
@@ -46,7 +48,6 @@ const LeadsCards = () => {
     };
     dispatch(getLeadRequestList(leadRequestData));
   }, []);
-
   const handleMouseEnter = () => {
     setVisibleCount((prev) => prev + 5);
   };
@@ -227,7 +228,7 @@ const LeadsCards = () => {
                                       : ""}
                                   </h3>
 
-                                  <p>{item?.postcode.split(" ")[0]}</p>
+                                  <p>{item?.postcode?.replace(/\s/g, '').slice(0, 4).toUpperCase()}</p>
                                 </div>
                               </div>
                               <span
@@ -243,9 +244,8 @@ const LeadsCards = () => {
                                 <img src={BluePhoneIcon} alt="" />
                                 <span className={styles.contactItemNumber}>
                                   {item?.phone
-                                    ? `+44${item?.phone.substring(
-                                        0,
-                                        2
+                                    ? `${formatUKPhoneNumber(
+                                        item?.phone.substring(0, 3)
                                       )}${"*".repeat(item?.phone.length - 2)}`
                                     : "N/A"}
                                 </span>
@@ -269,7 +269,7 @@ const LeadsCards = () => {
                             <div className={styles.highlightText}>
                               Highlights :
                             </div>
-                            <div
+                            {item?.is_expired !== 1  && <div
                               className={styles.saveBtnBox}
                               style={{ position: "relative" }}
                             >
@@ -297,7 +297,7 @@ const LeadsCards = () => {
                                   </>
                                 )}
                               </button>
-                            </div>
+                            </div>}
 
                             <div className={styles.badges}>
                               {item?.is_phone_verified == 1 && (
@@ -343,34 +343,46 @@ const LeadsCards = () => {
                                     .join("/")}
                                 </p>
                               )}
+                              {item?.details && <p><strong>Additional Details:</strong> {item?.details}</p>}
                             </div>
                           </div>
+                          <div className={styles.leadActionWrapper}>
+                            {item?.is_expired === 1 ? (
+                              <img
+                                className={styles.expired}
+                                src={Expired}
+                                alt="Expired image"
+                              />
+                            ) : (
+                              ""
+                            )}
+                            <div className={styles.leadActions}>
+                              <button
+                                className={styles.purchaseButton}
+                                onClick={() => handleContinue(item)}
+                                disabled={item?.is_expired === 1}
+                              >
+                                Contact
+                              </button>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }}
+                              >
+                               {item?.is_expired !== 1 && <span className={styles.credits}>
+                                  {item?.credit_score} Credits
+                                </span>}
+                              </div>
 
-                          <div className={styles.leadActions}>
-                            <button
-                              className={styles.purchaseButton}
-                              onClick={() => handleContinue(item)}
-                            >
-                              Contact
-                            </button>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <span className={styles.credits}>
-                                {item?.credit_score} Credits
-                              </span>
-                            </div>
-
-                            <div className={styles.mainText}>
-                              <div>ACT FAST</div>
+                              {item?.is_expired !== 1 && <div className={styles.mainText}>
+                                <div>ACT FAST</div>
+                              </div>}
                             </div>
                           </div>
                         </div>
-                        <div>
+                       {item?.is_expired !== 1  &&<div>
                           <div className={styles.saveBtnBoxs}>
                             <button
                               className={styles.saveBtn}
@@ -394,7 +406,7 @@ const LeadsCards = () => {
                               )}
                             </button>
                           </div>
-                        </div>
+                        </div>}
                         <div className={styles.viewDetailsBtnWrapper}>
                           <button
                             className={styles.viewDetailsBtn}

@@ -18,6 +18,7 @@ import { showToast, updateLocalStorageValue } from "../../utils";
 import { setUserToken } from "../../store/Auth/authSlice";
 import { setRegisterData } from "../../store/FindJobs/findJobSlice";
 import { baseURL } from "../../Api/axiosInstance";
+import { formatUKPhoneNumber, validateUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const BuyerAccountSettings = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const BuyerAccountSettings = () => {
       setUserDetails({
         name: userData.name || "",
         email: userData.email || "",
-        phone: userData.phone || "",
+        phone: formatUKPhoneNumber(userData.phone) || "",
         profile_image: userData.profile_image || "",
       });
     }
@@ -98,13 +99,16 @@ const BuyerAccountSettings = () => {
 
   const handleSubmit = () => {
     if (!/^\+?\d{10,13}$/.test(userDetails?.phone)) {
-      showToast("error", "Please enter a valid 10-digit phone number.");
+      showToast("error", "Please enter a valid 11-digit phone number.");
       return;
+    }
+    if(!validateUKPhoneNumber(userDetails?.phone)){
+      return
     }
     const infoData = {
       name: userDetails.name,
       email: userDetails.email,
-      phone: userDetails.phone,
+      phone: formatUKPhoneNumber(userDetails.phone),
     };
     dispatch(updateUserIfoData(infoData)).then((result) => {
       if (result?.success) {
@@ -344,7 +348,7 @@ const BuyerAccountSettings = () => {
             value={userDetails.phone}
             onChange={(e) => {
               const value = e.target.value;
-              if (/^\d*$/.test(value) && value.length <= 10) {
+              if (/^\d*$/.test(value) && value.length <= 11) {
                 handleChange(e);
               }
             }}

@@ -57,6 +57,8 @@ const CustomerQuestions = ({
   const [locationData, setLocationData] = useState({
     miles1: "20",
     postcode: "",
+    city: "",
+    coordinates: [],
   });
   const nationwideShow = serviceWiseData?.map((item) => item?.type);
 
@@ -513,7 +515,12 @@ const CustomerQuestions = ({
             setIsLocationModalOpen(false);
             setIsEditingLocation(false);
             setEditLocationId(null);
-            setLocationData({ miles1: "", postcode: "" });
+            setLocationData({
+              miles1: "",
+              postcode: "",
+              city: "",
+              coordinates: [],
+            });
           }}
           onNext={handleNext}
         />

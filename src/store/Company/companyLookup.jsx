@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../Api/axiosInstance";
 import { checkAddressApi, checkCompanyNameApi } from "../FindJobs/findJobSlice";
+import { showToast } from "../../utils";
 
 const initialState = {
   companyData: {},
@@ -80,7 +81,7 @@ export const fetchCompanyDetails = (regNumber, user_id = null) => {
       }
 
       dispatch(setCompanyError(message));
-
+      showToast('error',message)
       // 🧹 Clear both company data and form data (so UI inputs reset)
       dispatch(clearCompanyData());
       dispatch(

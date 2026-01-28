@@ -134,7 +134,7 @@
   font-size: 20px;
 }
 .customSelect {
-  height: 48px !important;
+  height: 40px !important;
   width: 100% !important;
   max-width: -webkit-fill-available;
   min-width: -moz-available;

@@ -37,6 +37,10 @@
   overflow: hidden;
   word-break: break-word; /* Optional, breaks long text */
 }
+.expired {
+  height: 35px;
+  width: 157px;
+}
 
 .jobDetails {
   grid-area: job;
@@ -61,6 +65,13 @@
   gap: 24px;
   margin-top: 0px;
   /* margin-left: -24px; */
+}
+.leadActionWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 12px;
+  margin-top: 0px;
 }
 
 .userDetails {
@@ -230,13 +241,18 @@
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
-  cursor: pointer !important;
+  cursor: pointer;
   font-size: 20px;
   font-weight: 600;
 }
 
 .purchaseButton:hover {
   background-color: #4ecf00;
+}
+.purchaseButton:disabled {
+  background-color: rgb(225, 223, 223);
+  color: black;
+  cursor: auto;
 }
 .desktopOnlyBreak {
   display: inline;
@@ -364,12 +380,21 @@
     padding: 0;
     width: 100%;
   }
-
+  .leadActionWrapper {
+    margin-left: 0;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+  }
   .leadActions {
     margin-left: 0;
     width: 100%;
     align-items: flex-start;
     gap: 20px;
+  }
+  .expired {
+    width: 104px;
+    height: 35px;
   }
 }
 
@@ -526,6 +551,13 @@
     align-items: center;
     gap: 10px;
   }
+  .leadActionWrapper {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }

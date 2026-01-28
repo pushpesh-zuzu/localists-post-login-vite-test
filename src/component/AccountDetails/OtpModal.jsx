@@ -3,6 +3,7 @@ import styles from "../buyerPanel/PlaceNewRequest/BuyerRegistration/OtpVerificat
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../utils";
 import { sellerPhoneNumberVerifyDataApi } from "../../store/MyProfile/myProfileSlice";
+import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const OtpModal = ({ open, onClose, phoneData }) => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -95,7 +96,7 @@ const OtpModal = ({ open, onClose, phoneData }) => {
         <p className={styles.instruction}>
           Please enter the code sent by SMS to
           <br />
-          <span>{phoneData}</span>
+          <span>{formatUKPhoneNumber(phoneData)}</span>
         </p>
 
         <button className={styles.submitBtn} onClick={handleSubmit}>

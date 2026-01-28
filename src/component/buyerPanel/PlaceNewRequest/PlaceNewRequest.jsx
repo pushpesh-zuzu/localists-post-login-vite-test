@@ -1,3 +1,8 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment-timezone → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ * dayjs.tz() provides the same timezone functionality with minimal overhead.
+ */
 import { useEffect, useState } from "react";
 import styles from "./PlaceNewRequest.module.css";
 import BuyerRegistration from "./BuyerRegistration/BuyerRegistration";
@@ -6,7 +11,7 @@ import {
   getbuyerrequestList,
   setBuyerStep,
 } from "../../../store/Buyer/BuyerSlice";
-import moment from "moment-timezone";
+import dayjs from "../../../utils/dayjs";
 import { Spin } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import HiredProfessional from "./BuyerRegistration/HiredProfessional/HiredProfessional";
@@ -98,7 +103,7 @@ const PlaceNewRequest = () => {
                 <div className={styles.cardHeader}>
                   <h3 className={styles.cardTitle}>{req.category?.name}</h3>
                   <span className={styles.timeAgo}>
-                    {moment.tz(req.created_at, "Europe/London").fromNow()}
+                    {dayjs.tz(req.created_at, "Europe/London").fromNow()}
                   </span>
                 </div>
                 <div

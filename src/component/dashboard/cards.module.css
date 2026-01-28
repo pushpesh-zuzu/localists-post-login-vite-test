@@ -147,8 +147,7 @@
   font-size: 13px;
   text-decoration: underline;
   cursor: pointer !important;
-  /* color: #666; */
-  /* color: ; */
+  color: #666;
 }
 .responses span {
   font-weight: normal;
@@ -166,7 +165,7 @@
   position: relative;
 }
 .response {
-  background: #fce5e3;
+  background: #f9b7b7;
   border-radius: 50%;
   width: 135px;
   height: 135px;
@@ -698,7 +697,7 @@
     margin: 0 0px -0.4rem 0.1rem;
   }
   .response {
-    background: #fce5e3;
+    background: #f9b7b7;
     border-radius: 50%;
     width: 135px;
     height: 135px;

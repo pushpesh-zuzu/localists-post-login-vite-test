@@ -1,3 +1,7 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ */
 import { useEffect, useState } from "react";
 import styles from "./MyResponseAccordian.module.css";
 import hirImg from "../../../assets/Images/MyResponse/hiringIcon.svg";
@@ -26,9 +30,10 @@ import {
 } from "../../../store/LeadSetting/leadSettingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../../utils";
-import moment from "moment";
+import dayjs from "../../../utils/dayjs";
 import LeadMap from "../LeadMap/LeadMap";
 import { Spin, Select } from "antd";
+import { formatUKPhoneNumber } from "../../../utils/formatUKPhoneNumber";
 
 const TimelineItem = ({ icon, title, description, time, children, isLast }) => (
   <div className={styles.timelineItem}>
@@ -47,7 +52,7 @@ const TimelineItem = ({ icon, title, description, time, children, isLast }) => (
   </div>
 );
 
-const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
+const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendingStatus }) => {
   const { Option } = Select;
   const [note, setNote] = useState("");
   const [activeTab, setActiveTab] = useState("activity");
@@ -207,6 +212,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
     if (addHiredData.lead_id) {
       dispatch(getAddHiredLeadDataApi(addHiredData)).then((result) => {
         if (result) {
+          setisChangePendingStatus && setisChangePendingStatus(true)
           showToast("success", result?.message);
           const data = {
             user_id: userToken?.remember_tokens
@@ -219,9 +225,9 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
       });
     }
   };
-  const createdDate = moment(profileLeadViewData?.created_at);
-  const today = moment();
-  const daysAgo = today.diff(createdDate, "days");
+  const createdDate = dayjs(profileLeadViewData?.created_at);
+  const today = dayjs();
+  const daysAgo = today.diff(createdDate, "day");
   const handlePhoneOpen = (item) => {
     const phoneNumber = item?.phone;
     if (phoneNumber) {
@@ -331,7 +337,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
               <span>
                 <img src={PhoneImg} alt="phone" />
               </span>
-              {profileLeadViewData?.phone}{" "}
+              {formatUKPhoneNumber(profileLeadViewData?.phone)}{" "}
               {profileLeadViewData?.leads?.is_phone_verified == 1 && (
                 <sapn className={styles.verifiedText}>
                   <img src={HiredImg} alt="verified" />
@@ -365,7 +371,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                 className={styles.buttonSms}
                 onClick={() => {
                   handleResponseChange("sms");
-                  window.location.href = `sms:${formatPhoneNumber(
+                  window.location.href = `sms:${formatUKPhoneNumber(
                     user.phoneNumber
                   )}`;
                 }}
@@ -377,7 +383,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                 className={styles.buttonSms}
                 onClick={() => {
                   handleResponseChange("mobile");
-                  window.location.href = `tel:${formatPhoneNumber(
+                  window.location.href = `tel:${formatUKPhoneNumber(
                     user.phoneNumber
                   )}`;
                 }}
@@ -389,7 +395,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                 onClick={() => {
                   handleResponseChange("Whatsapp");
                   window.open(
-                    `https://wa.me/${formatPhoneNumber(user.phoneNumber)}`,
+                    `https://wa.me/${formatUKPhoneNumber(user.phoneNumber)}`,
                     "_blank"
                   );
                 }}
@@ -457,10 +463,10 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                   <div className={styles.container}>
                     <div className={styles.date}>
                       {getActivies?.length > 0
-                        ? moment(
+                        ? dayjs(
                             getActivies[getActivies.length - 1]?.created_at
                           ).format("ddd D, MMMM")
-                        : moment(profileLeadViewData?.created_at).format(
+                        : dayjs(profileLeadViewData?.created_at).format(
                             "ddd D, MMMM"
                           )}
                     </div>
@@ -487,7 +493,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                         }
                         title={item.activity_name}
                         description={item.description}
-                        time={moment(item.updated_at).format("HH:mm")}
+                        time={dayjs(item.updated_at).format("HH:mm")}
                         isLast={index === getActivies.length - 1}
                       >
                         {item.children}
@@ -556,7 +562,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList }) => {
                           <div className={styles.noteActions}>
                             <span>
                               {item?.created_at
-                                ? moment
+                                ? dayjs
                                     .tz(item.created_at, "Europe/London")
                                     .format("YYYY-MM-DD HH:mm:ss")
                                 : ""}

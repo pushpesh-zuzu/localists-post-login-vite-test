@@ -15,6 +15,7 @@ import { showToast } from "../../utils";
 import ChangePasswordModal from "./ChangePasswordModal";
 import blackArrow from "../../assets/Images/Leads/blackArrowRight.svg";
 import OtpModal from "./OtpModal";
+import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const AccountDetails = () => {
   const dispatch = useDispatch();
@@ -121,7 +122,7 @@ const AccountDetails = () => {
     const { name, value } = e.target;
     if (name === "phone") {
       if (!/^\d*$/.test(value)) return;
-      if (value.length > 10) return;
+      if (value.length > 11) return;
       setBtnDisble(false);
     }
     const updatedData = {
@@ -210,7 +211,8 @@ const AccountDetails = () => {
             type="text"
             className={styles.input}
             name="phone"
-            value={contactData.phone}
+            maxLength={11}
+            value={formatUKPhoneNumber(contactData.phone)}
             onChange={handleInputChange}
           />
           <button

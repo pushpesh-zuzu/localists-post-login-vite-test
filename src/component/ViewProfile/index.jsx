@@ -28,6 +28,7 @@ import halfStar from "../../assets/Icons/MyResponse/halfStar.svg";
 import { Helmet } from "react-helmet-async";
 import Links from "./Links/Links";
 import Videos from "./Videos/Videos";
+import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const ViewProfiles = () => {
   const location = useLocation();
@@ -240,7 +241,8 @@ const ViewProfiles = () => {
 
   const maskPhone = (phone = "") => {
     if (!phone || phone.length < 5) return "";
-    const visible = phone.slice(0, 5);
+    const phoneWithZero = formatUKPhoneNumber(phone);
+    const visible = phoneWithZero.slice(0, 5);
     return `${visible}*******`;
   };
 
@@ -369,7 +371,7 @@ const ViewProfiles = () => {
             <h2>{profileData?.business_profile_name}</h2>
             <div className={styles.locationText}>
               <img src={LocationIcon} alt="" />
-              <span>{profileData?.city} </span> | {profileData?.zipcode}
+              <span>{profileData?.city} </span> | {!!isFromManualBids ? profileData?.zipcode : profileData?.zipcode?.replace(/\s/g, '').slice(0, 4).toUpperCase()}
             </div>
 
             <div className={styles.sidebar}>
@@ -494,8 +496,8 @@ const ViewProfiles = () => {
                           "0000000000"
                       )} */}
                   {profileData?.lead_purchased === 1 || isFromManualBids
-                    ? profileData?.company_phone || profileData?.phone || ""
-                    : profileData?.company_phone || profileData?.phone
+                    ? formatUKPhoneNumber(profileData?.company_phone) || formatUKPhoneNumber(profileData?.phone) || ""
+                    : formatUKPhoneNumber(profileData?.company_phone) || formatUKPhoneNumber(profileData?.phone)
                     ? maskPhone(
                         profileData?.company_phone || profileData?.phone
                       )

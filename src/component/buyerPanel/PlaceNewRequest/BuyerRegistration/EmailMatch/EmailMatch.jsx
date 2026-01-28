@@ -13,6 +13,7 @@ import { useLocation } from "react-router";
 import useUserInfo from "../../../../../utils/getUserIp";
 import { validateEmail } from "../../../../../utils/validateEmail";
 import { useEmailCheck } from "../../../../../utils/emailExist";
+import { validateUKPhoneNumber } from "../../../../../utils/formatUKPhoneNumber";
 
 const EmailMatch = ({
   onClose,
@@ -200,7 +201,7 @@ const EmailMatch = ({
 
   const handlePhoneChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    if (value.length <= 10) {
+    if (value.length <= 11) {
       setPhone(value);
       setErrors((prev) => ({ ...prev, phone: false }));
       dispatch(
@@ -210,17 +211,11 @@ const EmailMatch = ({
   };
 
   const handleSubmit = () => {
-    if (phone.startsWith("0")) {
-      showToast("error", "Please enter phone number without '0'");
-      return;
-    }
 
     const newErrors = {
-      email:
-        !isPPCPages &&
-        (!email || !validateEmail(email)),
+      email: !isPPCPages && (!email || !validateEmail(email)),
       name: !name.trim(),
-      phone: !phone || !/^\d{10}$/.test(phone),
+      phone: !phone || !/^\d{11}$/.test(phone),
     };
 
     if (!isPPCPages && newErrors.email && !emailErrorMessage) {
@@ -235,7 +230,9 @@ const EmailMatch = ({
     if (!isPPCPages && setEmails) {
       setEmails(email);
     }
-
+    if (!validateUKPhoneNumber(phone)) {
+      return;
+    }
     const finalEmail = isPPCPages ? buyerRequest?.email || "" : email;
 
     dispatch(setbuyerRequestData({ name, email: finalEmail, phone }));
@@ -416,7 +413,7 @@ const EmailMatch = ({
             }`}
             value={name}
             onChange={handleNameChange}
-            name="user_full_name" 
+            name="user_full_name"
             id="user_full_name"
           />
           {errors?.name && (
@@ -438,10 +435,10 @@ const EmailMatch = ({
                 }`}
                 value={email}
                 onChange={handleEmailChange}
-                onFocus={handleEmailFocus} 
-                onBlur={handleEmailBlur} 
-                autoComplete="new-password" 
-                name="user_email_address" 
+                onFocus={handleEmailFocus}
+                onBlur={handleEmailBlur}
+                autoComplete="new-password"
+                name="user_email_address"
                 id="user_email_address"
               />
               {errors?.email && (
@@ -466,15 +463,15 @@ const EmailMatch = ({
                 errors?.phone ? styles.inputError : ""
               }`}
               value={phone}
-              maxLength={10}
+              maxLength={11}
               onChange={handlePhoneChange}
-              autoComplete="new-password" 
-              name="user_contact_number" 
+              autoComplete="new-password"
+              name="user_contact_number"
               id="user_contact_number"
             />
             {errors?.phone && (
               <span style={{ color: "red" }} className={styles.errorMessage}>
-                Please enter a valid 10-digit phone number.
+                Please enter a valid 11-digit phone number.
               </span>
             )}
           </div>

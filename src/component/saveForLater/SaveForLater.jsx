@@ -18,11 +18,12 @@ import SavedViewDetails from "./SavedViewDetails/SaveViewDetails";
 import FeelingStuckFooter from "../Leads/LeadLists/FeelingStuckFooter/FeelingStuckFooter";
 import ContactSuccessModal from "../Leads/LeadLists/ContactSuccessModal";
 import ContactConfirmModal from "../Leads/LeadLists/ContactConfirmModal";
-import FilterIcon from "../../assets/Images/Leads/FilterIcon.svg";
-import FilterBlackIcon from "../../assets/Images/Leads/blackFilter.svg";
+import FilterIcon from "../../assets/Icons/whitefilter.svg";
+import FilterBlackIcon from "../../assets/Icons/blackfilter.svg";
 import { Select } from "antd";
 import { SwapOutlined } from "@ant-design/icons";
 import MatchingLeadsFilter from "../Leads/LeadLists/MatchingLeads/MatchingLeadsFilter";
+import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const SaveForLater = () => {
   const { Option } = Select;
@@ -358,7 +359,7 @@ const SaveForLater = () => {
               className={styles.filterButtons}
               onClick={handleFilterClick}
             >
-              <img src={FilterBlackIcon} alt="" /> Filter
+              <img src={FilterBlackIcon} style={{ width: "20px" }} alt="filter" /> <span>Filter</span>
             </button>
           </div>
         </div>
@@ -397,7 +398,7 @@ const SaveForLater = () => {
                                 : ""}
                             </h3>
 
-                            <p>{item?.postcode?.split(" ")[0]}</p>
+                            <p>{item?.postcode?.replace(/\s/g, '').slice(0, 4).toUpperCase()}</p>
                           </div>
                         </div>
                         <span className={styles.category}>
@@ -409,7 +410,7 @@ const SaveForLater = () => {
                           <img src={BluePhoneIcon} alt="" />
                           <span>
                             {item?.phone
-                              ? `+44${item?.phone.substring(0, 2)}${"*".repeat(
+                              ? `${formatUKPhoneNumber(item?.phone.substring(0, 3))}${"*".repeat(
                                   item?.phone.length - 2
                                 )}`
                               : "N/A"}
@@ -481,6 +482,7 @@ const SaveForLater = () => {
                               .join("/")}
                           </p>
                         )}
+                        {item?.details && <p><strong>Additional Details:</strong> {item?.details}</p>}
                       </div>
                     </div>
 

@@ -20,6 +20,8 @@
   grid-template-areas: "info job actions";
   grid-template-columns: 1fr 1fr 0.3fr;
   gap: 40px;
+  overflow: hidden;
+  max-width: 100%;
 }
 .cardParent {
   background: #fff;
@@ -27,9 +29,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  margin-top: 12px;
 }
 .maincontainer {
-  padding: 22px 42px;
+  padding: 22px 88px;
   /* height: 100%; */
 }
 
@@ -152,7 +155,7 @@
 
 .userInfo {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   gap: 72px;
 }
@@ -271,7 +274,7 @@
   gap: 8px;
   background-color: #e3f6fc;
   padding: 10px 16px;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -324,6 +327,7 @@
   align-items: center;
   padding-bottom: 0px;
   margin-right: 136px;
+  margin-bottom: 20px;
 }
 .mainText div {
   color: #ff9933;
@@ -591,13 +595,14 @@
   .dualDropdownsContainers {
     background-color: #e3f6fc;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 12px;
     align-items: center;
     padding: 9px 13px;
   }
 
   .filterButtons {
-    width: 100%;
+    /* width: 100%; */
     padding: 8px;
     font-size: 13px;
 
@@ -607,6 +612,14 @@
     align-items: center;
     gap: 4px;
     margin-right: 12px;
+  }
+
+  .filterButtons span {
+    display: none !important; /* hides the text */
+  }
+
+  .filterButtons {
+    gap: 0; /* optional: closes extra space */
   }
 
   .details h3 {
@@ -755,7 +768,7 @@
   }
   .maincontainer {
     margin-top: -12px;
-    padding: 10px 20px;
+    padding: 10px 16px;
     background-color: white;
     box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.1); /* only bottom and sides */
     margin-bottom: 10px;
@@ -785,6 +798,7 @@
     display: flex;
     align-items: center;
     gap: 13px;
+    margin-left: auto;
   }
 }
 
@@ -794,7 +808,8 @@
   }
 
   .filterButtons {
-    width: 100%;
+    /* width: 100%; */
+    margin-left: auto;
   }
 
   .actionButton {
@@ -805,10 +820,6 @@
 }
 
 @media screen and (max-width: 345px) {
-  .dualDropdownsContainers {
-    flex-wrap: wrap;
-  }
-
   .heading {
     white-space: nowrap;
   }
@@ -846,5 +857,12 @@
 
   .actionButton {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .dualDropdownsContainers {
+    /* flex-wrap: wrap; */
+    padding: 8px;
   }
 }

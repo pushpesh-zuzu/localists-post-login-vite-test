@@ -13,6 +13,7 @@ import { useLocation } from "react-router";
 import useUserInfo from "../../../utils/getUserIp";
 import { validateEmail } from "../../../utils/validateEmail";
 import { useEmailCheck } from "../../../utils/emailExist";
+import { validateUKPhoneNumber } from "../../../utils/formatUKPhoneNumber";
 
 const EmailMatchPage = ({
   nextStep,
@@ -37,8 +38,8 @@ const EmailMatchPage = ({
   const targetID = params.get("utm_term");
   const msclickid = params.get("utm_msclkid");
   const utm_source = params.get("utm_source");
-    const [inputType, setInputType] = useState("text");
-  
+  const [inputType, setInputType] = useState("text");
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -62,7 +63,7 @@ const EmailMatchPage = ({
     if (!email) {
       setInputType("text");
     }
-    
+
     if (!email) return;
 
     try {
@@ -98,25 +99,17 @@ const EmailMatchPage = ({
 
   const handlePhoneChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    if (value.length <= 10) {
+    if (value.length <= 11) {
       setPhone(value);
       setErrors((prev) => ({ ...prev, phone: false }));
     }
   };
 
   const handleSubmit = () => {
-    if (phone.startsWith("0")) {
-      showToast("error", "Please enter phone number without '0'");
-      return;
-    }
-
     const newErrors = {
-      email:
-        !isPPCPages &&
-        (!email ||
-          !validateEmail(email)),
+      email: !isPPCPages && (!email || !validateEmail(email)),
       name: !name.trim(),
-      phone: !phone || !/^\d{10}$/.test(phone),
+      phone: !phone || !/^\d{11}$/.test(phone),
     };
 
     if (!isPPCPages && newErrors.email && !emailErrorMessage) {
@@ -131,7 +124,9 @@ const EmailMatchPage = ({
     if (!isPPCPages && setEmails) {
       setEmails(email);
     }
-
+    if (!validateUKPhoneNumber(phone)) {
+      return;
+    }
     const finalEmail = isPPCPages ? buyerRequest?.email || "" : email;
 
     dispatch(setbuyerRequestData({ name, email: finalEmail, phone }));
@@ -192,6 +187,7 @@ const EmailMatchPage = ({
   }, [resetTrigger]);
 
   useEffect(() => {
+    console.log(isEmailAvailable, "sss");
     if (!isEmailAvailable) {
       setEmail("");
       dispatch(
@@ -220,21 +216,21 @@ const EmailMatchPage = ({
 
         <div className={styles.infoWrapper}>
           {/* Hidden trap fields for auto-fill prevention */}
-          <input 
-            type="text" 
-            name="username" 
-            style={{ display: 'none', position: 'absolute', left: '-9999px' }} 
+          <input
+            type="text"
+            name="username"
+            style={{ display: "none", position: "absolute", left: "-9999px" }}
             autoComplete="new-password"
             tabIndex="-1"
           />
-          <input 
-            type="password" 
-            name="password" 
-            style={{ display: 'none', position: 'absolute', left: '-9999px' }} 
+          <input
+            type="password"
+            name="password"
+            style={{ display: "none", position: "absolute", left: "-9999px" }}
             autoComplete="new-password"
             tabIndex="-1"
           />
-          
+
           <label className={styles.label}>Name</label>
           <input
             type="text"
@@ -296,14 +292,14 @@ const EmailMatchPage = ({
               }`}
               value={phone}
               autoComplete="new-password"
-              maxLength={10}
+              maxLength={11}
               onChange={handlePhoneChange}
               name="user_contact_number"
               id="user_contact_number"
             />
             {errors?.phone && (
               <span style={{ color: "red" }} className={styles.errorMessage}>
-                Please enter a valid 10-digit phone number.
+                Please enter a valid 11-digit phone number.
               </span>
             )}
           </div>

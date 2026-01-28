@@ -367,6 +367,13 @@
     display: block;
   }
 
+  .filterButtons span {
+    display: none !important; /* hides the text */
+  }
+
+  .filterButtons {
+    gap: 0; /* optional: closes extra space */
+  }
   .creditsLeftContainer {
     padding: 10px 88px;
 
@@ -451,7 +458,8 @@
   .dualDropdownsContainers {
     background-color: #e3f6fc;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 12px;
     align-items: center;
     padding: 9px 13px;
   }
@@ -459,6 +467,7 @@
     display: flex;
     align-items: center;
     gap: 13px;
+    margin-left: auto;
   }
   .editButtons {
     display: flex;
@@ -552,7 +561,6 @@
     background-color: #e3f6fc;
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
     gap: 4px;
     justify-content: space-between;
     align-items: center;
@@ -593,7 +601,7 @@
   }
 
   .filterButtons {
-    width: 100%;
+    /* width: 100%; */
     padding: 8px;
     font-size: 13px;
 
@@ -602,7 +610,7 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
-    margin-right: 12px;
+    /* margin-right: 12px; */
   }
 
   .dropdownMenu,
@@ -621,12 +629,13 @@
     width: 50%;
   }
 
-  .actionButton {
+  /* .actionButton {
     width: 100%;
-  }
+  } */
 
   .filterButtons {
-    width: 100%;
+    /* width: 100%; */
+    margin-left: auto;
   }
   .heading {
     font-size: 20px;
@@ -796,9 +805,10 @@
   }
 }
 
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 330px) {
   .dualDropdownsContainers {
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    padding: 8px;
   }
   .heading {
     white-space: nowrap;

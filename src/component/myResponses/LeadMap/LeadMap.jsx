@@ -1,3 +1,4 @@
+import { Skeleton } from "antd";
 import { useEffect, useRef, useState } from "react";
 
 const LeadMap = ({ getPendingLeadList }) => {
@@ -13,6 +14,7 @@ const LeadMap = ({ getPendingLeadList }) => {
   });
 
   const apiKey = "AIzaSyB1I_cRCeZ13mKqYKhsO5e3aOMgxtD7Irw";
+  const [loading, setLoading] = useState(false);
 
   // Load Google Maps script
   useEffect(() => {
@@ -87,9 +89,40 @@ const LeadMap = ({ getPendingLeadList }) => {
   };
 
   // Plot single pincode
+  // useEffect(() => {
+  //   const plotPostcode = async () => {
+  //     if (!mapLoaded || !getPendingLeadList) return;
+
+  //     // Clear old markers/circles
+  //     markersRef.current.forEach((marker) => marker.setMap(null));
+  //     circlesRef.current.forEach((circle) => circle.setMap(null));
+  //     markersRef.current = [];
+  //     circlesRef.current = [];
+
+  //     const pincode = getPendingLeadList;
+  //     const coords = await getLatLngFromPincode(pincode);
+  //     if (!coords) return;
+
+  //     const marker = new window.google.maps.Marker({
+  //       position: coords,
+  //       map: mapInstance.current,
+  //     });
+  //     markersRef.current.push(marker);
+
+  //     drawCircle(coords);
+
+  //     mapInstance.current.setCenter(coords);
+  //     mapInstance.current.setZoom(10);
+  //   };
+
+  //   plotPostcode();
+  // }, [mapLoaded, getPendingLeadList]);
+
   useEffect(() => {
     const plotPostcode = async () => {
       if (!mapLoaded || !getPendingLeadList) return;
+
+      setLoading(true); // start loader
 
       // Clear old markers/circles
       markersRef.current.forEach((marker) => marker.setMap(null));
@@ -98,7 +131,9 @@ const LeadMap = ({ getPendingLeadList }) => {
       circlesRef.current = [];
 
       const pincode = getPendingLeadList;
+
       const coords = await getLatLngFromPincode(pincode);
+
       if (!coords) return;
 
       const marker = new window.google.maps.Marker({
@@ -110,7 +145,10 @@ const LeadMap = ({ getPendingLeadList }) => {
       drawCircle(coords);
 
       mapInstance.current.setCenter(coords);
-      mapInstance.current.setZoom(10);
+      mapInstance.current.setZoom(12);
+      setTimeout(() => {
+        setLoading(false); // stop loader
+      }, 2500);
     };
 
     plotPostcode();
@@ -125,7 +163,8 @@ const LeadMap = ({ getPendingLeadList }) => {
   }, []);
 
   return (
-    <div
+    <>
+      {/* <div
       ref={mapRef}
       style={{
         width: windowWidth <= 1024 ? "100%" : "40vw",
@@ -133,7 +172,56 @@ const LeadMap = ({ getPendingLeadList }) => {
         marginTop: "20px",
         borderRadius: "8px",
       }}
-    />
+    /> */}
+
+      <div style={{ position: "relative" }}>
+        {loading && (
+          // <div
+          //   style={{
+          //     position: "absolute",
+          //     top: 0,
+          //     left: 0,
+          //     right: 0,
+          //     bottom: 0,
+          //     display: "flex",
+          //     justifyContent: "center",
+          //     alignItems: "center",
+          //     background: "rgba(255,255,255,0.7)",
+          //     zIndex: 10,
+          //   }}
+          // >
+          //   <Spin size="large" />
+          // </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "white",
+              zIndex: 10,
+            }}
+          >
+            <Skeleton
+              active
+              title={false}
+              paragraph={{ rows: 8, width: "100%" }}
+            />
+          </div>
+        )}
+
+        <div
+          ref={mapRef}
+          style={{
+            width: windowWidth <= 1024 ? "100%" : "40vw",
+            height: windowWidth <= 480 ? "200px" : "300px",
+            marginTop: "20px",
+            borderRadius: "8px",
+          }}
+        />
+      </div>
+    </>
   );
 };
 

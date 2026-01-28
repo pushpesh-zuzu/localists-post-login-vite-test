@@ -8,7 +8,6 @@ const LazyToastContainer = React.lazy(() =>
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet-async";
 import FullScreenSpinner from "./component/common/fullScreenSpinner/FullScreenSpinner";
-import CookieConsent from "./component/common/CookieConsent/CookieConsent";
 
 function App({ initialUrl, hostname, createRouterFactory }) {
   const { selectedServiceFormData, registerStep } = useSelector(
@@ -102,7 +101,6 @@ function App({ initialUrl, hostname, createRouterFactory }) {
           <LazyToastContainer />
         </React.Suspense>
       )}
-      <CookieConsent/>
     </>
   );
 }

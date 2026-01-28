@@ -136,6 +136,7 @@ const MatchingLeadsFilter = ({ onClose, saved_leads = false }) => {
     formData.append("name", filters.keyword || "");
     formData.append("lead_time", filters.submittedWhen || "");
     formData.append("distance_filter", filters.location || "");
+    formData.append("lead_type", filters.leadType || "All");
 
     const selectedServiceIds = filters.selectedServices
       .map((serviceName) => {
@@ -274,6 +275,47 @@ const MatchingLeadsFilter = ({ onClose, saved_leads = false }) => {
                 </div>
               </>
             )}
+          </AccordionSection>
+
+          <AccordionSection title="Lead status">
+            <label
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              <input
+                style={{ marginTop: "0px" }}
+                type="radio"
+                name="leadType"
+                checked={filters.leadType === "all"}
+                onChange={() => handleRadioChange("leadType", "all")}
+              />
+              All
+            </label>
+
+            <label
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              <input
+                style={{ marginTop: "0px" }}
+                type="radio"
+                name="leadType"
+                checked={filters.leadType === "live"}
+                onChange={() => handleRadioChange("leadType", "live")}
+              />
+              Live
+            </label>
+
+            <label
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
+              <input
+                style={{ marginTop: "0px" }}
+                type="radio"
+                name="leadType"
+                checked={filters.leadType === "expired"}
+                onChange={() => handleRadioChange("leadType", "expired")}
+              />
+              Expired
+            </label>
           </AccordionSection>
 
           <AccordionSection title="When the lead was submitted">

@@ -255,7 +255,7 @@ const WhatServiceDoYouNeedPage = ({
       onClose();
     }
   };
-console.log(getBarkToken(),'getBarkToken')
+
   return (
     <div className={styles.pageContainer}>
       {/* <div className={styles.closeButton} onClick={handleCloseClick}>
@@ -270,7 +270,7 @@ console.log(getBarkToken(),'getBarkToken')
         <label className={styles.label}>What service do you need?</label>
         <input
           disabled={
-            !(getBarkToken() || registerData?.remember_tokens)
+            !(getBarkToken() || userToken?.remember_tokens || registerData?.remember_tokens)
           }
           type="text"
           placeholder="e.g. Landscaping, Driveway Installation"

@@ -28,7 +28,7 @@
   position: relative;
 }
 
-.phoneWrapper::before {
+/* .phoneWrapper::before {
   content: "+44";
   position: absolute;
   top: 47.5%;
@@ -36,9 +36,9 @@
   transform: translateY(-50%);
   color: #000;
   pointer-events: none;
-}
+} */
 
-.error44::before {
+/* .error44::before {
   content: "+44";
   position: absolute;
   top: 33.5%;
@@ -46,7 +46,7 @@
   transform: translateY(-50%);
   color: #000;
   pointer-events: none;
-}
+} */
 
 .prefix {
   padding: 12px;
@@ -114,7 +114,7 @@
   border: 1px solid #d9d9d9;
   width: -webkit-fill-available;
   padding: 12px;
-  padding-left: 48px;
+  padding-left: 12px;
   border: 1px solid #ccc;
   color: #828282;
 }

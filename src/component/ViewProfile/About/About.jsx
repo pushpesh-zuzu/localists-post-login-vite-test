@@ -13,12 +13,12 @@ const About = ({ details }) => {
     aboutText.length > 300 ? aboutText.slice(0, 300) + "..." : aboutText;
 
   const data = [
-    {
-      title: `${
-        details?.hire_count ? details?.hire_count : "0"
-      } hires on Localists`,
-      icon: businessImg,
-    },
+    // {
+    //   title: `${
+    //     details?.hire_count ? details?.hire_count : "0"
+    //   } hires on Localists`,
+    //   icon: businessImg,
+    // },
     {
       title:
         `${

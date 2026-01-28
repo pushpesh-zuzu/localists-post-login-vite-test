@@ -9,22 +9,22 @@ import { Spin } from "antd";
 
 const InvoiceTable = ({ data }) => {
   const dispatch = useDispatch();
-  const { invoiceLoader } = useSelector((state) => state.myCredit)
+  const { invoiceLoader } = useSelector((state) => state.myCredit);
 
   const [downloadingId, setDownloadingId] = useState(null);
   const handleDownload = async (item) => {
-  setDownloadingId(item.id);
+    setDownloadingId(item.id);
 
-  const datas = {
-    invoice_id: item?.id,
+    const datas = {
+      invoice_id: item?.id,
+    };
+
+    try {
+      await dispatch(downloadInvoceApi(datas));
+    } finally {
+      setDownloadingId(null);
+    }
   };
-
-  try {
-    await dispatch(downloadInvoceApi(datas));
-  } finally {
-    setDownloadingId(null);
-  }
-};
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -49,15 +49,19 @@ const InvoiceTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-             {data && data.length > 0 ? (
+          {data && data.length > 0 ? (
             data.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td  style={{minWidth:"100px"}}>{formatDate(item.created_at)}</td>
+              <tr key={item.invoice_number}>
+                <td>{item.invoice_number}</td>
+                <td style={{ minWidth: "100px" }}>
+                  {formatDate(item.created_at)}
+                </td>
                 <td>£{item.total_amount}</td>
-                <td><img src={GreenTick} alt="Paid" /></td>
                 <td>
-                  {downloadingId === item.id ? (
+                  <img src={GreenTick} alt="Paid" />
+                </td>
+                <td>
+                  {downloadingId === item.invoice_number ? (
                     <Spin
                       indicator={
                         <LoadingOutlined spin style={{ color: "blue" }} />

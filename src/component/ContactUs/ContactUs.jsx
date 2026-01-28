@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import axiosInstance from "../../Api/axiosInstance";
 import { showToast } from "../../utils";
 import CalonicalTags from "../common/CalonicalTags/CalonicalTags";
+import { validateUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const ContactUs = () => {
   const [form] = Form.useForm();
@@ -17,14 +18,17 @@ const ContactUs = () => {
     customerType: "customer",
     message: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const onFinish = async (values) => {
     try {
+      setLoading(true);
       const userType = values.customerType === "customer" ? 1 : 2;
-
+      if (!validateUKPhoneNumber(values.phoneNumber)) {
+        return;
+      }
       const payload = {
         full_name: values.fullName,
-        phone: `+44${values.phoneNumber}`,
+        phone: `${values.phoneNumber}`,
         email: values.email,
         user_type: userType,
         message: values.message,
@@ -43,6 +47,8 @@ const ContactUs = () => {
       }
     } catch (error) {
       showToast("error", "Please try again after some time ");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,12 +117,12 @@ const ContactUs = () => {
                   name="phoneNumber"
                   label="Phone Number"
                   required
-                  maxLength={10}
-                  prefix="+44"
+                  maxLength={11}
+                  prefix=""
                   onInput={(e) => {
                     e.target.value = e.target.value
                       .replace(/[^0-9]/g, "")
-                      .slice(0, 10);
+                      .slice(0, 11);
                   }}
                 />
               </div>
@@ -196,7 +202,11 @@ const ContactUs = () => {
               />
             </div>
 
-            <button type="submit" className={styles.submitButton}>
+            <button
+              type="submit"
+              disabled={loading}
+              className={styles.submitButton}
+            >
               Submit
             </button>
           </Form>

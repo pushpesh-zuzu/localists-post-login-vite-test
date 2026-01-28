@@ -51,26 +51,26 @@ const ReviewsAccordion = ({ details }) => {
   const { registerData } = useSelector((state) => state.findJobs);
   const user_id = userToken?.id ? userToken?.id : registerData?.id;
 
-  const handleSubmit = () => {
-    dispatch(updateFacebookReviewLink(fbLink));
-  };
+  // const handleSubmit = () => {
+  //   dispatch(updateFacebookReviewLink(fbLink));
+  // };
   useEffect(() => {
     dispatch(getCustomerLinkApi());
   }, []);
 
-  useEffect(() => {
-    if (facebookReviewUpdateSuccess) {
-      const sellerData = {
-        seller_id: user_id,
-      };
-      dispatch(addViewProfileList(sellerData));
-      dispatch(clearFacebookReviewStatus());
-      toast.success("Facebook review link saved successfully!");
-    } else if (facebookReviewUpdateError) {
-      toast.error(`Error: ${facebookReviewUpdateError}`);
-      dispatch(clearFacebookReviewStatus());
-    }
-  }, [facebookReviewUpdateSuccess, facebookReviewUpdateError, dispatch]);
+  // useEffect(() => {
+  //   if (facebookReviewUpdateSuccess) {
+  //     const sellerData = {
+  //       seller_id: user_id,
+  //     };
+  //     dispatch(addViewProfileList(sellerData));
+  //     dispatch(clearFacebookReviewStatus());
+  //     toast.success("Facebook review link saved successfully!");
+  //   } else if (facebookReviewUpdateError) {
+  //     toast.error(`Error: ${facebookReviewUpdateError}`);
+  //     dispatch(clearFacebookReviewStatus());
+  //   }
+  // }, [facebookReviewUpdateSuccess, facebookReviewUpdateError, dispatch]);
 
   const shareLinks = {
     whatsapp: `https://wa.me/?text=${encodeURIComponent(
@@ -87,132 +87,132 @@ const ReviewsAccordion = ({ details }) => {
     )}`,
   };
 
-  useEffect(() => {
-    const checkSdk = () => {
-      if (window.isFacebookSdkReady) {
-        setIsFbSdkReady(true);
-      } else {
-        const timer = setTimeout(checkSdk, 200);
-        return () => clearTimeout(timer);
-      }
-    };
+  // useEffect(() => {
+  //   const checkSdk = () => {
+  //     if (window.isFacebookSdkReady) {
+  //       setIsFbSdkReady(true);
+  //     } else {
+  //       const timer = setTimeout(checkSdk, 200);
+  //       return () => clearTimeout(timer);
+  //     }
+  //   };
 
-    checkSdk();
-  }, []);
+  //   checkSdk();
+  // }, []);
 
-  const handleFacebookLogin = async () => {
-    const review = await dispatch(getUserTokenApicall());
+  // const handleFacebookLogin = async () => {
+  //   const review = await dispatch(getUserTokenApicall());
 
-    if ((review.status = true)) {
-      const reviewsResponse = await fetch(
-        `https://graph.facebook.com/v20.0/${review.message.page_id}/ratings?access_token=${review.message.page_access_token}`
-      );
+  //   if ((review.status = true)) {
+  //     const reviewsResponse = await fetch(
+  //       `https://graph.facebook.com/v20.0/${review.message.page_id}/ratings?access_token=${review.message.page_access_token}`
+  //     );
 
-      const reviewsData = await reviewsResponse.json();
+  //     const reviewsData = await reviewsResponse.json();
 
-      if (reviewsData && reviewsData.data && reviewsData.data.length > 0) {
-        setFbReviews(reviewsData.data);
-      }
-    }
-    if (
-      review?.status === false ||
-      (review?.status === true && review?.message?.expired === "yes")
-    ) {
-      if (window.FB) {
-        const requiredScopes = [
-          "public_profile",
-          "pages_show_list",
-          "pages_read_user_content",
-        ].join(",");
+  //     if (reviewsData && reviewsData.data && reviewsData.data.length > 0) {
+  //       setFbReviews(reviewsData.data);
+  //     }
+  //   }
+  //   if (
+  //     review?.status === false ||
+  //     (review?.status === true && review?.message?.expired === "yes")
+  //   ) {
+  //     if (window.FB) {
+  //       const requiredScopes = [
+  //         "public_profile",
+  //         "pages_show_list",
+  //         "pages_read_user_content",
+  //       ].join(",");
 
-        window.FB.login(
-          function (response) {
-            if (response.authResponse) {
-              (async () => {
-                try {
-                  const userAccessToken = response.authResponse.accessToken;
+  //       window.FB.login(
+  //         function (response) {
+  //           if (response.authResponse) {
+  //             (async () => {
+  //               try {
+  //                 const userAccessToken = response.authResponse.accessToken;
 
-                  const accessToken = await dispatch(
-                    createUserTokenApiCall(userAccessToken)
-                  );
+  //                 const accessToken = await dispatch(
+  //                   createUserTokenApiCall(userAccessToken)
+  //                 );
 
-                  if (accessToken) {
-                    const updatedReview = await dispatch(getUserTokenApicall());
-                  }
+  //                 if (accessToken) {
+  //                   const updatedReview = await dispatch(getUserTokenApicall());
+  //                 }
 
-                  showToast(
-                    "success",
-                    "Successfully logged into Facebook. Fetching pages..."
-                  );
-                } catch (err) {
-                  console.error("Error in API call:", err);
-                  showToast(
-                    "error",
-                    "Error while fetching user token from backend."
-                  );
-                }
-              })();
-            } else {
-              console.error("Facebook Login Failed or Cancelled.");
-              showToast("error", "Facebook login was cancelled or denied.");
-            }
-          },
-          { scope: requiredScopes }
-        );
-      }
-    } else {
-      showToast("error", "Facebook SDK is still loading. Please try again.");
-    }
-  };
+  //                 showToast(
+  //                   "success",
+  //                   "Successfully logged into Facebook. Fetching pages..."
+  //                 );
+  //               } catch (err) {
+  //                 console.error("Error in API call:", err);
+  //                 showToast(
+  //                   "error",
+  //                   "Error while fetching user token from backend."
+  //                 );
+  //               }
+  //             })();
+  //           } else {
+  //             console.error("Facebook Login Failed or Cancelled.");
+  //             showToast("error", "Facebook login was cancelled or denied.");
+  //           }
+  //         },
+  //         { scope: requiredScopes }
+  //       );
+  //     }
+  //   } else {
+  //     showToast("error", "Facebook SDK is still loading. Please try again.");
+  //   }
+  // };
 
-  const login = useGoogleLogin({
-    flow: "auth-code",
-    scope:
-      "openid email profile https://www.googleapis.com/auth/business.manage",
-    onSuccess: async (response) => {
-      try {
-        const tokenRes = await axiosInstance.post("/google/get-auth-token", {
-          code: response.code,
-        });
+  // const login = useGoogleLogin({
+  //   flow: "auth-code",
+  //   scope:
+  //     "openid email profile https://www.googleapis.com/auth/business.manage",
+  //   onSuccess: async (response) => {
+  //     try {
+  //       const tokenRes = await axiosInstance.post("/google/get-auth-token", {
+  //         code: response.code,
+  //       });
 
-        const accessToken = tokenRes.data.data.access_token;
-        const refreshToken = tokenRes.data.data.refresh_token;
+  //       const accessToken = tokenRes.data.data.access_token;
+  //       const refreshToken = tokenRes.data.data.refresh_token;
 
-        const reviewsRes = await axios.post(
-          "https://dev.localists.com/google/get-reviews",
-          {
-            access_token: accessToken,
-            refresh_token: refreshToken,
-          }
-        );
+  //       const reviewsRes = await axios.post(
+  //         "https://dev.localists.com/google/get-reviews",
+  //         {
+  //           access_token: accessToken,
+  //           refresh_token: refreshToken,
+  //         }
+  //       );
 
-        localStorage.setItem("google_access_token", accessToken);
-        localStorage.setItem(
-          "google_refresh_token",
-          tokenRes.data.data.refreshToken
-        );
-      } catch (err) {
-        console.error("Error:", err.response?.data || err.message);
-      }
-    },
-    onError: (error) => console.log("Login failed:", error),
-  });
+  //       localStorage.setItem("google_access_token", accessToken);
+  //       localStorage.setItem(
+  //         "google_refresh_token",
+  //         tokenRes.data.data.refreshToken
+  //       );
+  //     } catch (err) {
+  //       console.error("Error:", err.response?.data || err.message);
+  //     }
+  //   },
+  //   onError: (error) => console.log("Login failed:", error),
+  // });
 
-  const sliderRef = useRef(null);
-  const [sliderInstanceRef, slider] = useKeenSlider({
-    loop: true,
-    slides: { perView: 1, spacing: 15 },
-  });
+  // const sliderRef = useRef(null);
+  // const [sliderInstanceRef, slider] = useKeenSlider({
+  //   loop: true,
+  //   slides: { perView: 1, spacing: 15 },
+  // });
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? fbReviews.length - 1 : prev - 1));
-  };
+  // const handlePrev = () => {
+  //   setCurrentIndex((prev) => (prev === 0 ? fbReviews.length - 1 : prev - 1));
+  // };
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === fbReviews.length - 1 ? 0 : prev + 1));
-  };
+  // const handleNext = () => {
+  //   setCurrentIndex((prev) => (prev === fbReviews.length - 1 ? 0 : prev + 1));
+  // };
 
   return (
     <div className={styles.wrapper}>

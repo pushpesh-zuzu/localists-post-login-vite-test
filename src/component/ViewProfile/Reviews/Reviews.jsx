@@ -1,8 +1,12 @@
+/**
+ * DEPENDENCY OPTIMIZATION: moment → dayjs
+ * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
+ */
 import React, { useEffect, useState } from "react";
 import styles from "./Reviews.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviewListApi } from "../../../store/MyProfile/myProfileSlice";
-import moment from "moment";
+import dayjs from "../../../utils/dayjs";
 import SubmitReviewModal from "../SubmitReviewModal";
 import { useLocation, useParams } from "react-router-dom";
 import starImg from "../../../assets/Icons/MyResponse/StarImg.svg";
@@ -206,7 +210,7 @@ const ReviewSection = ({
                   <div className={styles.nameDateRow}>
                     <h3 className={styles.username}>{item?.name}</h3>
                     <span className={styles.dateMobile}>
-                      {moment(item.created_at).format("DD-MM-YYYY")}
+                      {dayjs(item.created_at).format("DD-MM-YYYY")}
                     </span>
                   </div>
 
@@ -235,7 +239,7 @@ const ReviewSection = ({
 
               <div className={styles.dateSection}>
                 <span className={styles.date}>
-                  {moment(item.created_at).format("DD-MM-YYYY")}
+                  {dayjs(item.created_at).format("DD-MM-YYYY")}
                 </span>
                 {showSummary && (
                   <div className={styles.source}>

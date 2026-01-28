@@ -6,6 +6,7 @@ import whatsappBtn from "../../../assets/Images/MyResponse/WhatsappBtn.svg";
 import { showToast } from "../../../utils";
 import { sellerResponseStatusApi } from "../../../store/LeadSetting/leadSettingSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { formatUKPhoneNumber } from "../../../utils/formatUKPhoneNumber";
 
 const ContactSuccessModal = ({
   isOpen,
@@ -63,7 +64,7 @@ const ContactSuccessModal = ({
         seller_id: userData || repliesBtn?.id,
         buyer_id:
           details?.customer_id ||
-          detail?.customer_id ||
+          detail?.customer_id || userData ||
           (repliesBtn ? userToken?.id || registerData?.id : null),
         type: null,
         response_type: "seller",
@@ -72,7 +73,8 @@ const ContactSuccessModal = ({
 
     let url = null;
     const rawPhone = details?.phone || detail?.phone || repliesBtn?.phone || "";
-    const phoneNumber = formatPhoneNumber(rawPhone);
+    // const phoneNumber = formatPhoneNumber(rawPhone);
+    const phoneNumber = formatUKPhoneNumber(rawPhone)
 
     const email =
       details?.customer?.email || detail?.email || repliesBtn?.email || "";

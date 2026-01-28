@@ -6,6 +6,7 @@ import FrequentUserIcon from "../../../assets/Images/Leads/FrequentUserIcon.svg"
 import DotIcon from "../../../assets/Images/Leads/DotIcon.svg";
 import UpdateIcon from "../../../assets/Images/Leads/UpdateIcon.svg";
 import { useNavigate } from "react-router-dom";
+import { Spin } from "antd";
 
 const SavedViewDetails = ({ saveForLaterDataList }) => {
   const savedLeads = saveForLaterDataList || {};
@@ -86,6 +87,13 @@ const SavedViewDetails = ({ saveForLaterDataList }) => {
             </div>
           </div>
           <div className={styles.mapContainer}>
+            {/* <LeadMap getPendingLeadList={savedLeads?.postcode} /> */}
+            {!savedLeads?.postcode && (
+              <div className={styles.mapLoader}>
+                <Spin size="large" />
+              </div>
+            )}
+
             <LeadMap getPendingLeadList={savedLeads?.postcode} />
           </div>
           <div className={styles.leadFooter}>

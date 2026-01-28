@@ -41,7 +41,7 @@ const LocationModal = ({ open, locationData, onChange, onNext, onClose }) => {
       const response = await dispatch(getCityName({ postcode: value }));
       const newResponse = response?.unwrap ? await response.unwrap() : response;
 
-      if (newResponse?.data?.city) {
+      if (newResponse?.data?.valid) {
         setPostalCodeValidate(true);
         setCity(newResponse.data.city);
         dispatch(setcitySerach(newResponse.data.city));
