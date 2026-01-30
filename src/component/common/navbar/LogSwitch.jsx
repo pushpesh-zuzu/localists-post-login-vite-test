@@ -104,7 +104,7 @@ const LogSwitch = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [dispatch, getBarkUserData(), registerData]);
+  }, [dispatch, registerData]);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
