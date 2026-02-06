@@ -332,6 +332,8 @@ export function clearCookies() {
     "requestToken",
     "createRequestToken",
     "registerTokens",
+    "isRegistrationComplete"
+
   ];
   cookiesToClear.forEach(clearSpecificCookie);
 
