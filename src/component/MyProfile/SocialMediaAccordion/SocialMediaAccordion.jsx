@@ -79,12 +79,12 @@ const SocialMediaAccordion = ({ details }) => {
   const [errors, setErrors] = useState({});
   const [showLoader, setShowLoader] = useState(false);
   const [hiddenFields, setHiddenFields] = useState({
-    has_fb_link: details.has_fb_link || 0,
-    has_twitter_link: details.has_twitter_link || 0,
-    has_tiktok_link: details.has_tiktok_link || 0,
-    has_insta_link: details.has_insta_link || 0,
-    has_linkedin_link: details.has_linkedin_link || 0,
-    has_extra_links: details.has_extra_links || 0,
+    has_fb_link: details?.has_fb_link || 0,
+    has_twitter_link: details?.has_twitter_link || 0,
+    has_tiktok_link: details?.has_tiktok_link || 0,
+    has_insta_link: details?.has_insta_link || 0,
+    has_linkedin_link: details?.has_linkedin_link || 0,
+    has_extra_links: details?.has_extra_links || 0,
   });
 
   // const toggleFieldVisibility = (key) => {
