@@ -202,6 +202,10 @@ const QuestionModal = ({
       const newHistory = [...questionHistory];
       newHistory.pop();
       const prevIndex = newHistory[newHistory.length - 1];
+      const trimmedAnswers =
+          buyerRequest?.questions?.slice(0, prevIndex) || [];
+  
+        dispatch(setbuyerRequestData({ questions: trimmedAnswers }));
       setQuestionHistory(newHistory);
       setCurrentQuestion(prevIndex);
     } else {
