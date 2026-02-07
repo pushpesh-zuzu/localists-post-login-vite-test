@@ -83,15 +83,8 @@ const ViewYourMatches = ({
     dispatch(clearBuyerRegisterFormData());
   };
 const handleBack = () => {
-  const totalAnswers = buyerRequest?.questions?.length || 0;
-
-  if (totalAnswers > 0) {
-    const trimmedAnswers = buyerRequest.questions.slice(0, totalAnswers - 1);
-
-    dispatch(setbuyerRequestData({ questions: trimmedAnswers }));
-  }
-
-  previousStep();
+    dispatch(setbuyerRequestData({ questions: [] }));
+    previousStep();
 };
   return (
     <div className={styles.modalOverlay}>
