@@ -81,7 +81,17 @@ const ViewYourMatches = ({
     dispatch(clearSetbuyerRequestData());
     dispatch(clearBuyerRegisterFormData());
   };
+const handleBack = () => {
+  const totalAnswers = buyerRequest?.questions?.length || 0;
 
+  if (totalAnswers > 0) {
+    const trimmedAnswers = buyerRequest.questions.slice(0, totalAnswers - 1);
+
+    dispatch(setbuyerRequestData({ questions: trimmedAnswers }));
+  }
+
+  previousStep();
+};
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -153,9 +163,10 @@ const ViewYourMatches = ({
           </div>
 
           <div className={styles.buttonContainer}>
-            <button
+             <button
               className={styles.backButton}
-              onClick={previousStep}
+              // onClick={previousStep}
+                onClick={handleBack}
               disabled={requestLoader}
             >
               Back
