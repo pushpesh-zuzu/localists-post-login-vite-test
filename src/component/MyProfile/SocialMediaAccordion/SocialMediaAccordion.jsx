@@ -152,6 +152,8 @@ const SocialMediaAccordion = ({ details }) => {
       /^(https?:\/\/|www\.)/i.test(link.trim())
     );
 
+    // console.log("linksArray", linksArray, validLinks)
+
     // Step 3: If any invalid links were removed, show an error toast
     if (linksArray.length !== validLinks.length) {
       toast.error(
