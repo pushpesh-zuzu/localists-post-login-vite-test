@@ -37,7 +37,7 @@ const Services = ({ details }) => {
                 }
               >
                 {service.name}
-                <img
+                {/* <img
                   src={ProfileArrowUp}
                   alt="arrow"
                   className={`${styles.arrow} ${
@@ -45,13 +45,13 @@ const Services = ({ details }) => {
                       ? styles.up
                       : styles.down
                   }`}
-                />
+                /> */}
               </div>
-              {openIndex === `${index}-${subIndex}` && (
+              {/* {openIndex === `${index}-${subIndex}` && (
                 <div className={styles.accordionContent}>
                   {service.description || "No description available"}
                 </div>
-              )}
+              )} */}
             </div>
           ))
         )}

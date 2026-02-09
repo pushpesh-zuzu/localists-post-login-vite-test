@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import { showToast, updateLocalStorageValue } from "../../utils";
+import { BASE_IMAGE, showToast, updateLocalStorageValue } from "../../utils";
 import { setUserToken } from "../../store/Auth/authSlice";
 import { setRegisterData } from "../../store/FindJobs/findJobSlice";
 import { baseURL } from "../../Api/axiosInstance";
@@ -144,7 +144,6 @@ const BuyerAccountSettings = () => {
     password_confirmation: "",
     error: "",
   });
-  const BASE_IMAGE_URLs = `${baseURL}storage/app/public/images/users`;
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value, error: "" });
@@ -223,7 +222,6 @@ const BuyerAccountSettings = () => {
     height: 720,
     facingMode: "environment",
   };
-
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Account settings</h2>
@@ -265,7 +263,7 @@ const BuyerAccountSettings = () => {
                   />
                 ) : userDetails?.profile_image ? (
                   <img
-                    src={`${BASE_IMAGE_URLs}/${userDetails.profile_image}`}
+                    src={`${BASE_IMAGE}/users/${userDetails.profile_image}`}
                     alt="Profile"
                     loading="lazy"
                     onError={(e) => {

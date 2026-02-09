@@ -1,7 +1,7 @@
-name: Deploy main → production (Postlogin Nextjs)
+name: Deploy main → production (Postlogin vite)
 
 on:
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch: #manual trigger
 
 permissions:
   contents: write
@@ -12,22 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Validate actor (restrict who can run)
-        if: github.actor != 'pushpesh-zuzu'
-        run: |
-          echo "❌ Unauthorized user: ${{ github.actor }}"
-          exit 1
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: main
-          token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          # Add this to ensure the full history is available for the push
+          fetch-depth: 0 
 
       - name: Push main to production
         run: |
           git config user.name "Pushpesh Sharma"
           git config user.email "pushpeshsh@zuzucodes.com"
-          git fetch origin
-          git checkout main
+          # No need to fetch/checkout again, actions/checkout already did it
           git push origin main:production --force
