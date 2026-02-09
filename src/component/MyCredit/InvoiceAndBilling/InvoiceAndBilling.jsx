@@ -16,11 +16,15 @@ import {
   formatUKPhoneNumber,
   validateUKPhoneNumber,
 } from "../../../utils/formatUKPhoneNumber";
+import { addViewProfileList } from "../../../store/LeadSetting/leadSettingSlice";
 
 const InvoiceAndBilling = () => {
   const dispatch = useDispatch();
   const { registerData } = useSelector((state) => state.findJobs);
   const { userToken } = useSelector((state) => state.auth);
+    const user_id = userToken?.id ? userToken?.id : registerData?.id;
+  const { viewProfileData } = useSelector((state) => state.leadSetting);
+  // console.log("viewProfileData", viewProfileData)
   const { sellerCardLoader, getInvoiceList } = useSelector(
     (state) => state.myCredit
   );
@@ -35,18 +39,18 @@ const InvoiceAndBilling = () => {
     vatRegister: 0,
   });
   const navigate = useNavigate();
-  const userData = userToken || registerData;
+  const userData = viewProfileData || registerData;
   useEffect(() => {
     if (userData) {
       setFormData({
-        contactName: userData?.name || "",
-        addressLine1: userData?.address || "",
-        addressLine2: userData?.apartment || "",
-        city: userData?.city || "",
-        postcode: userData?.zipcode || "",
+        contactName: userData?.user_details?.billing_contact_name || "",
+        addressLine1: userData?.user_details?.billing_address1 || "",
+        addressLine2: userData?.user_details?.billing_address2 || "",
+        city: userData?.user_details?.billing_city || "",
+        postcode: userData?.user_details?.billing_postcode || "",
         country: userData?.country || "",
-        phoneNumber: formatUKPhoneNumber(userData?.phone) || "",
-        vatRegister: userData?.billing_vat_register ? 1 : 0,
+        phoneNumber: formatUKPhoneNumber(userData?.user_details?.billing_phone) || "",
+        vatRegister: userData?.user_details?.billing_vat_register ? 1 : 0,
       });
     }
   }, [userData]);
@@ -87,6 +91,13 @@ const InvoiceAndBilling = () => {
       }
     });
   };
+
+  useEffect(() => {
+      const sellerData = {
+        seller_id: user_id,
+      };
+      dispatch(addViewProfileList(sellerData));
+    }, [dispatch, user_id]);
 
   return (
     <>
