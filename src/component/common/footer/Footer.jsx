@@ -150,7 +150,11 @@ const Footer = () => {
             <ul>
               <li onClick={() => handleFooterLinksNavigate("about-us")}>About Localists</li>
             </ul>
+            <ul>
+              <li onClick={() => handleFooterLinksNavigate("blog")}>Blog</li>
+            </ul>
           </div>
+        
         </div>
 
         {/* ---------------- Mobile Links ---------------- */}
@@ -213,6 +217,11 @@ const Footer = () => {
                 About Localists
               </li>
             </ul>
+            <ul>
+              <li className={styles.mobileItem} onClick={() => handleFooterLinksNavigate("blog")}>
+                Blog
+              </li>
+            </ul>
           </Panel>
         </Collapse>
 
@@ -222,7 +231,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className={styles.footerBottom}>
         <p>
-          © 2025 Localists.
+          © 2026 Localists.
           <span style={{ cursor: "pointer" }} onClick={() => handleFooterLinksNavigate("terms")}> Terms & Conditions </span>
           /
           <span style={{ cursor: "pointer" }} onClick={() => handleFooterLinksNavigate("cookie-policy")}> Cookie policy </span>
