@@ -1,0 +1,27 @@
+name: Deploy main → production (Postlogin vite)
+
+on:
+  workflow_dispatch: #manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Push main to production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          # Add this to ensure the full history is available for the push
+          fetch-depth: 0 
+
+      - name: Push main to production
+        run: |
+          git config user.name "Pushpesh Sharma"
+          git config user.email "pushpeshsh@zuzucodes.com"
+          # No need to fetch/checkout again, actions/checkout already did it
+          git push origin main:production --force
