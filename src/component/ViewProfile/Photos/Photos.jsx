@@ -4,7 +4,6 @@ import DummyImage from "../../../assets/Images/DummyImage.svg";
 import paginationImg from "../../../assets/Icons/MyResponse/paginationImg.svg";
 import leftpaginationImg from "../../../assets/Icons/MyResponse/rightPagenationImg.svg";
 import { BASE_IMAGE, BASE_IMAGE_URL } from "../../../utils";
-import { baseURL } from "../../../Api/axiosInstance";
 
 // // ✅ Correct base URL
 // const BASE_IMAGE = `${baseURL}/storage/app/public/images/users`;
