@@ -30,7 +30,7 @@ export const validateUKPhoneNumber = (phoneNumber) => {
   }
 
   if (phoneNumber.length < 11) {
-    showToast("error", "Please enter at least 11 digits");
+    showToast("error", "Please enter 11 digit phone number");
     return false;
   }
 
