@@ -1,5 +1,5 @@
 "use client";
-import styles from "./CountryDropdown.module.css";
+import styles from "./CountrySelect.module.css";
 import ArrowSolidBalckSelect from "../../../ReactIcon/ArrowSolidBalckSelect";
 import UKFlag from "../../../assets/Icons/UKFlag.png";
 
