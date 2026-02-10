@@ -16,8 +16,12 @@ import downarrowIcon from "../../../assets/Icons/downArrowIcon.svg";
 import MobileSlideInSearch from "./MobileSlideInSearch";
 import { setIsDirtyRedux } from "../../../store/MyProfile/myProfileSlice";
 import { serviceRouteMap } from "../../../utils/allServicesRoute";
-import { resetProgress } from "../../../store/Buyer/BuyerSlice";
+import {
+  resetProgress,
+  updateProfileData,
+} from "../../../store/Buyer/BuyerSlice";
 import { getBarkUserData, setCookie } from "../../../utils/getCookies";
+import { addViewProfileList } from "../../../store/LeadSetting/leadSettingSlice";
 
 const LogSwitch = () => {
   const navigate = useNavigate();
@@ -37,14 +41,17 @@ const LogSwitch = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [mobileSearchText, setMobileSearchText] = useState("");
   const [canOpenModal, setCanOpenModal] = useState(false);
+  const [buyerName, setBuyerName] = useState("");
 
   const { selectedServiceId, registerToken, registerData } = useSelector(
-    (state) => state.findJobs
+    (state) => state.findJobs,
   );
+  const { getuploadImg } = useSelector((state) => state.buyer);
+
   const { service } = useSelector((state) => state.findJobs);
 
   const { viewProfileData, reviewProfileData } = useSelector(
-    (state) => state.leadSetting
+    (state) => state.leadSetting,
   );
   const [selectedServiceIds, setSelectedServiceIds] = useState(null);
   const [show, setShow] = useState(false);
@@ -56,7 +63,7 @@ const LogSwitch = () => {
   const confirmNavigation = (callback) => {
     if (isDirtyRedux) {
       const confirmLeave = window.confirm(
-        "You have unsaved changes. Are you sure you want to leave?"
+        "You have unsaved changes. Are you sure you want to leave?",
       );
       if (!confirmLeave) return false;
       dispatch(setIsDirtyRedux(false));
@@ -215,7 +222,7 @@ const LogSwitch = () => {
           const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
           window.location.href = `${baseURL}en/gb/login`;
           localStorage.removeItem("pendingBuyerModal");
-          setCookie('logout',true)
+          setCookie("logout", true);
           dispatch(resetProgress());
         }
       } catch (error) {
@@ -224,23 +231,45 @@ const LogSwitch = () => {
     });
   };
   const notifications = useSelector(
-    (state) => state.notification.notificationList
+    (state) => state.notification.notificationList,
   );
   const unreadCount = notifications?.filter(
-    (n) => n.status === "unread"
+    (n) => n.status === "unread",
   ).length;
   const lastId = useSelector((state) => state.notification.lastId);
   const [popoverVisible, setPopoverVisible] = useState(false);
   const viewProfile = location.pathname === `/review/${profileId?.profileId}`;
-
-  const userName = getBarkUserData()?.name || registerData?.name || "";
-
+  const user_id = getBarkUserData()?.id;
+  const userName = getUserType() === 1 ? viewProfileData?.name : buyerName;
+  // console.log(getBarkUserData(),'viewProfileData')
   const showHamburgerIcon =
     getBarkUserData()?.remember_tokens || registerData?.remember_tokens;
 
   const handleVisibleChange = (visible) => {
     setPopoverVisible(visible);
   };
+  // console.log(
+  //   Array.isArray(getuploadImg) && getuploadImg.length > 0 && getuploadImg[0],
+  //   "bnnnnnnnnnnnn",
+  // );
+  useEffect(() => {
+    const sellerData = {
+      seller_id: user_id,
+    };
+    dispatch(addViewProfileList(sellerData));
+  }, [dispatch, user_id]);
+
+  useEffect(() => {
+    dispatch(updateProfileData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (Array.isArray(getuploadImg) && getuploadImg.length > 0) {
+      const userData = getuploadImg[0];
+      setBuyerName(userData.name || "");
+    }
+  }, [getuploadImg, dispatch]);
+
   return (
     <>
       <div className={styles.logSwitchContainer}>
@@ -254,80 +283,81 @@ const LogSwitch = () => {
             <div></div>
           </div>
         ) : (
-          <div style={{ marginTop: "4px" }} className={styles.inputWrapper}>
-            <div
-              className={`${styles.mobileOnly}`}
-              style={{ cursor: "pointer !important !important" }}
-            >
-              <img
-                src={searchIcon}
-                onClick={() => setShowMobileSearch((prev) => !prev)}
-                alt="Search"
-                className={styles.icon}
-                width={18}
-                height={18}
-              />
-            </div>
-            <div
-              className={`${styles.inputWrapper} ${styles.desktopOnly}`}
-              style={{ position: "relative" }}
-              ref={wrapperRef}
-            >
-              <img
-                src={searchIcon}
-                alt="Search"
-                width={18}
-                height={18}
-                className={`${styles.icon} ${
-                  inputFocused ? styles.iconFocused : styles.iconFocusedNo
-                }`}
-              />
-              <input
-                type="text"
-                placeholder="Search for a service"
-                onChange={handleSearch}
-                className={styles.input}
-                style={
-                  showDropdown && service?.length > 0
-                    ? {
-                        borderTopLeftRadius: "0.5rem",
-                        borderTopRightRadius: "0.5rem",
-                        borderBottomLeftRadius: "0",
-                        borderBottomRightRadius: "0",
-                      }
-                    : {
-                        borderRadius: "0.5rem",
-                      }
-                }
-                onFocus={() => setInputFocused(true)}
-                onBlur={() => {
-                  setInputFocused(false);
-                  setTimeout(() => {
-                    setShowDropdown(false);
-                  }, 500);
-                }}
-                value={searchText}
-              />
-            </div>
+          // <div style={{ marginTop: "4px" }} className={styles.inputWrapper}>
+          //   <div
+          //     className={`${styles.mobileOnly}`}
+          //     style={{ cursor: "pointer !important !important" }}
+          //   >
+          //     <img
+          //       src={searchIcon}
+          //       onClick={() => setShowMobileSearch((prev) => !prev)}
+          //       alt="Search"
+          //       className={styles.icon}
+          //       width={18}
+          //       height={18}
+          //     />
+          //   </div>
+          //   <div
+          //     className={`${styles.inputWrapper} ${styles.desktopOnly}`}
+          //     style={{ position: "relative" }}
+          //     ref={wrapperRef}
+          //   >
+          //     <img
+          //       src={searchIcon}
+          //       alt="Search"
+          //       width={18}
+          //       height={18}
+          //       className={`${styles.icon} ${
+          //         inputFocused ? styles.iconFocused : styles.iconFocusedNo
+          //       }`}
+          //     />
+          //     <input
+          //       type="text"
+          //       placeholder="Search for a service"
+          //       onChange={handleSearch}
+          //       className={styles.input}
+          //       style={
+          //         showDropdown && service?.length > 0
+          //           ? {
+          //               borderTopLeftRadius: "0.5rem",
+          //               borderTopRightRadius: "0.5rem",
+          //               borderBottomLeftRadius: "0",
+          //               borderBottomRightRadius: "0",
+          //             }
+          //           : {
+          //               borderRadius: "0.5rem",
+          //             }
+          //       }
+          //       onFocus={() => setInputFocused(true)}
+          //       onBlur={() => {
+          //         setInputFocused(false);
+          //         setTimeout(() => {
+          //           setShowDropdown(false);
+          //         }, 500);
+          //       }}
+          //       value={searchText}
+          //     />
+          //   </div>
 
-            {showDropdown && service?.length > 0 && (
-              <div
-                style={{ position: "absolute", top: "18px" }}
-                className={styles.dropdown}
-              >
-                {service?.map((item, index) => (
-                  <div
-                    key={index}
-                    className={styles.dropdownItem}
-                    onClick={() => handleServiceSelect(item)}
-                    onMouseDown={() => handleServiceSelect(item)}
-                  >
-                    {item.name}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          //   {showDropdown && service?.length > 0 && (
+          //     <div
+          //       style={{ position: "absolute", top: "18px" }}
+          //       className={styles.dropdown}
+          //     >
+          //       {service?.map((item, index) => (
+          //         <div
+          //           key={index}
+          //           className={styles.dropdownItem}
+          //           onClick={() => handleServiceSelect(item)}
+          //           onMouseDown={() => handleServiceSelect(item)}
+          //         >
+          //           {item.name}
+          //         </div>
+          //       ))}
+          //     </div>
+          //   )}
+          // </div>
+          ""
         )}
 
         <div
@@ -422,7 +452,7 @@ const LogSwitch = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavigation(
-                    `/${currentLang}/${currentCountry}/contact-us`
+                    `/${currentLang}/${currentCountry}/contact-us`,
                   );
                 }}
               >
@@ -431,7 +461,7 @@ const LogSwitch = () => {
             </>
           )}
 
-          {(getUserType() == 2 || viewProfile) && canOpenModal && (
+          {getUserType() == 2 && !viewProfile && (
             <>
               <div className={styles.requestBox}>
                 <div className={styles.myrequestText} onClick={handleMyRequest}>
@@ -480,7 +510,7 @@ const LogSwitch = () => {
                       .slice()
                       .sort(
                         (a, b) =>
-                          new Date(b.created_at) - new Date(a.created_at)
+                          new Date(b.created_at) - new Date(a.created_at),
                       )
                       .map((noti, index) => (
                         <div key={noti.id}>
@@ -512,7 +542,7 @@ const LogSwitch = () => {
                                     hour: "2-digit",
                                     minute: "2-digit",
                                     hour12: false,
-                                  }
+                                  },
                                 )}
                               </span>
                             </div>
@@ -679,11 +709,11 @@ const LogSwitch = () => {
             </div>
           </Popover>
         ) : (
-         ''
+          ""
         )}
       </div>
 
-      {showMobileSearch && (
+      {/* {showMobileSearch && (
         <MobileSlideInSearch
           isOpen={showMobileSearch}
           setIsOpen={setShowMobileSearch}
@@ -694,7 +724,7 @@ const LogSwitch = () => {
           mobileSearchText={mobileSearchText}
           setMobileSearchText={setMobileSearchText}
         />
-      )}
+      )} */}
     </>
   );
 };
