@@ -265,6 +265,7 @@ const MyCredits = () => {
                           <span className={styles.excl_tax}>(Excl. tax)</span>
                         </h3>
                         <button
+                          disabled={!!activeLoaderId}
                           className={`${styles.buyButton} ${styles.buttonWidth}`}
                           onClick={() => handleBuyNow(item)}
                         >
@@ -295,6 +296,7 @@ const MyCredits = () => {
                           <span className={styles.excl_tax}>(Excl. tax)</span>
                         </h3>
                         <button
+                         disabled={!!activeLoaderId}
                           className={`${styles.buyButton} ${styles.buttonWidth}`}
                           onClick={() => handleBuyNow(item)}
                         >
@@ -338,6 +340,7 @@ const MyCredits = () => {
                       </div>
 
                       <button
+                        disabled={!!activeLoaderId}
                         className={styles.buyButton}
                         onClick={() => handleBuyNow(item)}
                       >
