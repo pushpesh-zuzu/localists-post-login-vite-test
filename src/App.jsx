@@ -93,7 +93,7 @@ function App({ initialUrl, hostname, createRouterFactory }) {
       setTimeout(() => {
         setShowLeadBuyerPopup(true);
         sessionStorage.setItem("leadBuyerPopup", "true");
-      }, 30000); // change to 30000 later
+      }, 30000); // after 30 seconds call this popup
     }
   }, [userToken, dashboardData]);
 
