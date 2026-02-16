@@ -1,0 +1,94 @@
+/* Outer wrapper */
+.wrapper {
+  width: 160px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Screen-reader only label */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Flag icon container */
+.flagWrapper {
+  position: absolute;
+  left: 12px; /* left-3 = 0.75rem */
+  top: 33%;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+}
+
+/* Flag image */
+.flagImage {
+  height: 13px;
+  width: 22px;
+}
+
+/* Select box */
+.select {
+  width: 100%;
+  background-color: #eaeaea;
+  color: #253238;
+  padding: 8px 32px 8px 40px; /* py-2 pr-8 pl-10 */
+  font-size: 10px;
+  border: none;
+  border-radius: 4px; /* rounded */
+  cursor: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select:focus {
+  outline: none;
+}
+
+/* Arrow icon container */
+.arrowWrapper {
+  pointer-events: none;
+  position: absolute;
+  right: 12px; /* right-3 = 0.75rem */
+  top: 56%;
+  transform: translateY(-50%);
+  color: #253238;
+}
+
+/* Arrow icon size */
+.arrowIcon {
+  height: 8px;
+  width: 8px;
+}
+
+/* md: min-width 768px */
+@media (min-width: 768px) {
+  .select {
+    font-size: 12px;
+  }
+}
+
+/* xl: min-width 1280px */
+@media (min-width: 1280px) {
+  .wrapper {
+    width: 210px;
+  }
+
+  .select {
+    font-size: 1rem; /* text-base = 16px */
+  }
+
+  .arrowIcon {
+    height: 15px;
+    width: 15px;
+  }
+}

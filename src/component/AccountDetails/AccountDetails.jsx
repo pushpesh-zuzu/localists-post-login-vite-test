@@ -15,7 +15,7 @@ import { showToast } from "../../utils";
 import ChangePasswordModal from "./ChangePasswordModal";
 import blackArrow from "../../assets/Images/Leads/blackArrowRight.svg";
 import OtpModal from "./OtpModal";
-import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
+import { formatUKPhoneNumber, validateUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 
 const AccountDetails = () => {
   const dispatch = useDispatch();
@@ -154,6 +154,9 @@ const AccountDetails = () => {
     navigate("/settings");
   };
   const handleVerifyNumber = () => {
+    if(!validateUKPhoneNumber(contactData?.phone)){
+    return
+    }
     const data = {
       phone_number: contactData?.phone,
       user_id: userIdNew,

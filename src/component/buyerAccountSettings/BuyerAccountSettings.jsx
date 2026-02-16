@@ -131,6 +131,7 @@ const BuyerAccountSettings = () => {
           "info",
           result?.message || "User Update Details successfully!"
         );
+         window.location.href = "/user/settings";
       }
     });
   };

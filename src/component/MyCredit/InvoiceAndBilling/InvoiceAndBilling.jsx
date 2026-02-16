@@ -22,11 +22,11 @@ const InvoiceAndBilling = () => {
   const dispatch = useDispatch();
   const { registerData } = useSelector((state) => state.findJobs);
   const { userToken } = useSelector((state) => state.auth);
-    const user_id = userToken?.id ? userToken?.id : registerData?.id;
+  const user_id = userToken?.id ? userToken?.id : registerData?.id;
   const { viewProfileData } = useSelector((state) => state.leadSetting);
   // console.log("viewProfileData", viewProfileData)
   const { sellerCardLoader, getInvoiceList } = useSelector(
-    (state) => state.myCredit
+    (state) => state.myCredit,
   );
   const [formData, setFormData] = useState({
     contactName: "",
@@ -40,7 +40,6 @@ const InvoiceAndBilling = () => {
   });
   const navigate = useNavigate();
   const userData = viewProfileData || registerData;
-  // console.log("userData",userData)
   useEffect(() => {
     if (userData) {
       setFormData({
@@ -50,7 +49,8 @@ const InvoiceAndBilling = () => {
         city: userData?.user_details?.billing_city || "",
         postcode: userData?.user_details?.billing_postcode || "",
         country: userData?.country || "",
-        phoneNumber: formatUKPhoneNumber(userData?.user_details?.billing_phone) || "",
+        phoneNumber:
+          formatUKPhoneNumber(userData?.user_details?.billing_phone) || "",
         vatRegister: userData?.user_details?.billing_vat_register ? 1 : 0,
       });
     }
@@ -94,11 +94,11 @@ const InvoiceAndBilling = () => {
   };
 
   useEffect(() => {
-      const sellerData = {
-        seller_id: user_id,
-      };
-      dispatch(addViewProfileList(sellerData));
-    }, [dispatch, user_id]);
+    const sellerData = {
+      seller_id: user_id,
+    };
+    dispatch(addViewProfileList(sellerData));
+  }, [dispatch, user_id]);
 
   return (
     <>
@@ -138,7 +138,8 @@ const InvoiceAndBilling = () => {
             value={formData.contactName}
             onChange={handleChange}
           />
-          <label className={styles.label}>Street address</label>
+          <label className={styles.label}>Building or House Name/Number</label>
+
           <input
             type="text"
             name="addressLine1"
@@ -146,7 +147,7 @@ const InvoiceAndBilling = () => {
             value={formData.addressLine1}
             onChange={handleChange}
           />
-          <label className={styles.label}>Building or House Name/Number</label>
+          <label className={styles.label}>Street address</label>
           <input
             type="text"
             name="addressLine2"
