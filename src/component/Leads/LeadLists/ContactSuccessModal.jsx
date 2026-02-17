@@ -7,6 +7,7 @@ import { showToast } from "../../../utils";
 import { sellerResponseStatusApi } from "../../../store/LeadSetting/leadSettingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { formatUKPhoneNumber } from "../../../utils/formatUKPhoneNumber";
+import { getBarkUserData } from "../../../utils/getCookies";
 
 const ContactSuccessModal = ({
   isOpen,
@@ -25,7 +26,7 @@ const ContactSuccessModal = ({
     userToken?.user_id ||
     userToken?.id ||
     registerData?.user_id ||
-    registerData?.id;
+    registerData?.id || getBarkUserData()?.id
 
   if (!isOpen) return null;
 
