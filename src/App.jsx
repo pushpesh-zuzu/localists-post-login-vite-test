@@ -1,38 +1,38 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import createAppRouter from "./routes/Router";
 import "react-toastify/dist/ReactToastify.css";
 const LazyToastContainer = React.lazy(() =>
   import("react-toastify").then((m) => ({ default: m.ToastContainer }))
 );
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet-async";
 import FullScreenSpinner from "./component/common/fullScreenSpinner/FullScreenSpinner";
-// import LeadBuyerHelpModal from "./component/common/LeadBuyerHelpModal/LeadBuyerHelpModal";
-// import { getDashboardListData } from "./store/Dashboard/dashboardSlice";
+import LeadBuyerHelpModal from "./component/common/LeadBuyerHelpModal/LeadBuyerHelpModal";
+import { getDashboardListData } from "./store/Dashboard/dashboardSlice";
 
 
 function App({ initialUrl, hostname, createRouterFactory }) {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const { selectedServiceFormData, registerStep } = useSelector(
     (state) => state.findJobs
   );
   const { userToken } = useSelector((state) => state.auth);
   const { registerToken } = useSelector((state) => state.findJobs);
-  // const { dashboardData } = useSelector((state) => state.dashboard);
+  const { dashboardData } = useSelector((state) => state.dashboard);
 
-  // const [showLeadBuyerPopup, setShowLeadBuyerPopup] = useState(false);
-  // const dashboardFetchedRef = useRef(false);
-  // const popupTriggeredRef = useRef(false);
+  const [showLeadBuyerPopup, setShowLeadBuyerPopup] = useState(false);
+  const dashboardFetchedRef = useRef(false);
+  const popupTriggeredRef = useRef(false);
 
   // console.log("dashboardList", userToken, dashboardData?.account_details, showLeadBuyerPopup)
 
-  // useEffect(() => {
-  //   if (userToken && !dashboardFetchedRef.current) {
-  //     dashboardFetchedRef.current = true;
-  //     dispatch(getDashboardListData());
-  //   }
-  // }, [userToken, dispatch]);
+  useEffect(() => {
+    if (userToken && !dashboardFetchedRef.current) {
+      dashboardFetchedRef.current = true;
+      dispatch(getDashboardListData());
+    }
+  }, [userToken, dispatch]);
 
   useEffect(() => {
     if ([1, 2, 3, 4].includes(registerStep)) {
@@ -78,24 +78,24 @@ function App({ initialUrl, hostname, createRouterFactory }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const planType = dashboardData?.account_details?.plan_type;
+  useEffect(() => {
+    const planType = dashboardData?.account_details?.plan_type;
 
-  //   if (
-  //     userToken &&
-  //     planType === "None" &&
-  //     !popupTriggeredRef.current &&
-  //     !sessionStorage.getItem("leadBuyerPopup")
+    if (
+      userToken &&
+      planType === "None" &&
+      !popupTriggeredRef.current &&
+      !sessionStorage.getItem("leadBuyerPopup")
 
-  //   ) {
-  //     popupTriggeredRef.current = true;
+    ) {
+      popupTriggeredRef.current = true;
 
-  //     setTimeout(() => {
-  //       setShowLeadBuyerPopup(true);
-  //       sessionStorage.setItem("leadBuyerPopup", "true");
-  //     }, 30000); // after 30 seconds call this popup
-  //   }
-  // }, [userToken, dashboardData]);
+      setTimeout(() => {
+        setShowLeadBuyerPopup(true);
+        sessionStorage.setItem("leadBuyerPopup", "true");
+      }, 30000); // after 30 seconds call this popup
+    }
+  }, [userToken, dashboardData]);
 
   const routerFactory = createRouterFactory || createAppRouter;
   const router = useMemo(
@@ -131,9 +131,9 @@ function App({ initialUrl, hostname, createRouterFactory }) {
         </Helmet>
       )}
       <React.Suspense fallback={<FullScreenSpinner />}>
-        {/* {showLeadBuyerPopup && (
+        {showLeadBuyerPopup && (
           <LeadBuyerHelpModal onClose={() => setShowLeadBuyerPopup(false)} />
-        )} */}
+        )}
         <RouterProvider router={router} />
       </React.Suspense>
       {typeof window !== "undefined" && (
