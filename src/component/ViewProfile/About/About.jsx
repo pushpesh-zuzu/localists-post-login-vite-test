@@ -37,7 +37,7 @@ const About = ({ details }) => {
       icon: responseTimeImg,
     },
   ];
-
+console.log(data,'data')
   return (
     <div className={styles.aboutContainer}>
       <h2>About</h2>
@@ -58,10 +58,9 @@ const About = ({ details }) => {
       <div className={styles.aboutContent}>
         {data.map((item, index) => (
           <div key={index} className={styles.aboutItem}>
-            <span>
+            {index !==1 && <><span>
               <img src={item?.icon} alt="img" />
-            </span>
-            <h3>{item.title}</h3>
+            </span><h3>{item.title}</h3></>}
           </div>
         ))}
       </div>
