@@ -151,7 +151,9 @@ const MyCredits = () => {
       } else if (result?.success === false) {
         setIsAddCardModal(true);
       }
-    });
+      }).finally(() => {
+      setActiveLoaderId(null);
+      });
   };
 
   const handleApply = () => {
