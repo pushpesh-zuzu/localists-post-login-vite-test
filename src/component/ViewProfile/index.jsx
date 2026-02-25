@@ -24,7 +24,7 @@ import { BASE_IMAGE, DEFAULT_PROFILE_IMAGE } from "../../utils";
 import starImg from "../../assets/Icons/MyResponse/StarImg.svg";
 import grayStar from "../../assets/Icons/MyResponse/grayStar.svg";
 import ContactSuccessModal from "../Leads/LeadLists/ContactSuccessModal";
-import halfStar from "../../assets/Icons/MyResponse/halfStar.svg";
+// import halfStar from "../../assets/Icons/MyResponse/halfStar.svg";
 import { Helmet } from "react-helmet-async";
 import Links from "./Links/Links";
 import Videos from "./Videos/Videos";
@@ -36,7 +36,7 @@ const ViewProfiles = () => {
     new URLSearchParams(location.search).get("from") === "replies";
 
   const queryParams = new URLSearchParams(location.search);
-  const isCustomButton = queryParams.get("customBtn") === "true";
+  // const isCustomButton = queryParams.get("customBtn") === "true";
   const [activeTab, setActiveTab] = useState("About");
   const [onActiveTab, setOnActiveTab] = useState(false);
   const [isopen, setIsOpen] = useState(true);
@@ -47,7 +47,9 @@ const ViewProfiles = () => {
   const shouldDisableActions = requestId?.requestId;
   const { userToken } = useSelector((state) => state.auth);
   const { registerData } = useSelector((state) => state.findJobs);
+  const { reviewListData } = useSelector((state) => state.myProfile);
 
+  
   const { reviewProfileData, viewProfileData } = useSelector(
     (state) => state.leadSetting
   );
@@ -59,6 +61,13 @@ const ViewProfiles = () => {
   } else {
     profileData = reviewProfileData;
   }
+
+  const avgRating = reviewListData?.length
+    ? Number((
+      reviewListData.reduce((sum, r) => sum + Number(r.ratings || 0), 0) /
+      reviewListData.length
+    ).toFixed(1))
+    : Number(profileData?.avg_rating ?? 0);
 
   useEffect(() => {
     return () => {
@@ -300,8 +309,8 @@ const ViewProfiles = () => {
           {viewProfileData?.business_profile_name
             ? `${viewProfileData.business_profile_name} | Localists`
             : reviewProfileData?.business_profile_name
-            ? `${reviewProfileData.business_profile_name} | Localists`
-            : "Localists"}
+              ? `${reviewProfileData.business_profile_name} | Localists`
+              : "Localists"}
         </title>
       </Helmet>
       <div className={styles.mainContainer}>
@@ -382,9 +391,9 @@ const ViewProfiles = () => {
                   <>
                     <span className={styles.stars}>
                       {Array.from({ length: 5 }).map((_, index) => {
-                        const rating = profileData?.avg_rating ?? 0;
+                        const roundedRating = Math.round(Number(avgRating));
 
-                        if (index < Math.floor(rating)) {
+                        if (index < roundedRating) {
                           return (
                             <img
                               key={index}
@@ -394,16 +403,16 @@ const ViewProfiles = () => {
                               height={19}
                             />
                           );
-                        } else if (index < rating) {
-                          return (
-                            <img
-                              key={index}
-                              src={halfStar}
-                              alt="half-star"
-                              width={21}
-                              height={21}
-                            />
-                          );
+                          // } else if (index < rating) {
+                          //   return (
+                          //     <img
+                          //       key={index}
+                          //       src={halfStar}
+                          //       alt="half-star"
+                          //       width={21}
+                          //       height={21}
+                          //     />
+                          //   );
                         } else {
                           return (
                             <img
@@ -420,7 +429,7 @@ const ViewProfiles = () => {
 
                     {profileData?.avg_rating > 0 ? (
                       <span className={styles.ratingCount}>
-                        {profileData?.avg_rating}
+                        {avgRating}
                       </span>
                     ) : null}
                   </>
@@ -456,7 +465,7 @@ const ViewProfiles = () => {
                 onClick={() => {
                   handleRequestOpen();
                 }}
-                // disabled={shouldDisableActions}
+              // disabled={shouldDisableActions}
               >
                 Contact Professionals
               </button>
@@ -479,8 +488,8 @@ const ViewProfiles = () => {
                   {profileData?.lead_purchased === 1 || isFromManualBids
                     ? profileData?.company_email || profileData?.email
                     : maskEmail(
-                        profileData?.company_email || profileData?.email
-                      )}
+                      profileData?.company_email || profileData?.email
+                    )}
                 </span>
               </div>
               <div className={styles.mailText}>
@@ -498,10 +507,10 @@ const ViewProfiles = () => {
                   {profileData?.lead_purchased === 1 || isFromManualBids
                     ? formatUKPhoneNumber(profileData?.company_phone) || formatUKPhoneNumber(profileData?.phone) || ""
                     : formatUKPhoneNumber(profileData?.company_phone) || formatUKPhoneNumber(profileData?.phone)
-                    ? maskPhone(
+                      ? maskPhone(
                         profileData?.company_phone || profileData?.phone
                       )
-                    : null}
+                      : null}
                 </span>
               </div>
             </>
