@@ -12,7 +12,7 @@ import { useLocation, useParams } from "react-router-dom";
 import starImg from "../../../assets/Icons/MyResponse/StarImg.svg";
 import greyStar from "../../../assets/Icons/MyResponse/grayStar.svg";
 import webIconImg from "../../../assets/Images/Setting/weblogo.svg";
-import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
+// import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
 import GoogleIcon from "../../../assets/Icons/Reviews/GoogleIcon.svg";
 import FacebookIcon from "../../../assets/Icons/Reviews/FacebookIcon.svg";
 import LinkedInIcon from "../../../assets/Icons/Reviews/LinkedInIcon.svg";
