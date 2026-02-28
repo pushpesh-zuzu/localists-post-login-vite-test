@@ -12,7 +12,7 @@ import { useLocation, useParams } from "react-router-dom";
 import starImg from "../../../assets/Icons/MyResponse/StarImg.svg";
 import greyStar from "../../../assets/Icons/MyResponse/grayStar.svg";
 import webIconImg from "../../../assets/Images/Setting/weblogo.svg";
-import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
+// import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
 import GoogleIcon from "../../../assets/Icons/Reviews/GoogleIcon.svg";
 import FacebookIcon from "../../../assets/Icons/Reviews/FacebookIcon.svg";
 import LinkedInIcon from "../../../assets/Icons/Reviews/LinkedInIcon.svg";
@@ -41,6 +41,7 @@ const ReviewSection = ({
     (state) => state.leadSetting
   );
 
+
   let token = localStorage.getItem("barkUserToken");
   token = JSON.parse(token);
 
@@ -48,18 +49,18 @@ const ReviewSection = ({
     reviewListData?.length > 0
       ? reviewListData.length
       : token && token.remember_tokens
-      ? viewProfileData?.reviews_count ??
+        ? viewProfileData?.reviews_count ??
         reviewProfileData?.reviews_count ??
         details?.reviews_count ??
         0
-      : reviewProfileData?.reviews_count ?? details?.reviews_count ?? 0;
+        : reviewProfileData?.reviews_count ?? details?.reviews_count ?? 0;
 
   const avgRating = reviewListData?.length
-    ? (
-        reviewListData.reduce((sum, r) => sum + Number(r.ratings || 0), 0) /
-        reviewListData.length
-      ).toFixed(1)
-    : details?.avg_rating ?? 0;
+    ? Number((
+      reviewListData.reduce((sum, r) => sum + Number(r.ratings || 0), 0) /
+      reviewListData.length
+    ).toFixed(1))
+    : Number(details?.avg_rating ?? 0);
 
   const detailsData = (details?.reviews || []).map((item) => item?.ratings);
 
@@ -131,14 +132,15 @@ const ReviewSection = ({
                 {Array.from({ length: 5 }).map((_, index) => {
                   const rating =
                     token && token.remember_tokens
-                      ? viewProfileData?.avg_rating ??
-                        reviewProfileData?.avg_rating ??
-                        details?.avg_rating ??
-                        0
+                      ? avgRating ??
+                      reviewProfileData?.avg_rating ??
+                      details?.avg_rating ??
+                      0
                       : reviewProfileData?.avg_rating ??
-                        details?.avg_rating ??
-                        0;
-                  if (index < Math.floor(rating)) {
+                      details?.avg_rating ??
+                      0;
+                  const roundedRating = Math.round(Number(rating));
+                  if (index < roundedRating) {
                     return (
                       <img
                         key={index}
@@ -148,16 +150,16 @@ const ReviewSection = ({
                         height={19}
                       />
                     );
-                  } else if (index < rating) {
-                    return (
-                      <img
-                        key={index}
-                        src={halfStar}
-                        alt="half-star"
-                        width={21}
-                        height={21}
-                      />
-                    );
+                  // } else if (index < rating) {
+                  //   return (
+                  //     <img
+                  //       key={index}
+                  //       src={halfStar}
+                  //       alt="half-star"
+                  //       width={21}
+                  //       height={21}
+                  //     />
+                  //   );
                   } else {
                     return (
                       <img
@@ -171,6 +173,7 @@ const ReviewSection = ({
                   }
                 })}
               </div>
+
               <div className={styles.totalReviews}>
                 {reviewLength} customer reviews
               </div>
