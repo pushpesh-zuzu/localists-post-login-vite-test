@@ -2,7 +2,7 @@
  * DEPENDENCY OPTIMIZATION: moment → dayjs
  * dayjs is ~2KB vs moment's ~70KB, significantly reducing bundle size.
  */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import styles from "./Reviews.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviewListApi } from "../../../store/MyProfile/myProfileSlice";
@@ -12,7 +12,7 @@ import { useLocation, useParams } from "react-router-dom";
 import starImg from "../../../assets/Icons/MyResponse/StarImg.svg";
 import greyStar from "../../../assets/Icons/MyResponse/grayStar.svg";
 import webIconImg from "../../../assets/Images/Setting/weblogo.svg";
-// import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
+import halfStar from "../../../assets/Icons/MyResponse/halfStar.svg";
 import GoogleIcon from "../../../assets/Icons/Reviews/GoogleIcon.svg";
 import FacebookIcon from "../../../assets/Icons/Reviews/FacebookIcon.svg";
 import LinkedInIcon from "../../../assets/Icons/Reviews/LinkedInIcon.svg";
@@ -41,28 +41,65 @@ const ReviewSection = ({
     (state) => state.leadSetting
   );
 
+  let token = null;
 
-  let token = localStorage.getItem("barkUserToken");
-  token = JSON.parse(token);
+  try {
+    const stored = localStorage.getItem("barkUserToken");
+    token = stored ? JSON.parse(stored) : null;
+  } catch (error) {
+    token = null;
+  }
 
-  const reviewLength =
-    reviewListData?.length > 0
-      ? reviewListData.length
-      : token && token.remember_tokens
-        ? viewProfileData?.reviews_count ??
+  const reviewLength = useMemo(() => {
+    if (reviewListData?.length > 0) return reviewListData.length;
+
+    if (token?.remember_tokens) {
+      return (
+        viewProfileData?.reviews_count ??
         reviewProfileData?.reviews_count ??
         details?.reviews_count ??
         0
-        : reviewProfileData?.reviews_count ?? details?.reviews_count ?? 0;
+      );
+    }
 
-  const avgRating = reviewListData?.length
-    ? Number((
-      reviewListData.reduce((sum, r) => sum + Number(r.ratings || 0), 0) /
-      reviewListData.length
-    ).toFixed(1))
-    : Number(details?.avg_rating ?? 0);
+    return (
+      reviewProfileData?.reviews_count ??
+      details?.reviews_count ??
+      0
+    );
+  }, [
+    reviewListData,
+    token,
+    viewProfileData,
+    reviewProfileData,
+    details,
+  ]);
 
-  const detailsData = (details?.reviews || []).map((item) => item?.ratings);
+  const avgRating = useMemo(() => {
+    if (reviewListData?.length > 0) {
+      const total = reviewListData.reduce(
+        (sum, r) => sum + Number(r?.ratings || 0),
+        0
+      );
+      return Number((total / reviewListData.length).toFixed(1));
+    }
+    return Number(details?.avg_rating ?? 0);
+  }, [reviewListData, details]);
+
+  const rating = useMemo(() => {
+    return token?.remember_tokens
+      ? avgRating ??
+      reviewProfileData?.avg_rating ??
+      details?.avg_rating ??
+      0
+      : reviewProfileData?.avg_rating ??
+      details?.avg_rating ??
+      0;
+  }, [token, avgRating, reviewProfileData, details]);
+
+  const fullStars = Math.floor(rating);
+  const decimal = rating - fullStars;
+  const hasHalfStar = decimal >= 0.5;
 
   useEffect(() => {
     let email = viewProfileData?.email || reviewProfileData?.email;
@@ -93,13 +130,11 @@ const ReviewSection = ({
     }
   };
 
-  const fetchReviews = () => {
-    dispatch(getReviewListApi(UUIDs));
-  };
-
   useEffect(() => {
-    fetchReviews();
-  }, [UUIDs]);
+    if (UUIDs) {
+      dispatch(getReviewListApi(UUIDs));
+    }
+  }, [UUIDs, dispatch]);
 
   return (
     <>
@@ -130,17 +165,7 @@ const ReviewSection = ({
 
               <div className={styles.stars}>
                 {Array.from({ length: 5 }).map((_, index) => {
-                  const rating =
-                    token && token.remember_tokens
-                      ? avgRating ??
-                      reviewProfileData?.avg_rating ??
-                      details?.avg_rating ??
-                      0
-                      : reviewProfileData?.avg_rating ??
-                      details?.avg_rating ??
-                      0;
-                  const roundedRating = Math.round(Number(rating));
-                  if (index < roundedRating) {
+                  if (index < fullStars) {
                     return (
                       <img
                         key={index}
@@ -150,16 +175,16 @@ const ReviewSection = ({
                         height={19}
                       />
                     );
-                  // } else if (index < rating) {
-                  //   return (
-                  //     <img
-                  //       key={index}
-                  //       src={halfStar}
-                  //       alt="half-star"
-                  //       width={21}
-                  //       height={21}
-                  //     />
-                  //   );
+                  } else if (index === fullStars && hasHalfStar) {
+                    return (
+                      <img
+                        key={index}
+                        src={halfStar}
+                        alt="half-star"
+                        width={21}
+                        height={21}
+                      />
+                    );
                   } else {
                     return (
                       <img
@@ -192,7 +217,7 @@ const ReviewSection = ({
           </div>
         )}
         {updatedReviews?.map((item, index) => (
-          <div key={index} className={styles.card}>
+          <div key={item?.id || index} className={styles.card}>
             <div className={styles.header}>
               <div className={styles.contentWrapper}>
                 <div className={styles.avatarSection}>

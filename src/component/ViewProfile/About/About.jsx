@@ -37,7 +37,7 @@ const About = ({ details }) => {
       icon: responseTimeImg,
     },
   ];
-console.log(data,'data')
+// console.log(data,'data')
   return (
     <div className={styles.aboutContainer}>
       <h2>About</h2>

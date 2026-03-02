@@ -24,7 +24,7 @@ import { BASE_IMAGE, DEFAULT_PROFILE_IMAGE } from "../../utils";
 import starImg from "../../assets/Icons/MyResponse/StarImg.svg";
 import grayStar from "../../assets/Icons/MyResponse/grayStar.svg";
 import ContactSuccessModal from "../Leads/LeadLists/ContactSuccessModal";
-// import halfStar from "../../assets/Icons/MyResponse/halfStar.svg";
+import halfStar from "../../assets/Icons/MyResponse/halfStar.svg";
 import { Helmet } from "react-helmet-async";
 import Links from "./Links/Links";
 import Videos from "./Videos/Videos";
@@ -49,7 +49,7 @@ const ViewProfiles = () => {
   const { registerData } = useSelector((state) => state.findJobs);
   const { reviewListData } = useSelector((state) => state.myProfile);
 
-  
+
   const { reviewProfileData, viewProfileData } = useSelector(
     (state) => state.leadSetting
   );
@@ -68,6 +68,10 @@ const ViewProfiles = () => {
       reviewListData.length
     ).toFixed(1))
     : Number(profileData?.avg_rating ?? 0);
+
+  const fullStars = Math.floor(avgRating);
+  const decimal = avgRating - fullStars;
+  const hasHalfStar = decimal >= 0.5;
 
   useEffect(() => {
     return () => {
@@ -391,9 +395,7 @@ const ViewProfiles = () => {
                   <>
                     <span className={styles.stars}>
                       {Array.from({ length: 5 }).map((_, index) => {
-                        const roundedRating = Math.round(Number(avgRating));
-
-                        if (index < roundedRating) {
+                        if (index < fullStars) {
                           return (
                             <img
                               key={index}
@@ -403,16 +405,16 @@ const ViewProfiles = () => {
                               height={19}
                             />
                           );
-                          // } else if (index < rating) {
-                          //   return (
-                          //     <img
-                          //       key={index}
-                          //       src={halfStar}
-                          //       alt="half-star"
-                          //       width={21}
-                          //       height={21}
-                          //     />
-                          //   );
+                        } else if (index === fullStars && hasHalfStar) {
+                          return (
+                            <img
+                              key={index}
+                              src={halfStar}
+                              alt="half-star"
+                              width={21}
+                              height={21}
+                            />
+                          );
                         } else {
                           return (
                             <img
