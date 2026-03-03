@@ -1,11 +1,10 @@
-import styles from "./badge.module.css";
+import styles from "./Badge.module.css";
 import iIcon from "../../assets/Images/iIcon.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import blackArrow from "../../assets/Images/Leads/blackArrowRight.svg";
-import VerifiedBadge from "./VerifiedBadge";
+// import VerifiedBadge from "./VerifiedBadge";
 import BadgeModal from "./BadgeModal";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { POST_LOGIN_BASE_URL } from "../../utils";
 
