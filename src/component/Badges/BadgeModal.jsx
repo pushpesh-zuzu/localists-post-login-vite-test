@@ -22,7 +22,7 @@ const BadgeModal = ({
     return () => clearTimeout(timer);
   }, [size, color]);
   const publicProfileUrl = `${POST_LOGIN_BASE_URL}/view-profile/${companySlug}/${userId}`;
-  const embedCode = `<a href="${publicProfileUrl}" target="_blank" class="localists-widget" data-type="reviews" data-size="${size}" data-color="${color}" data-id="${userId}" data-version="1.0">${companyName}</a>
+  const embedCode = `<div class="localists-widget" data-type="reviews" data-size="${size}" data-color="${color}" data-id="${userId}" data-version="1.0"></div>
 <script type="text/javascript" src="${POST_LOGIN_BASE_URL}/widget.js" defer></script>`;
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
@@ -74,7 +74,7 @@ const BadgeModal = ({
         </div>
 
         {/* COLOR */}
-        <label className={styles.label}>Select Color</label>
+        {/* <label className={styles.label}>Select Color</label>
         <div className={styles.section}>
           <label>
             <input
@@ -93,7 +93,7 @@ const BadgeModal = ({
             />
             <span>Gold</span>
           </label>
-        </div>
+        </div> */}
 
         {/* PREVIEW */}
         <div className={styles.preview}>
