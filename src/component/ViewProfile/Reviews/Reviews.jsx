@@ -130,11 +130,19 @@ const ReviewSection = ({
     }
   };
 
+  // useEffect(() => {
+  //   if (UUIDs) {
+  //     dispatch(getReviewListApi(UUIDs));
+  //   }
+  // }, [UUIDs, dispatch]);
+
+  const fetchReviews = () => {
+    dispatch(getReviewListApi(UUIDs));
+  };
+
   useEffect(() => {
-    if (UUIDs) {
-      dispatch(getReviewListApi(UUIDs));
-    }
-  }, [UUIDs, dispatch]);
+    fetchReviews();
+  }, [UUIDs]);
 
   return (
     <>
