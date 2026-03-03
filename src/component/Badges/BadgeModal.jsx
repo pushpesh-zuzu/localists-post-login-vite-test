@@ -102,7 +102,7 @@ const BadgeModal = ({
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => e.preventDefault()}
+            // onClick={(e) => e.preventDefault()}
             to={publicProfileUrl}
             style={{ textDecoration: "none" }}
           >
