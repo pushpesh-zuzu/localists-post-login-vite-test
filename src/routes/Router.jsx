@@ -38,6 +38,7 @@ import ConversionRedirect from "../component/buyerPanel/PlaceNewRequest/BuyerReg
 import ThankuPage from "../component/common/ThankuPage/ThankuPage";
 import ContactUs from "../component/ContactUs/ContactUs";
 import ArchiveLeads from "../component/ArchiveLeads/ArchiveLeads";
+import Badge from "../component/Badges/Badge";
 const baseURL = import.meta.env.VITE_COOKIE_DOMAIN;
 const routes = [
  
@@ -127,6 +128,14 @@ const routes = [
         element: (
           <ProtectedRoute>
             <Settings />
+          </ProtectedRoute>
+        ),
+      },
+       {
+        path: "/settings/profile/badges",
+        element: (
+          <ProtectedRoute>
+            <Badge />
           </ProtectedRoute>
         ),
       },

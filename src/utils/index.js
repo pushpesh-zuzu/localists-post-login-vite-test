@@ -31,8 +31,9 @@ export const BASE_URL_IMAGE = `${BASE_IMAGE_URL}storage/app/public/images/catego
 export const BASE_IMAGE = `${BASE_IMAGE_URL}storage/app/public/images/`;
 export const BASE_COMPLETE = `${BASE_IMAGE_URL}`;
 // export const BASE_URL_IMAGE_MAIN = `${BASE_IMAGE_URL}public/images/`
-
-
+const windowURL = typeof window !== 'undefined' ? window.location.origin : '';
+export const POST_LOGIN_BASE_URL =windowURL
+console.log(windowURL,'windowURL')
 
 export const DEFAULT_PROFILE_IMAGE = DummyImage;
 export const loadGooglePlacesAutocomplete = ({

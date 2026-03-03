@@ -40,6 +40,9 @@ const SettingsList = () => {
   const handleBrowser = () => {
     navigate("/settings/notifications/browser-notification");
   };
+  const handleBadge = () => {
+    navigate("/settings/profile/badges");
+  };
   return (
     <>
       <div className="container">
@@ -88,7 +91,18 @@ const SettingsList = () => {
               The login details and contact number we’ll use to reach you
               directly when needed.
             </p>
+            <div
+              className={styles.card}
+              style={{ backgroundColor: "#FFD5D2" }}
+              onClick={handleBadge}
+            >
+              <span style={{ cursor: "pointer" }}>Badges</span>
+            </div>
+            <p>
+              Badges help you stand out. Learn how to use them to boost your business
+            </p>
           </div>
+          
         </div>
 
         <div className={styles.section}>

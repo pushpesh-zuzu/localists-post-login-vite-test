@@ -301,7 +301,7 @@ const ReviewSection = ({
           closeModal={closeModal}
           ProfileIDs={profileId?.profileId}
           reviewsData={details}
-          onReviewSubmit={fetchReviews}
+          onReviewSubmit={fetchReviews && fetchReviews}
           reviewProfileData={details}
         />
       )}
