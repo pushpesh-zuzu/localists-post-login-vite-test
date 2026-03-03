@@ -14,7 +14,7 @@ const Badge = () => {
   const { userToken } = useSelector((state) => state.auth);
   const user_id = userToken?.id ? userToken?.id : registerData?.id;
   const companySlug = viewProfileData?.business_profile_name
-    ? viewProfileData?.business_profile_name.replace(/\s+/g, "-")
+    ? viewProfileData?.business_profile_name.replace(/\s+/g, "-").toLowerCase()
     : "";
   const [showModal, setShowModal] = useState(false);
   const handleBack = () => {
