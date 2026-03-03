@@ -45,12 +45,14 @@ function initLocalistsWidget() {
 
     shadow.innerHTML = `
       <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap');
         .card {
           width:${width}px;
           border-radius:${24 * scale}px;
           overflow:hidden;
           border:${4 * scale}px solid ${color};
           cursor:pointer;
+          font-family: 'Poppins', Arial, sans-serif;
         }
 
         .top {
@@ -65,6 +67,7 @@ function initLocalistsWidget() {
           font-weight:700;
           line-height:${24 * scale}px;
           text-shadow: 0 ${1 * scale}px ${2 * scale}px rgba(0,0,0,0.3);
+          font-family: 'Poppins', Arial, sans-serif;
         }
 
         .bottom {
