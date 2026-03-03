@@ -7,13 +7,20 @@ const WIDGET_BASE_URL = (function () {
 })();
 
 function initLocalistsWidget() {
+  if (!document.querySelector("#localists-font")) {
+    const link = document.createElement("link");
+    link.id = "localists-font";
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap";
+    document.head.appendChild(link);
+  }
+
   const widgets = Array.from(document.querySelectorAll(".localists-widget"));
   
   widgets.forEach((el) => {
     const sizeAttr = el.getAttribute("data-size") || "large";
     const colorAttr = el.getAttribute("data-color") || "navy";
 
-    // ✅ SCALE SYSTEM
     let scale = 1;
     if (sizeAttr === "medium") scale = 0.85;
     if (sizeAttr === "small") scale = 0.7;
@@ -21,11 +28,9 @@ function initLocalistsWidget() {
     const baseWidth = 260;
     const width = baseWidth * scale;
 
-    // ✅ COLOR
     let color = "#00afe3";
     if (colorAttr === "gold") color = "#d4af37";
 
-    // ✅ FIX: <a> tag Shadow DOM support nahi karta
     let target = el;
     if (el.tagName.toLowerCase() === "a") {
       el.style.textDecoration = "none";
@@ -45,7 +50,6 @@ function initLocalistsWidget() {
 
     shadow.innerHTML = `
       <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         .card {
           width:${width}px;
           border-radius:${24 * scale}px;
@@ -60,14 +64,15 @@ function initLocalistsWidget() {
           color:white;
           text-align:center;
           padding:${16 * scale}px ${10 * scale}px;
+          font-family: 'Poppins', Arial, sans-serif;
         }
 
         .title {
           font-size:${18 * scale}px;
-          font-weight:700;
+          font-weight:800;
           line-height:${24 * scale}px;
-          text-shadow: 0 ${1 * scale}px ${2 * scale}px rgba(0,0,0,0.3);
           font-family: 'Poppins', Arial, sans-serif;
+          text-shadow: 0 ${1 * scale}px ${2 * scale}px rgba(0,0,0,0.3);
         }
 
         .bottom {

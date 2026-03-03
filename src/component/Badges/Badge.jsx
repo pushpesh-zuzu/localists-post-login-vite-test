@@ -12,9 +12,10 @@ const Badge = () => {
   const navigate = useNavigate()
   const { viewProfileData } = useSelector((state) => state.leadSetting);
   const { userToken } = useSelector((state) => state.auth);
+  const { registerData } = useSelector((state) => state.findJobs);
   const user_id = userToken?.id ? userToken?.id : registerData?.id;
   const companySlug = viewProfileData?.business_profile_name
-    ? viewProfileData?.business_profile_name.replace(/\s+/g, "-")
+    ? viewProfileData?.business_profile_name.replace(/\s+/g, "-").toLowerCase()
     : "";
   const [showModal, setShowModal] = useState(false);
   const handleBack = () => {
