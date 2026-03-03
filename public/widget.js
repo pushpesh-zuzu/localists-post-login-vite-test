@@ -7,6 +7,14 @@ const WIDGET_BASE_URL = (function () {
 })();
 
 function initLocalistsWidget() {
+    if (!document.querySelector("#localists-font")) {
+    const link = document.createElement("link");
+    link.id = "localists-font";
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap";
+    document.head.appendChild(link);
+  }
+
   const widgets = Array.from(document.querySelectorAll(".localists-widget"));
   
   widgets.forEach((el) => {

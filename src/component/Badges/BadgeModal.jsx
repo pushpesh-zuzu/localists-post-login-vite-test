@@ -21,9 +21,9 @@ const BadgeModal = ({
 
     return () => clearTimeout(timer);
   }, [size, color]);
-  const publicProfileUrl = `${POST_LOGIN_BASE_URL}/view-profile/${companySlug}/${userId}`;
+  const publicProfileUrl = `${POST_LOGIN_BASE_URL}/view-profile/${companySlug.toLowerCase()}/${userId}`;
   const embedCode = `<a href="${publicProfileUrl}" target="_blank" style="text-decoration:none;display:inline-block;">
-  <div class="localists-widget" data-type="reviews" data-size="${size}" data-color="${color}" data-id="${userId}" data-version="1.0"></div>
+  <div class="localists-widget" data-type="reviews" data-size="${size}" data-color="${color}" data-id="${userId}" data-version="1.0">${companyName}</div>
 </a>
 <script type="text/javascript" src="${POST_LOGIN_BASE_URL}/widget.js" defer></script>`;
   const handleCopy = () => {
