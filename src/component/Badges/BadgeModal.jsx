@@ -3,10 +3,15 @@ import styles from "./BadgeModal.module.css";
 import { POST_LOGIN_BASE_URL } from "../../utils";
 import { Link } from "react-router-dom";
 
-const BadgeModal = ({ onClose,companyName='', userId='',companySlug}) => {
+const BadgeModal = ({
+  onClose,
+  companyName = "",
+  userId = "",
+  companySlug,
+}) => {
   const [size, setSize] = useState("medium");
   const [color, setColor] = useState("navy");
-  const [copyText, setCopyText] = useState('Copy')
+  const [copyText, setCopyText] = useState("Copy");
   useEffect(() => {
     const timer = setTimeout(() => {
       if (window.initLocalistsWidget) {
@@ -17,21 +22,16 @@ const BadgeModal = ({ onClose,companyName='', userId='',companySlug}) => {
     return () => clearTimeout(timer);
   }, [size, color]);
   const publicProfileUrl = `${POST_LOGIN_BASE_URL}/view-profile/${companySlug}/${userId}`;
-  const embedCode = `<a href="${publicProfileUrl}" target="_blank"
-class="localists-widget" data-type="reviews"data-size="${size}"
-data-color="${color}">
-${companyName}
-</a>
-<script src="${POST_LOGIN_BASE_URL}/widget.js" defer></script>`;
+  const embedCode = `<a href="${publicProfileUrl}" target="_blank" class="localists-widget" data-type="reviews" data-size="${size}" data-color="${color}" data-id="${userId}" data-version="1.0">${companyName}</a>
+<script type="text/javascript" src="${POST_LOGIN_BASE_URL}/widget.js" defer></script>`;
+  const handleCopy = () => {
+    navigator.clipboard.writeText(embedCode);
+    setCopyText("Copied");
 
- const handleCopy = () => {
-  navigator.clipboard.writeText(embedCode);
-  setCopyText("Copied");
-
-  setTimeout(() => {
-    setCopyText("Copy");
-  }, 1500);
-};
+    setTimeout(() => {
+      setCopyText("Copy");
+    }, 1500);
+  };
 
   return (
     <div className={styles.overlay}>
@@ -97,24 +97,28 @@ ${companyName}
 
         {/* PREVIEW */}
         <div className={styles.preview}>
-          <Link target="_blank" rel="noopener noreferrer" onClick={(e) => e.preventDefault()}  to={publicProfileUrl} style={{textDecoration:'none'}}>         
-           <div
-            className="localists-widget"
-            data-size={size}
-            data-color={color}
-          ></div>
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.preventDefault()}
+            to={publicProfileUrl}
+            style={{ textDecoration: "none" }}
+          >
+            <div
+              className="localists-widget"
+              data-size={size}
+              data-color={color}
+            ></div>
           </Link>
-
         </div>
 
         {/* CODE */}
-                    <label className={styles.labelcode}>Code</label>
+        <label className={styles.labelcode}>Code</label>
 
-            <span className={styles.labelcodeSpan}>Copy the code below and paste it on your website</span>
+        <span className={styles.labelcodeSpan}>
+          Copy the code below and paste it on your website
+        </span>
         <div className={styles.codeWrapper}>
-            
-
-
           <input
             type="text"
             readOnly

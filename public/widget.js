@@ -1,6 +1,13 @@
+const WIDGET_BASE_URL = (function () {
+  const script = document.currentScript;
+  if (script && script.src) {
+    return new URL(script.src).origin;
+  }
+  return "https://dev-app.localists.com"; // fallback
+})();
 
 function initLocalistsWidget() {
-  const POST_LOGIN_BASE_URL = window.location.origin;
+  // const POST_LOGIN_BASE_URL = window.location.origin;
   const widgets = Array.from(document.querySelectorAll(".localists-widget"));
   widgets.forEach((el) => {
 
@@ -56,7 +63,7 @@ function initLocalistsWidget() {
           display:flex;
           align-items:center;
           justify-content:center;
-          padding:${15 * scale}px;
+          padding:${10 * scale}px;
         }
 
         .logo {
@@ -71,7 +78,7 @@ function initLocalistsWidget() {
           </div>
         </div>
         <div class="bottom">
-          <img src="${POST_LOGIN_BASE_URL}/assets/localist_logo.png" class="logo" />
+          <img src="${WIDGET_BASE_URL}/assets/localist_logo.png" class="logo" />
         </div>
       </div>
     `;
