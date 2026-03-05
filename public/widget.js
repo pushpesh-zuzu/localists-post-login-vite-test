@@ -3,7 +3,7 @@ const WIDGET_BASE_URL = (function () {
   if (script && script.src) {
     return new URL(script.src).origin;
   }
-  return "https://dev-app.localists.com";
+  return "https://app.localists.com";
 })();
 
 function initLocalistsWidget() {
