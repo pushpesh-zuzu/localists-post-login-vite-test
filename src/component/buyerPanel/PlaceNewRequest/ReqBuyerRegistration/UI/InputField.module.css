@@ -1,0 +1,121 @@
+.wrapper {
+  width: 94%;
+}
+
+.labelDefault {
+  display: block;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  color: #253238;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .labelDefault {
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+}
+
+.labelBase {
+  display: block;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  color: #253238;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #111827;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0.5px #0000001a;
+  transition: all 200ms;
+  outline-offset: 0;
+}
+
+.input::placeholder {
+  color: #959595;
+  opacity: 1;
+}
+
+.input:focus {
+  outline: 1px solid black;
+  box-shadow: 0 0 2px 0.5px #0000001a, 0 0 0 1px black;
+}
+
+.input:disabled {
+  background-color: #f3f4f6;
+}
+
+.inputError {
+  border-color: #ef4444;
+}
+
+.inputError:focus {
+  outline-color: #ef4444;
+  box-shadow: 0 0 2px 0.5px #0000001a, 0 0 0 1px #ef4444;
+}
+
+.inputPassword {
+  padding-right: 40px;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  outline: none;
+}
+
+.eyeButton:hover {
+  color: #374151;
+}
+
+.errorBox {
+  margin-top: 6px;
+  min-height: 20px;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #dc2626;
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: 92%;
+  }
+}

@@ -1,0 +1,130 @@
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 5vh;
+}
+
+@media (min-width: 1024px) {
+    .overlay {
+        margin-top: 10vh;
+    }
+}
+
+.container {
+    max-width: 90%;
+    border-radius: 24px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+.contentWrapper {
+    margin: 0 auto;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .contentWrapper {
+        max-width: 80%;
+    }
+}
+
+.buttonGroup {
+    margin: 0 17px;
+    padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .buttonGroup {
+        margin: 0 72px;
+        max-width: 79%;
+    }
+}
+
+.titleLeft {
+    text-align: left;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: #dc2626;
+    margin-top: -6px;
+    text-align: left;
+}
+
+.checkboxContainer {
+    margin-top: 10px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkboxLabel input {
+    display: none;
+}
+
+.customCheckbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.checkboxLabel input:checked+.customCheckbox {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.checkboxLabel input:checked+.customCheckbox::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkboxText {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.4;
+    margin-top: 2px;
+}
+
+@media (max-width: 600px) {
+    .checkboxText {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+}
+
+.disclaimer {
+    line-height: 1.5;
+    margin-top: 6px;
+    font-weight: 500;
+    font-size: 10px;
+    color: #666;
+    text-align: left;
+}

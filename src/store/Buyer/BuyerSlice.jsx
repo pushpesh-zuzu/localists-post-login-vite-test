@@ -56,6 +56,40 @@ const initialState = {
   verifyPhoneNumberLoader: false,
   postCodeLoader: false,
   redirectFromHome: false,
+  autoBidListLoader: false,
+  autoBidData: [],
+};
+
+export const getAutoBid = (bidData) => {
+  return async (dispatch) => {
+    dispatch(setAutoBidListLoader(true));
+    try {
+      const response = await axiosInstance.post(`users/manual-leads`, bidData);
+
+      if (response) {
+        dispatch(setAutoBidData(response?.data?.data));
+      }
+    } catch (error) {
+      console.error("AutoBid error:", error);
+    } finally {
+      dispatch(setAutoBidListLoader(false));
+    }
+  };
+};
+
+export const addMultipleManualBid = (manualBidData) => {
+  return async () => {
+    try {
+      const response = await axiosInstance.post(
+        "users/add-multiple-manual-bid",
+        manualBidData
+      );
+      return response?.data;
+    } catch (error) {
+      showToast("error", error?.response?.data?.message);
+      return null;
+    }
+  };
 };
 
 export const questionAnswerData = (questionData) => {
@@ -559,6 +593,12 @@ const buyerSlice = createSlice({
       state.requestDataList = action.payload;
       safeLocalStorage.setItem("createRequest", JSON.stringify(action.payload));
     },
+    setAutoBidListLoader: (state, action) => {
+      state.autoBidListLoader = action.payload;
+    },
+    setAutoBidData: (state, action) => {
+      state.autoBidData = action.payload;
+    },
 
     setRequestUserId: (state, action) => {
       state.requestUserId = action.payload;
@@ -640,7 +680,8 @@ export const {
   setRedirectFromHome,
   setQuestionsForProgress,
   setBuyerRequestInternalQuestion,
-  resetProgress
+  resetProgress,
+  setAutoBidListLoader, setAutoBidData
 } = buyerSlice.actions;
 
 export default buyerSlice.reducer;

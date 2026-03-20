@@ -1,0 +1,12 @@
+.track {
+  width: 100%;
+  height: 1rem;   
+  background-color: #e5e7eb;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background-color: #04d07b;
+  transition: width 500ms ease-in-out;
+}
