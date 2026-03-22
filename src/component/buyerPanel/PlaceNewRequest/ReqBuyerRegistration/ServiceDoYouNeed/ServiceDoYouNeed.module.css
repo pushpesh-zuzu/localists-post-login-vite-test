@@ -30,12 +30,12 @@
 
 .scrollFixWrapper {
   max-height: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
 
-.scrollFixWrapper * {
+/* .scrollFixWrapper * {
   overflow: visible !important;
-}
+} */
 
 .contentWrapper {
   margin-left: auto;
@@ -93,8 +93,15 @@
   margin-top: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   z-index: 9999;
-  max-height: 290px;
+  max-height: 91px;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .searchResults {
+    max-height: 76px;
+  }
 }
 
 .searchItem {
