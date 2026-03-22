@@ -107,6 +107,7 @@
 .otherInputWrapper {
   padding-left: 20px;
   padding-right: 20px;
+  /* padding-bottom: 20px; */
 }
 
 @media (min-width: 768px) {
@@ -122,8 +123,9 @@
   color: #dc2626;
   padding-left: 36px;
   padding-right: 36px;
-  padding-top: 8px;
+  padding-top: 4px;
   padding-bottom: 16px;
+  text-align: left;
 }
 
 .emptyState {

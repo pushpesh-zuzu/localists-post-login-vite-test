@@ -229,6 +229,7 @@ const QuestionModal = ({
     };
 
     const handleBack = () => {
+        setError("");
         if (currentQuestion === 0) {
             dispatch(setbuyerRequestData({ questions: [] }));
 
@@ -344,11 +345,15 @@ const QuestionModal = ({
                             (opt) => opt.option === "Something else (please describe)"
                         ) &&
                             selectedOption.includes("Something else (please describe)") && (
-                                <div className={styles.otherInputWrapper}>
+                                <div className={styles.otherInputWrapper}
+                                    style={{ marginBottom: error ? "0px" : "20px" }}>
                                     <InputField
                                         placeholder="Please Enter..."
                                         value={otherText}
-                                        onChange={(e) => setOtherText(e.target.value)}
+                                        onChange={(e) => {
+                                            setOtherText(e.target.value);
+                                            setError("");
+                                        }}
                                     />
                                 </div>
                             )}

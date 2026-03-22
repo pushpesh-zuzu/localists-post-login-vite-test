@@ -223,7 +223,9 @@ function ServiceDoYouNeed({
 
                     {/* Postcode Input */}
                     {!isPPCPages && (
-                        <div style={{ position: "relative", width: "100%" }}>
+                        <div style={{
+                            position: "relative", width: "100%", marginBottom: "2px",
+                        }}>
                             <InputField
                                 label="Where do you need it?"
                                 value={pincode}
@@ -233,6 +235,7 @@ function ServiceDoYouNeed({
                                 }}
                                 error={errors.pincode}
                                 placeholder="Enter Postcode (No Spaces)"
+                                style={{ marginBottom: "2px" }}
                             />
 
                             {checkingPostcode ? (
