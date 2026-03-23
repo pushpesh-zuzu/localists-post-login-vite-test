@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import VerifyIcon from "../../../../../ReactIcon/VerifyIcon";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"; 
 import {
     addDetailsRequestData,
     addImageSubmittedData,

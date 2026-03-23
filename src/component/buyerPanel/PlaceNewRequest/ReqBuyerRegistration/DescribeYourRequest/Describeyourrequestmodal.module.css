@@ -1,7 +1,7 @@
 .overlay {
     background-color: #00000080;
     z-index: 50;
-    margin-top: 11vh;
+    margin-top: 11vh; 
 }
 
 @media (min-width: 1024px) {
