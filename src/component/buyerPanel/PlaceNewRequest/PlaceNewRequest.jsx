@@ -5,7 +5,7 @@
  */
 import { useEffect, useState } from "react";
 import styles from "./PlaceNewRequest.module.css";
-import BuyerRegistration from "./BuyerRegistration/BuyerRegistration";
+// import BuyerRegistration from "./BuyerRegistration/BuyerRegistration";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getbuyerrequestList,
@@ -15,6 +15,7 @@ import dayjs from "../../../utils/dayjs";
 import { Spin } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import HiredProfessional from "./BuyerRegistration/HiredProfessional/HiredProfessional";
+import ReqBuyerRegistration from "./ReqBuyerRegistration/ReqBuyerRegistration";
 
 const PlaceNewRequest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -198,12 +199,19 @@ const PlaceNewRequest = () => {
         </div>
       )}
 
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <BuyerRegistration
           closeModal={closeModal}
           setSelectedService={setSelectedService}
           setFromImageModal={setFromImageModal}
         />
+      )} */}
+
+      {isModalOpen && (
+        <>
+          <ReqBuyerRegistration onClose={closeModal} setSelectedService={setSelectedService}
+          setFromImageModal={setFromImageModal} />
+        </>
       )}
 
       {isHiredModalOpen && (
