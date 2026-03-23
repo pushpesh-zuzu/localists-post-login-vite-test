@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import VerifyIcon from "../../../../../ReactIcon/VerifyIcon";
-import { useNavigate } from "react-router"; 
+import { useNavigate } from "react-router";
 import {
     addDetailsRequestData,
     addImageSubmittedData,
@@ -11,7 +11,7 @@ import {
     setQualityData,
 } from "../../../../../store/Buyer/BuyerSlice";
 import { clearBuyerRegisterFormData } from "../../../../../store/FindJobs/findJobSlice";
-import styles from "./DescribeYourRequest.module.css";
+import styles from "./DescribeYourRequestsModal.module.css";
 
 const DescribeYourRequestModal = ({ nextStep, progressPercent, sellers, setShowConfirmModal }) => {
     const [text, setText] = useState("");

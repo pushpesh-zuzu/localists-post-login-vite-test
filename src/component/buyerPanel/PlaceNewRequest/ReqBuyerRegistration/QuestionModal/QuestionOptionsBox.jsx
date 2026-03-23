@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import styles from "./QuestionOptionsBox.module.css";
+import styles from "./QuestionOptionBox.module.css";
 
 const QuestionOptionsBox = ({ label, isSelected, onSelect }) => {
   return (

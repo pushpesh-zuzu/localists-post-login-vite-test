@@ -9,7 +9,7 @@ import LocationMapIcon from "../../../../../ReactIcon/LocationMapIcon";
 import StarIconFeature from "../../../../../ReactIcon/StarIconFeature";
 import HalfStarIconFeature from "../../../../../ReactIcon/HalfStarIconFeature";
 import GalleryIcon from "../../../../../ReactIcon/GalleryIcon";
-import styles from "./SeeMyMatchesModal.module.css";
+import styles from "./SeeMyMatcheModal.module.css";
 
 
 function SeeMyMatchesModal({ previousStep, progressPercent }) {
