@@ -11,7 +11,7 @@ import {
     setQualityData,
 } from "../../../../../store/Buyer/BuyerSlice";
 import { clearBuyerRegisterFormData } from "../../../../../store/FindJobs/findJobSlice";
-import styles from "./DescribeYourRequestModal.module.css";
+import styles from "./DescribeYourRequest.module.css";
 
 const DescribeYourRequestModal = ({ nextStep, progressPercent, sellers, setShowConfirmModal }) => {
     const [text, setText] = useState("");
