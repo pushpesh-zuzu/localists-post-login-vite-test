@@ -94,8 +94,11 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   z-index: 9999;
   max-height: 91px;
+  min-height: 30px;
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
@@ -121,7 +124,8 @@
 .searchResults .ant-spin {
   display: flex;
   justify-content: center;
-  padding: 12px 0;
+  align-items: center;
+  height: 100%;
 }
 
 .noData {
