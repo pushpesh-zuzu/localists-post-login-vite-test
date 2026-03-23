@@ -265,6 +265,11 @@ const QuestionModal = ({
     };
 
     const handleCloseClick = () => {
+        dispatch(setbuyerRequestData({
+            ...buyerRequest,
+            postcode: "",
+            city: "",
+        }));
         if (questionanswerData?.length === 0) {
             onClose?.();
             dispatch(clearSetbuyerRequestData());

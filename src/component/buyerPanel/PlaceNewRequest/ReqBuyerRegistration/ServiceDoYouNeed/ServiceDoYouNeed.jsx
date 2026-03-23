@@ -128,8 +128,13 @@ function ServiceDoYouNeed({
     }, [pincode]);
 
     const handleCloseClick = () => {
+        dispatch(setbuyerRequestData({
+            ...buyerRequest,
+            postcode: "",
+            city: "",
+        }));
         if (!getBarkToken()) {
-            dispatch(setbuyerRequestData({}));
+            // dispatch(setbuyerRequestData({}));
             setShowConfirmModal(true);
         } else {
             onClose();

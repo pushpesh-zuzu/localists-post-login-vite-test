@@ -34,6 +34,8 @@ function ReqBuyerRegistration({
         requestUserId, autoBidData } =
         useSelector((state) => state.buyer || {});
 
+    // console.log("buyerRequest", buyerRequest)
+
     const serviceData = autoBidData?.[0];
     const sellers = serviceData?.sellers || [];
     const hasSellers = sellers.length > 0;

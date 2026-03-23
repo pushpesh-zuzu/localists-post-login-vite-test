@@ -1,6 +1,7 @@
 .overlay {
     background-color: rgba(0, 0, 0, 0.5);
     margin-top: 5vh;
+    z-index: 50;
 }
 
 @media (min-width: 1024px) {
