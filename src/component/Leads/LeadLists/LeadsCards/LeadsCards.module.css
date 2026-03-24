@@ -542,9 +542,9 @@
     border-bottom: 1px solid #e0e0e0;
   }
 
-  .jobInfo {
+  /* .jobInfo {
     margin-bottom: 20px;
-  }
+  } */
   .leadActions {
     margin-top: 0px;
     display: flex;

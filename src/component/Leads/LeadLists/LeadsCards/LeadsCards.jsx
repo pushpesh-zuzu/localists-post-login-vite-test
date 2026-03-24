@@ -23,6 +23,7 @@ import viewDetailsArrow from "../../../../assets/Images/Setting/viewDetailsArrow
 import LeadViewDetails from "../LeadViewDetails/LeadViewDetails";
 import { formatUKPhoneNumber } from "../../../../utils/formatUKPhoneNumber";
 import Expired from "../../../../assets/Images/Leads/expired.png";
+import TimeSlots from "./TimeSlots/TimeSlots";
 
 const LeadsCards = () => {
   const dispatch = useDispatch();
@@ -345,6 +346,7 @@ const LeadsCards = () => {
                               )}
                               {item?.details && <p><strong>Additional Details:</strong> {item?.details}</p>}
                             </div>
+                            <TimeSlots apiData={item}/>
                           </div>
                           <div className={styles.leadActionWrapper}>
                             {item?.is_expired === 1 ? (
