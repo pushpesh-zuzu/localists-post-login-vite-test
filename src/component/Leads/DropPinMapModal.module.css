@@ -1,0 +1,611 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent {
+    background: #fff;
+    padding: 24px;
+    width: 600px;
+    max-width: 80%;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: white;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalHeader h2 {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.scrollContent {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 transparent;
+    scroll-behavior: smooth;
+}
+
+.scrollContent::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollContent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollContent::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.scrollContent::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+    /* smooth hover */
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer !important;
+    color: #b7b7b7;
+}
+
+.infoBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* padding: 10px; */
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    margin-top: 16px;
+}
+
+.infoBox img {
+    margin-top: 0px;
+}
+
+.infoBox span {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.infoIcon {
+    font-size: 16px;
+}
+
+.inputRow {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    /* width: 100%; */
+}
+
+.inputField {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    max-width: -webkit-fill-available;
+}
+
+.inputField label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+
+.inputField input,
+.inputField select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* width: 100%;
+  max-width: -webkit-fill-available; */
+    /* background: red; */
+}
+
+.mapWrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.mapBox {
+    width: 100%;
+    height: 300px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    .searchContainer {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .searchInputWrapper {
+        left: 10px;
+        position: relative;
+        width: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .searchContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .searchInputWrapper {
+        position: relative;
+        left: 140px;
+        width: 200px;
+        max-width: calc(100% - 10px);
+    }
+
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.mapSearch {
+    width: 100%;
+    padding: 10px 14px 10px 34px;
+
+    border-radius: 8px;
+    border: 1px solid #e4e6eb;
+    outline: none;
+
+    background: #fff;
+    font-size: 14px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancelBtn {
+    background: #c6c6c6;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer !important;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.nextBtn {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer !important;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.customSelect {
+    appearance: none;
+    height: 41px;
+    width: -webkit-fill-available;
+}
+
+.cancelBtn:hover {
+    background: #e0e0e0;
+}
+
+.nextBtn:hover {
+    background: #0090dd;
+}
+
+@media screen and (max-width: 767px) {
+    .infoBox img {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modalOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+        display: flex;
+        align-items: unset !important;
+        justify-content: center;
+        overflow-x: scroll;
+    }
+
+    .modalContent {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+    }
+
+    .cancelBtn {
+        background: #c6c6c6;
+        color: white;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer !important;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .nextBtn {
+        background: var(--primary-color);
+        color: white;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer !important;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .cancelBtn:hover {
+        background: #e0e0e0;
+    }
+
+    .nextBtn:hover {
+        background: #0090dd;
+    }
+
+    .infoBox {
+        padding: 0px;
+    }
+
+    .infoBox img {
+        margin-top: 0px;
+    }
+
+    .infoBox span {
+        font-size: 12px;
+    }
+}
+
+.locationWrapper {
+    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+.locationWrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.locationWrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.locationWrapper::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.locationItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    position: relative;
+    background: transparent;
+    transition: background 0.2s ease;
+    overflow: visible;
+}
+
+.locationItem:hover {
+    background: #F0F2F5;
+}
+
+.activeRow {
+    background: #E4E6EB !important;
+}
+
+.textActive {
+    cursor: pointer;
+}
+
+.iconBox {
+    width: 30px;
+    height: 30px;
+    background: #E4E6EB;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1877F2;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.km {
+    color: #1877F2;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.popup {
+    position: absolute;
+    top: 45px;
+    left: 50px;
+    background: #fff;
+    border: 1px solid #E4E6EB;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.sliderRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.inputRowKm {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.inputRowKm input {
+    width: 60px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.arrow {
+    display: inline-block;
+    margin-left: 6px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #1877F2;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+}
+
+.itemContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: fit-content;
+    transition: background 0.2s ease;
+}
+
+.noScroll {
+    overflow: visible !important;
+    max-height: unset;
+}
+
+.slideHeader {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #E4E6EB;
+}
+
+.dropPinBtn {
+    position: absolute;
+    bottom: 25px;
+    left: 10px;
+    z-index: 1000;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: white;
+    border: 1px solid #e4e6eb;
+    border-radius: 6px;
+
+    padding: 6px 10px;
+    font-size: 13px;
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.pinIcon svg {
+    display: block;
+}
+
+.activePin {
+    background: #1877F2;
+    color: white;
+}
+
+.loaderWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+}
+
+/* Spinner Loader */
+.loader {
+    width: 30px;
+    height: 30px;
+    border: 5px solid #e6f7fb;
+    /* light background */
+    border-top: 5px solid #00afe3;
+    /* your color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.errorText {
+    margin-top: 8px;
+    color: #ff4d4f;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.sliderWrapper {
+  width: 100%;
+  position: relative;
+  height: 20px;
+}
+
+/* TRACK */
+.sliderTrack {
+  width: 100%;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* FILL */
+.sliderFill {
+  height: 100%;
+  background: #1877F2;
+  border-radius: 999px;
+  transition: width 0.15s ease;
+}
+
+/* INPUT (important fixes here) */
+.sliderInput {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: 0;
+  left: 0;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  background: transparent;
+  border: none !important;
+  outline: none;
+  box-shadow: none;
+
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* REMOVE DEFAULT TRACK */
+.sliderInput::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+}
+
+/* THUMB (MOST IMPORTANT PART) */
+.sliderInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1877F2;
+  cursor: pointer;
+  border: 2px solid #fff;
+  margin-top: -6px; /* center thumb perfectly */
+}
+
+/* FIREFOX */
+.sliderInput::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.sliderInput::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1877F2;
+  cursor: pointer;
+  border: none;
+}

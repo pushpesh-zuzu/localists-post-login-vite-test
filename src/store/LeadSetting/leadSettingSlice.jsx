@@ -63,6 +63,69 @@ const initialState = {
   expandRadiusLoader: false,
   viewProfileData: {},
   reviewProfileData: {},
+  getLocationDistanceTypeData: [],
+  getLocationDistanceTypeLoader: false,
+  updateLocationLoader: false,
+};
+
+export const getUserLocationsDistanceType = (payload) => {
+  return async (dispatch) => {
+    dispatch(setGetLocationDistanceTypeLoader(true));
+    try {
+      const response = await axiosInstance.post(
+        `users/get_user_locations_distance_type`,
+        payload
+      );
+
+      if (response) {
+        dispatch(setGetLocationDistanceTypeData(response?.data?.data));
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(setGetLocationDistanceTypeLoader(false));
+    }
+  };
+};
+
+export const updateMultipleUserLocationsDistanceType = (payload) => {
+  return async (dispatch) => {
+    dispatch(setUpdateLocationLoader(true));
+
+    try {
+      const response = await axiosInstance.post(
+        `users/update_multiple_user_locations_distance_type`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response?.data) {
+        showToast(
+          "success",
+          response?.data?.message || "Updated successfully"
+        );
+        return response.data;
+      }
+
+      return { success: false };
+    } catch (error) {
+      const errorMsg =
+        error?.response?.data?.message || "Something went wrong";
+
+      console.error("Update Location Error:", error);
+
+      showToast("error", errorMsg);
+
+      return { success: false, error: errorMsg };
+    } finally {
+      dispatch(setUpdateLocationLoader(false));
+    }
+  };
 };
 
 export const getleadPreferencesList = (serviceId) => {
@@ -1124,6 +1187,15 @@ const leadSettingSlice = createSlice({
   name: "leadSetting",
   initialState: initialState,
   reducers: {
+    setGetLocationDistanceTypeLoader(state, action) {
+      state.getLocationDistanceTypeLoader = action.payload;
+    },
+    setGetLocationDistanceTypeData(state, action) {
+      state.getLocationDistanceTypeData = action.payload;
+    },
+    setUpdateLocationLoader(state, action) {
+      state.updateLocationLoader = action.payload;
+    },
     setIsDirtyRedux(state, action) {
       state.isDirty = action.payload;
     },
@@ -1327,6 +1399,9 @@ export const {
   setLeadPreferenceData,
   setLeadListLoader,
   setLeadRequestListData,
+  setGetLocationDistanceTypeLoader,
+  setGetLocationDistanceTypeData,
+  setUpdateLocationLoader,
 } = leadSettingSlice.actions;
 
 export default leadSettingSlice.reducer;

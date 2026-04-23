@@ -12,9 +12,12 @@ import {
   editLocationLead,
   getleadPreferencesList,
   getLocationLead,
+  getUserLocationsDistanceType,
+  updateMultipleUserLocationsDistanceType,
 } from "../../../store/LeadSetting/leadSettingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ServiceSelectionModal from "../LeadSettings/ServiceModal";
+import DropPinMapModal from "../DropPinMapModal";
 
 const AddLocationModal = ({
   open,
@@ -31,6 +34,7 @@ const AddLocationModal = ({
   const [locationType, setLocationType] = useState("");
   const { registerData } = useSelector((state) => state.findJobs);
   const { getlocationData } = useSelector((state) => state.leadSetting);
+
   const isNationWide = () => {
     if (getlocationData[0]?.nation_wide == 1) {
       return true;
@@ -54,22 +58,47 @@ const AddLocationModal = ({
     travel_by: "",
     coordinates: "",
   });
+  const [dropPinLocationData, setDropPinLocationData] = useState([])
   const [isFromTravelTime, setIsFromTravelTime] = useState(false);
   useEffect(() => {
     setIsFromTravelTime(false);
   }, []);
   const { userToken } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  // console.log("dropPinLocationData", dropPinLocationData)
+
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+
+    if (option === "distance") {
+      const data = {
+        user_id:
+          userToken?.active_status == 1
+            ? userToken?.remember_tokens
+            : registerData?.remember_tokens,
+      };
+
+      setLocationType("Distance");
+
+      dispatch(getUserLocationsDistanceType(data)).then((res) => {
+        if (res?.success) {
+          setSelectedOption("distance");
+        }
+      });
+
+      return;
+    }
+
     if (option === "nationwide") {
       setLocationType("Nationwide");
       setIsNextModalOpen(true);
       return;
     }
+
     let type = "";
-    if (option === "distance") type = "Distance";
-    else if (option === "travelTime") type = "Travel Time";
+    // if (option === "distance") type = "Distance";
+    if (option === "travelTime") type = "Travel Time";
     else if (option === "drawOnMap") type = "Draw on Map";
 
     setLocationType(type);
@@ -98,7 +127,7 @@ const AddLocationModal = ({
       postcode_old: locationData.postcode ? locationData.postcode : "000000",
       coordinates: locationData?.coordinates ?? "",
     };
-    console.log("jhdbfufg", locationData);
+    // console.log("jhdbfufg", locationData);
     if (isEditingLocation && editLocationId) {
       dispatch(
         editLocationLead({ ...locationdata, location_id: editLocationId })
@@ -119,21 +148,61 @@ const AddLocationModal = ({
         }
       });
     } else {
-      dispatch(addLocationLead(locationdata)).then((result) => {
-        if (result?.success) {
-          const data = { user_id: userToken?.remember_tokens };
-          dispatch(getLocationLead(data));
-          dispatch(getleadPreferencesList(data));
+
+      const payload = data.flatMap((serviceId) =>
+        dropPinLocationData.map((item) => {
+          const obj = {
+            postcode: item.postcode,
+            distance: Number(item.miles),
+            service_id: serviceId,
+          };
+
+          if (item.id) {
+            obj.id = item.id;
+          }
+
+          return obj;
+        })
+      );
+
+      // console.log("payload", payload);
+
+      const finalPayload = {
+        postcodes: payload,
+      };
+
+      dispatch(
+        updateMultipleUserLocationsDistanceType(finalPayload)
+      ).then((res) => {
+        if (res?.success !== false) {
+          const refreshPayload = { user_id: userToken?.remember_tokens };
+
+          dispatch(getLocationLead(refreshPayload));
+          dispatch(getleadPreferencesList(refreshPayload));
+
           setSelectedOption(false);
           setLocationType("");
           setIsLocationModalOpen(false);
-          setLocationData({
-            miles1: "20",
-            postcode: "",
-          });
           setIsNextModalOpen(false);
+          setDropPinLocationData([]);
         }
       });
+
+      // dispatch(addLocationLead(locationdata)).then((result) => {
+      //   if (result?.success) {
+      //     const data = { user_id: userToken?.remember_tokens };
+      //     dispatch(getLocationLead(data));
+      //     dispatch(getleadPreferencesList(data));
+      //     setSelectedOption(false);
+      //     setLocationType("");
+      //     setIsLocationModalOpen(false);
+      //     setLocationData({
+      //       miles1: "20",
+      //       postcode: "",
+      //     });
+      //     setIsNextModalOpen(false);
+      //   }
+      // });
     }
   };
 
@@ -245,11 +314,17 @@ const AddLocationModal = ({
       )}
 
       {selectedOption === "distance" && (
-        <LocationModal
+        // <LocationModal
+        //   onClose={handleChildModalClose}
+        //   onChange={handleLocationChange}
+        //   locationData={locationData}
+        //   onNext={handleNext}
+        // />
+        <DropPinMapModal
           onClose={handleChildModalClose}
-          onChange={handleLocationChange}
-          locationData={locationData}
           onNext={handleNext}
+          dropPinLocationData={dropPinLocationData}
+          setDropPinLocationData={setDropPinLocationData}
         />
       )}
 

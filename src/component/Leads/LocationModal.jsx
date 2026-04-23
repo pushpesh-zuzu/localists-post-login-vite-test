@@ -29,6 +29,8 @@ const LocationModal = ({ open, locationData, onChange, onNext, onClose }) => {
     lng: -1.1396,
   });
 
+      // console.log("locationData", locationData)
+
   const validatePostcode = async (value) => {
     if (!value) {
       setPostalCodeValidate(false);
