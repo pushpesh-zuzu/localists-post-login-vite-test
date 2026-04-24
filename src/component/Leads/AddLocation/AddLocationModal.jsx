@@ -18,6 +18,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import ServiceSelectionModal from "../LeadSettings/ServiceModal";
 import DropPinMapModal from "../DropPinMapModal";
+import { showToast } from "../../../utils";
 
 const AddLocationModal = ({
   open,
@@ -148,6 +149,11 @@ const AddLocationModal = ({
         }
       });
     } else {
+
+      if (!data || data.length === 0) {
+        showToast("error", "Please select service");
+        return;
+      }
 
       const payload = data.flatMap((serviceId) =>
         dropPinLocationData.map((item) => {
