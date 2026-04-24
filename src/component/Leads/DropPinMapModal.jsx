@@ -106,15 +106,34 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
             const postcode = postal.long_name.replace(/\s/g, "");
 
             // Save ONLY postcode
-            setLocations((prev) => [
-                ...prev,
-                {
-                    postcode: postcode.trim(),
-                    miles: "16",
-                },
-            ]);
+            // setLocations((prev) => [
+            //     ...prev,
+            //     {
+            //         postcode: postcode.trim(),
+            //         miles: "16",
+            //     },
+            // ]);
 
-            setError(""); // clear error
+            setLocations((prev) => {
+                const exists = prev.some(
+                    (item) => item.postcode === postcode.trim()
+                );
+
+                if (exists) {
+                    setError("This postcode is already added.");
+                    return prev; // don't add duplicate
+                }
+
+                return [
+                    ...prev,
+                    {
+                        postcode: postcode.trim(),
+                        miles: "16",
+                    },
+                ];
+            });
+
+            // setError(""); // clear error
 
             if (searchInputRef.current) {
                 searchInputRef.current.value = "";
@@ -315,18 +334,37 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
 
                 // If no postcode → show message
                 if (!postcode) {
-                    setError("We couldn’t find a postcode here. Please use the search bar to select a location."); return;
+                    setError("Please select a valid location or use the search bar to select a postcode."); return;
                 }
 
                 // Add clean data
-                setLocations((prev) => [
-                    ...prev,
-                    {
-                        postcode: postcode.trim(),
-                        miles: "16", // default string
-                    },
-                ]);
-                setError("");
+                // setLocations((prev) => [
+                //     ...prev,
+                //     {
+                //         postcode: postcode.trim(),
+                //         miles: "16", // default string
+                //     },
+                // ]);
+
+                setLocations((prev) => {
+                    const exists = prev.some(
+                        (item) => item.postcode === postcode.trim()
+                    );
+
+                    if (exists) {
+                        setError("This postcode is already added.");
+                        return prev;
+                    }
+
+                    return [
+                        ...prev,
+                        {
+                            postcode: postcode.trim(),
+                            miles: "16",
+                        },
+                    ];
+                });
+                // setError("");
             });
 
             // Auto disable drop pin mode
