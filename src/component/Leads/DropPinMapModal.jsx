@@ -23,7 +23,9 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
     const markerRef = useRef({});  // was useRef([])
     const milesRef = useRef(null);
     const searchInputRef = useRef(null);
-    const autocompleteRef = useRef(null);
+    const locationFieldRef = useRef(null);
+    const autocompleteServiceRef = useRef(null);
+    const placesServiceRef = useRef(null);
     const isMilesUpdateRef = useRef(false);
 
     const { getLocationDistanceTypeData, getLocationDistanceTypeLoader } = useSelector(
@@ -36,6 +38,9 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
     const [hoverIndex, setHoverIndex] = useState(null);
     const [isDropPin, setIsDropPin] = useState(false);
     const [error, setError] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const [postcodePredictions, setPostcodePredictions] = useState([]);
+    const [radiusPopupPosition, setRadiusPopupPosition] = useState(null);
 
     // console.log("locationData", locations)
 
@@ -56,94 +61,112 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
         }
     }, [getLocationDistanceTypeData]);
 
+    const addPostcodeLocation = (postcode) => {
+        const normalizedPostcode = postcode.trim().replace(/\s/g, "");
+
+        setLocations((prev) => {
+            const exists = prev.some(
+                (item) => item.postcode === normalizedPostcode
+            );
+
+            if (exists) {
+                setError("This postcode is already added.");
+                return prev;
+            }
+
+            return [
+                ...prev,
+                {
+                    postcode: normalizedPostcode,
+                    miles: "16",
+                },
+            ];
+        });
+    };
+
     useEffect(() => {
         if (
             !mapLoaded ||
             !window.google?.maps?.places ||
-            !searchInputRef.current ||
-            !mapInstance.current // IMPORTANT
+            !mapInstance.current
         ) return;
 
-        const autocomplete = new window.google.maps.places.Autocomplete(
-            searchInputRef.current,
-            {
-                types: ["geocode"],
-                componentRestrictions: { country: "uk" }, // UK ONLY
-            }
-        );
+        autocompleteServiceRef.current = new window.google.maps.places.AutocompleteService();
+        placesServiceRef.current = new window.google.maps.places.PlacesService(mapInstance.current);
+    }, [mapLoaded]);
 
-        autocomplete.bindTo("bounds", mapInstance.current);
+    useEffect(() => {
+        const query = searchText.trim();
 
-        autocompleteRef.current = autocomplete;
+        if (
+            query.length < 4 ||
+            !autocompleteServiceRef.current ||
+            !mapInstance.current
+        ) {
+            setPostcodePredictions([]);
+            return;
+        }
 
-        const listener = autocomplete.addListener("place_changed", () => {
-            const place = autocomplete.getPlace();
+        const timer = setTimeout(() => {
+            autocompleteServiceRef.current.getPlacePredictions(
+                {
+                    input: query,
+                    types: ["postal_code"],
+                    componentRestrictions: { country: "uk" },
+                    bounds: mapInstance.current.getBounds(),
+                },
+                (predictions, status) => {
+                    if (searchInputRef.current?.value.trim() !== query) return;
 
-            if (!place.geometry) return;
+                    if (
+                        status !== window.google.maps.places.PlacesServiceStatus.OK ||
+                        !predictions?.length
+                    ) {
+                        setPostcodePredictions([]);
+                        return;
+                    }
 
-            const location = place.geometry.location;
-
-            mapInstance.current.panTo(location);
-            mapInstance.current.setZoom(10);
-
-            // 🔥 Extract postcode
-            const postal = place.address_components?.find((c) =>
-                c.types.includes("postal_code")
-            );
-
-            // ❌ If NO postcode → BLOCK
-            if (!postal) {
-                setError("Please select a valid UK postcode only.");
-
-                // Clear input even on error (optional)
-                if (searchInputRef.current) {
-                    searchInputRef.current.value = "";
+                    setPostcodePredictions(predictions);
                 }
+            );
+        }, 300);
 
-                return;
-            }
+        return () => clearTimeout(timer);
+    }, [searchText]);
 
-            const postcode = postal.long_name.replace(/\s/g, "");
+    const handlePostcodePredictionSelect = (prediction) => {
+        if (!placesServiceRef.current) return;
 
-            // Save ONLY postcode
-            // setLocations((prev) => [
-            //     ...prev,
-            //     {
-            //         postcode: postcode.trim(),
-            //         miles: "16",
-            //     },
-            // ]);
+        placesServiceRef.current.getDetails(
+            {
+                placeId: prediction.place_id,
+                fields: ["address_components", "geometry"],
+            },
+            (place, status) => {
+                if (
+                    status !== window.google.maps.places.PlacesServiceStatus.OK ||
+                    !place?.geometry
+                ) return;
 
-            setLocations((prev) => {
-                const exists = prev.some(
-                    (item) => item.postcode === postcode.trim()
+                const postal = place.address_components?.find((c) =>
+                    c.types.includes("postal_code")
                 );
 
-                if (exists) {
-                    setError("This postcode is already added.");
-                    return prev; // don't add duplicate
+                if (!postal) {
+                    setError("Please select a valid UK postcode only.");
+                    setSearchText("");
+                    setPostcodePredictions([]);
+                    return;
                 }
 
-                return [
-                    ...prev,
-                    {
-                        postcode: postcode.trim(),
-                        miles: "16",
-                    },
-                ];
-            });
-
-            // setError(""); // clear error
-
-            if (searchInputRef.current) {
-                searchInputRef.current.value = "";
+                mapInstance.current.panTo(place.geometry.location);
+                mapInstance.current.setZoom(7);
+                addPostcodeLocation(postal.long_name);
+                setSearchText("");
+                setPostcodePredictions([]);
             }
-        });
-
-        return () => {
-            window.google.maps.event.clearInstanceListeners(autocomplete);
-        };
-    }, [mapLoaded, mapInstance.current]);
+        );
+    };
 
     useEffect(() => {
         if (window.google?.maps?.places) {
@@ -174,6 +197,11 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
             zoom: 5,
             draggableCursor: "default",
         });
+
+        if (window.google?.maps?.places) {
+            autocompleteServiceRef.current = new window.google.maps.places.AutocompleteService();
+            placesServiceRef.current = new window.google.maps.places.PlacesService(mapInstance.current);
+        }
     }, [mapLoaded, getLocationDistanceTypeLoader]);
 
     useEffect(() => {
@@ -302,6 +330,7 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
             }
 
             setActiveIndex(null);
+            setRadiusPopupPosition(null);
         };
 
         document.addEventListener("mousedown", handleClick);
@@ -437,7 +466,7 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
                                 </div>
 
                                 {/* LOCATION LIST */}
-                                <div className={styles.inputField}>
+                                <div className={styles.inputField} ref={locationFieldRef}>
                                     <label>Locations</label>
                                     <div
                                         className={`${styles.locationWrapper} ${activeIndex !== null ? styles.noScroll : ""
@@ -462,7 +491,40 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
                                                     className={styles.textActive}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
-                                                        setActiveIndex((prev) => (prev === index ? null : index));
+                                                        const fieldRect = locationFieldRef.current?.getBoundingClientRect();
+                                                        const targetRect = e.currentTarget.getBoundingClientRect();
+                                                        const popupWidth = 200;
+
+                                                        setActiveIndex((prev) => {
+                                                            if (prev === index) {
+                                                                setRadiusPopupPosition(null);
+                                                                return null;
+                                                            }
+
+                                                            if (fieldRect) {
+                                                                const isMobile = window.innerWidth <= 480;
+                                                                setRadiusPopupPosition({
+                                                                    top: targetRect.bottom - fieldRect.top + 6,
+                                                                    left: isMobile
+                                                                        ? Math.max(
+                                                                            0,
+                                                                            Math.min(
+                                                                                targetRect.left - fieldRect.left,
+                                                                                locationFieldRef.current.clientWidth - popupWidth
+                                                                            )
+                                                                        )
+                                                                        : Math.max(
+                                                                            0,
+                                                                            Math.min(
+                                                                                targetRect.left - fieldRect.left + 40,
+                                                                                locationFieldRef.current.clientWidth - popupWidth
+                                                                            )
+                                                                        ),
+                                                                });
+                                                            }
+
+                                                            return index;
+                                                        });
                                                     }}
                                                 >
                                                     {item.postcode}
@@ -477,54 +539,57 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
                                                     </span>
                                                 </div>
 
-                                                {/* POPUP */}
-                                                {activeIndex === index && (
-                                                    <div className={styles.popup} ref={milesRef}
-                                                        onClick={(e) => e.stopPropagation()}>
-                                                        <div className={styles.slideHeader}>
-                                                            Distance Radius
-                                                        </div>
-                                                        <div className={styles.sliderRow}>
-                                                            <span>1</span>
-                                                            <div className={styles.sliderWrapper}>
-                                                                <div className={styles.sliderTrack}>
-                                                                    <div
-                                                                        className={styles.sliderFill}
-                                                                        style={{
-                                                                            width: `${(Number(item.miles) / 80) * 100}%`,
-                                                                        }}
-                                                                    />
-                                                                </div>
-
-                                                                <input
-                                                                    type="range"
-                                                                    min="1"
-                                                                    max="80"
-                                                                    value={Number(item.miles)}
-                                                                    onChange={(e) => updateMiles(index, e.target.value)}
-                                                                    className={styles.sliderInput}
-                                                                />
-                                                            </div>
-                                                            <span>80</span>
-                                                        </div>
-
-                                                        <div className={styles.inputRowKm}>
-                                                            <input
-                                                                type="number"
-                                                                min="1"
-                                                                max="80"
-                                                                value={item.miles}
-                                                                onChange={(e) =>
-                                                                    updateMiles(index, e.target.value)
-                                                                }
-                                                            />
-                                                            <span>mi</span>
-                                                        </div>
-                                                    </div>
-                                                )}
                                             </div>
                                         ))}
                                     </div>
+                                    {activeIndex !== null && radiusPopupPosition && locations[activeIndex] && (
+                                        <div
+                                            className={styles.popup}
+                                            ref={milesRef}
+                                            style={radiusPopupPosition}
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            <div className={styles.slideHeader}>
+                                                Distance Radius
+                                            </div>
+                                            <div className={styles.sliderRow}>
+                                                <span>1</span>
+                                                <div className={styles.sliderWrapper}>
+                                                    <div className={styles.sliderTrack}>
+                                                        <div
+                                                            className={styles.sliderFill}
+                                                            style={{
+                                                                width: `${(Number(locations[activeIndex].miles) / 80) * 100}%`,
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    <input
+                                                        type="range"
+                                                        min="1"
+                                                        max="80"
+                                                        value={Number(locations[activeIndex].miles)}
+                                                        onChange={(e) => updateMiles(activeIndex, e.target.value)}
+                                                        className={styles.sliderInput}
+                                                    />
+                                                </div>
+                                                <span>80</span>
+                                            </div>
+
+                                            <div className={styles.inputRowKm}>
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    max="80"
+                                                    value={locations[activeIndex].miles}
+                                                    onChange={(e) =>
+                                                        updateMiles(activeIndex, e.target.value)
+                                                    }
+                                                />
+                                                <span>mi</span>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                                 {/* MAP */}
                                 <div
@@ -538,7 +603,35 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
                                                 type="text"
                                                 placeholder="Search postcode"
                                                 className={styles.mapSearch}
+                                                value={searchText}
+                                                onChange={(e) => setSearchText(e.target.value)}
                                             />
+                                            {postcodePredictions.length > 0 && (
+                                                <div className={styles.searchResults}>
+                                                    {postcodePredictions.map((prediction) => (
+                                                        <button
+                                                            key={prediction.place_id}
+                                                            type="button"
+                                                            className={styles.searchItem}
+                                                            onClick={() => handlePostcodePredictionSelect(prediction)}
+                                                        >
+                                                            <span className={styles.searchItemIcon}>
+                                                                <EnvironmentFilled />
+                                                            </span>
+                                                            <span className={styles.searchItemText}>
+                                                                <span className={styles.searchItemMain}>
+                                                                    {prediction.structured_formatting?.main_text || prediction.description}
+                                                                </span>
+                                                                {prediction.structured_formatting?.secondary_text && (
+                                                                    <span className={styles.searchItemSecondary}>
+                                                                        {prediction.structured_formatting.secondary_text}
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -550,7 +643,7 @@ const DropPinMapModal = ({ open, onClose, onNext, setDropPinLocationData }) => {
                                         }}
                                     >
 
-                                        {/* 🔥 ICON */}
+                                        {/* ICON */}
                                         <span
                                             className={styles.pinIcon}
                                             dangerouslySetInnerHTML={{
