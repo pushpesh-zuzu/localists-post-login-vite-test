@@ -149,66 +149,67 @@ const AddLocationModal = ({
         }
       });
     } else {
+      if (locationType === "Distance") {
+        if (!data || data.length === 0) {
+          showToast("error", "Please select service");
+          return;
+        }
 
-      if (!data || data.length === 0) {
-        showToast("error", "Please select service");
+        const payload = data.flatMap((serviceId) =>
+          dropPinLocationData.map((item) => {
+            const obj = {
+              postcode: item.postcode,
+              distance: Number(item.miles),
+              service_id: serviceId,
+            };
+
+            if (item.id) {
+              obj.id = item.id;
+            }
+
+            return obj;
+          })
+        );
+
+        const finalPayload = {
+          postcodes: payload,
+        };
+
+        dispatch(
+          updateMultipleUserLocationsDistanceType(finalPayload)
+        ).then((res) => {
+          if (res?.success !== false) {
+            const refreshPayload = { user_id: userToken?.remember_tokens };
+
+            dispatch(getLocationLead(refreshPayload));
+            dispatch(getleadPreferencesList(refreshPayload));
+
+            setSelectedOption(false);
+            setLocationType("");
+            setIsLocationModalOpen(false);
+            setIsNextModalOpen(false);
+            setDropPinLocationData([]);
+          }
+        });
+
         return;
       }
 
-      const payload = data.flatMap((serviceId) =>
-        dropPinLocationData.map((item) => {
-          const obj = {
-            postcode: item.postcode,
-            distance: Number(item.miles),
-            service_id: serviceId,
-          };
-
-          if (item.id) {
-            obj.id = item.id;
-          }
-
-          return obj;
-        })
-      );
-
-      // console.log("payload", payload);
-
-      const finalPayload = {
-        postcodes: payload,
-      };
-
-      dispatch(
-        updateMultipleUserLocationsDistanceType(finalPayload)
-      ).then((res) => {
-        if (res?.success !== false) {
-          const refreshPayload = { user_id: userToken?.remember_tokens };
-
-          dispatch(getLocationLead(refreshPayload));
-          dispatch(getleadPreferencesList(refreshPayload));
-
+      dispatch(addLocationLead(locationdata)).then((result) => {
+        if (result?.success) {
+          const data = { user_id: userToken?.remember_tokens };
+          dispatch(getLocationLead(data));
+          dispatch(getleadPreferencesList(data));
           setSelectedOption(false);
           setLocationType("");
           setIsLocationModalOpen(false);
+          setLocationData({
+            miles1: "20",
+            postcode: "",
+          });
           setIsNextModalOpen(false);
-          setDropPinLocationData([]);
         }
       });
-
-      // dispatch(addLocationLead(locationdata)).then((result) => {
-      //   if (result?.success) {
-      //     const data = { user_id: userToken?.remember_tokens };
-      //     dispatch(getLocationLead(data));
-      //     dispatch(getleadPreferencesList(data));
-      //     setSelectedOption(false);
-      //     setLocationType("");
-      //     setIsLocationModalOpen(false);
-      //     setLocationData({
-      //       miles1: "20",
-      //       postcode: "",
-      //     });
-      //     setIsNextModalOpen(false);
-      //   }
-      // });
     }
   };
 

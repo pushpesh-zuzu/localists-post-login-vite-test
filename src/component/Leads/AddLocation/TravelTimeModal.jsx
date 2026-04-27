@@ -52,8 +52,20 @@ const TravelTimeModal = ({
 
     return speedMap[mode] * minutes;
   };
-  const validatePostcode = async (value) => {
-    if (!value) {
+
+  const normalizePostcode = (postcode) =>
+    postcode.replace(/\s+/g, "").toUpperCase();
+
+  const isValidUKPostcode = (postcode) =>
+    /^([A-Z]{1,2}\d[A-Z\d]?)(\s?\d[A-Z]{2})$/i.test(postcode.trim());
+
+  const isFullPostcode = (postcode) => {
+    const cleaned = normalizePostcode(postcode);
+    return cleaned.length >= 5 && cleaned.length <= 7;
+  };
+
+  const validatePostcode = async (cleaned) => {
+    if (!cleaned) {
       setPostalCodeValidate(false);
       setCity("");
       return;
@@ -62,7 +74,7 @@ const TravelTimeModal = ({
     setCheckingPostcode(true);
 
     try {
-      const response = await dispatch(getCityName({ postcode: value }));
+      const response = await dispatch(getCityName({ postcode: cleaned }));
       const newResponse = response?.unwrap ? await response.unwrap() : response;
 
       if (newResponse?.data?.valid) {
@@ -72,7 +84,7 @@ const TravelTimeModal = ({
         setErrors((prev) => ({ ...prev, postcode: "" }));
         setLocationData((prev) => ({
           ...prev,
-          postcode: value,
+          postcode: cleaned,
           city: newResponse.data.city,
         }));
       } else if (newResponse?.data?.latitude && newResponse?.data?.longitude) {
@@ -86,7 +98,7 @@ const TravelTimeModal = ({
 
         setLocationData((prev) => ({
           ...prev,
-          postcode: value,
+          postcode: cleaned,
           coordinates: [newCenter],
         }));
 
@@ -303,8 +315,41 @@ const TravelTimeModal = ({
               name="postcode"
               value={locationData?.postcode ? locationData?.postcode : ""}
               onChange={(e) => {
-                onChange(e);
-                validatePostcode(e.target.value);
+                const value = e.target.value.toUpperCase().slice(0, 10);
+
+                onChange({ target: { name: "postcode", value } });
+
+                // clear error
+                setErrors((prev) => ({ ...prev, postcode: "" }));
+
+                const cleaned = normalizePostcode(value);
+
+                // Partial → stop API
+                if (!isFullPostcode(cleaned)) {
+                  setPostalCodeValidate(false);
+                  setCity("");
+                  return;
+                }
+
+                // Invalid full postcode
+                if (!isValidUKPostcode(value)) {
+                  setPostalCodeValidate(false);
+                  setCity("");
+                  setErrors((prev) => ({
+                    ...prev,
+                    postcode: "Please enter a valid postcode!",
+                  }));
+                  return;
+                }
+
+                // ✅ Debounce API
+                if (window.postcodeTimer) {
+                  clearTimeout(window.postcodeTimer);
+                }
+
+                window.postcodeTimer = setTimeout(() => {
+                  validatePostcode(cleaned);
+                }, 500);
               }}
               placeholder="Enter postcode (No Spaces)"
               autoComplete="off"
