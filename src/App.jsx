@@ -8,7 +8,7 @@ const LazyToastContainer = React.lazy(() =>
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet-async";
 import FullScreenSpinner from "./component/common/fullScreenSpinner/FullScreenSpinner";
-import LeadBuyerHelpModal from "./component/common/LeadBuyerHelpModal/LeadBuyerHelpModal";
+// import LeadBuyerHelpModal from "./component/common/LeadBuyerHelpModal/LeadBuyerHelpModal";
 import { getDashboardListData } from "./store/Dashboard/dashboardSlice";
 
 
@@ -21,9 +21,9 @@ function App({ initialUrl, hostname, createRouterFactory }) {
   const { registerToken } = useSelector((state) => state.findJobs);
   const { dashboardData } = useSelector((state) => state.dashboard);
 
-  const [showLeadBuyerPopup, setShowLeadBuyerPopup] = useState(false);
+  // const [showLeadBuyerPopup, setShowLeadBuyerPopup] = useState(false);
   const dashboardFetchedRef = useRef(false);
-  const popupTriggeredRef = useRef(false);
+  // const popupTriggeredRef = useRef(false);
 
   // console.log("dashboardList", userToken, dashboardData?.account_details, showLeadBuyerPopup)
 
@@ -78,24 +78,24 @@ function App({ initialUrl, hostname, createRouterFactory }) {
     }
   }, []);
 
-  useEffect(() => {
-    const planType = dashboardData?.account_details?.plan_type;
+  // useEffect(() => {
+  //   const planType = dashboardData?.account_details?.plan_type;
 
-    if (
-      userToken &&
-      planType === "None" &&
-      !popupTriggeredRef.current &&
-      !sessionStorage.getItem("leadBuyerPopup")
+  //   if (
+  //     userToken &&
+  //     planType === "None" &&
+  //     !popupTriggeredRef.current &&
+  //     !sessionStorage.getItem("leadBuyerPopup")
 
-    ) {
-      popupTriggeredRef.current = true;
+  //   ) {
+  //     popupTriggeredRef.current = true;
 
-      setTimeout(() => {
-        setShowLeadBuyerPopup(true);
-        sessionStorage.setItem("leadBuyerPopup", "true");
-      }, 30000); // after 30 seconds call this popup
-    }
-  }, [userToken, dashboardData]);
+  //     setTimeout(() => {
+  //       setShowLeadBuyerPopup(true);
+  //       sessionStorage.setItem("leadBuyerPopup", "true");
+  //     }, 30000); // after 30 seconds call this popup
+  //   }
+  // }, [userToken, dashboardData]);
 
   const routerFactory = createRouterFactory || createAppRouter;
   const router = useMemo(
@@ -131,9 +131,9 @@ function App({ initialUrl, hostname, createRouterFactory }) {
         </Helmet>
       )}
       <React.Suspense fallback={<FullScreenSpinner />}>
-        {showLeadBuyerPopup && (
+        {/* {showLeadBuyerPopup && (
           <LeadBuyerHelpModal onClose={() => setShowLeadBuyerPopup(false)} />
-        )}
+        )} */}
         <RouterProvider router={router} />
       </React.Suspense>
       {typeof window !== "undefined" && (
