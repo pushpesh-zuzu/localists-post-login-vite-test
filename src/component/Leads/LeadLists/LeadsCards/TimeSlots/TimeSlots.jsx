@@ -17,9 +17,9 @@ function TimeSlots({ apiData }) {
       return parsed.flatMap((item) =>
         item.slots
           ? item.slots.split(", ").map((slot) => ({
-              date: item.date,
-              slot: slot.trim(),
-            }))
+            date: item.date,
+            slot: slot.trim(),
+          }))
           : [],
       );
     } catch {
@@ -33,35 +33,40 @@ function TimeSlots({ apiData }) {
   const remainingCount = allSlots.length - 3;
 
   return (
-    <div className={styles.slotContainer}>
-      {visibleSlots.map(({ date, slot }) => {
-        const label = SLOT_LABELS[slot] || slot;
-        const monthDay = new Date(date + "T00:00:00").toLocaleDateString(
-          "en-GB",
-          {
-            day: "numeric",
-            month: "long",
-          },
-        );
-
-        return (
-          <div key={date + slot} className={styles.slotChip}>
-            {label} - {monthDay}
-          </div>
-        );
-      })}
-
-      {showAll ? (
-        <button className={styles.moreBtn} onClick={() => setShowAll(false)}>
-          Show Less
-        </button>
-      ) : (
-        remainingCount > 0 && (
-          <button className={styles.moreBtn} onClick={() => setShowAll(true)}>
-            +{remainingCount} More
-          </button>
-        )
+    <div>
+      {allSlots.length > 0 && (
+        <div className={styles.heading}>Quote Availability</div>
       )}
+      <div className={styles.slotContainer}>
+        {visibleSlots.map(({ date, slot }) => {
+          const label = SLOT_LABELS[slot] || slot;
+          const monthDay = new Date(date + "T00:00:00").toLocaleDateString(
+            "en-GB",
+            {
+              day: "numeric",
+              month: "long",
+            },
+          );
+
+          return (
+            <div key={date + slot} className={styles.slotChip}>
+              {label} - {monthDay}
+            </div>
+          );
+        })}
+
+        {showAll ? (
+          <button className={styles.moreBtn} onClick={() => setShowAll(false)}>
+            Show Less
+          </button>
+        ) : (
+          remainingCount > 0 && (
+            <button className={styles.moreBtn} onClick={() => setShowAll(true)}>
+              +{remainingCount} More
+            </button>
+          )
+        )}
+      </div>
     </div>
   );
 }
