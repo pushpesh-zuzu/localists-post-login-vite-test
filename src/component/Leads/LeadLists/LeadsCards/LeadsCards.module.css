@@ -24,7 +24,8 @@
 .infoContainer,
 .jobContainer,
 .actionsContainer {
-  min-width: 0; /* Prevents content from forcing column to expand */
+  min-width: 0;
+  /* Prevents content from forcing column to expand */
   overflow-wrap: break-word;
 }
 
@@ -33,10 +34,13 @@
   display: flex;
   flex-direction: column;
   gap: 72px;
-  min-width: 0; /* Prevents stretching */
+  min-width: 0;
+  /* Prevents stretching */
   overflow: hidden;
-  word-break: break-word; /* Optional, breaks long text */
+  word-break: break-word;
+  /* Optional, breaks long text */
 }
+
 .expired {
   height: 35px;
   width: 157px;
@@ -54,9 +58,11 @@
   /* cursor: pointer !important; */
   /* padding: 0 73px 0 44px; */
 }
+
 .highlightText {
   display: none;
 }
+
 .leadActions {
   grid-area: actions;
   display: flex;
@@ -66,6 +72,7 @@
   margin-top: 0px;
   /* margin-left: -24px; */
 }
+
 .leadActionWrapper {
   display: flex;
   flex-direction: column;
@@ -138,6 +145,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 /* .contactItem a {
   text-decoration: none;
   color: black;
@@ -155,6 +163,7 @@
   /* text-wrap: nowrap; */
   text-align: center;
 }
+
 .saveBtnBoxs {
   display: none;
 }
@@ -162,6 +171,7 @@
 .saveBtnBox img {
   margin-right: 4px;
 }
+
 .saveBtn {
   background-color: var(--primary-color);
   color: #ffffff;
@@ -173,6 +183,7 @@
   align-items: center;
   gap: 4px;
 }
+
 .saveBtn:hover {
   background-color: #0096c4;
 }
@@ -185,7 +196,9 @@
 
 .verified,
 .additional,
-.frequent {
+.frequent,
+.availability,
+.address {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -207,6 +220,15 @@
 .frequent {
   background: #98e6ff;
 }
+
+.availability {
+  background: #9edcf3;;
+}
+
+.address {
+  background: #b8ee82;
+}
+
 
 .jobInfo {
   display: flex;
@@ -249,11 +271,13 @@
 .purchaseButton:hover {
   background-color: #4ecf00;
 }
+
 .purchaseButton:disabled {
   background-color: rgb(225, 223, 223);
   color: black;
   cursor: auto;
 }
+
 .desktopOnlyBreak {
   display: inline;
 }
@@ -299,23 +323,28 @@
   padding: 11px 18.68px;
   margin-bottom: 12px;
 }
+
 .viewDetailsBtn:hover {
   background-color: #0096c4;
 }
+
 .viewMoreBtnWrapper button:hover {
   background-color: #0096c4;
 }
+
 .mainText div {
   color: #ff9933;
   font-size: 22px;
   font-weight: 900;
   margin-top: -8px;
 }
+
 .mainText span {
   color: #000000;
   font-size: 14px;
   font-weight: 700;
 }
+
 .viewDetailsBtn {
   display: flex;
   justify-content: center;
@@ -333,6 +362,7 @@
   /* text-decoration: underline; */
   cursor: pointer !important;
 }
+
 .viewDetailsBtnWrapper {
   display: flex;
   justify-content: center;
@@ -367,9 +397,11 @@
     gap: 30px;
     padding: 20px;
   }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
+
   .infoContainer {
     gap: 30px;
   }
@@ -380,18 +412,21 @@
     padding: 0;
     width: 100%;
   }
+
   .leadActionWrapper {
     margin-left: 0;
     width: 100%;
     align-items: flex-start;
     gap: 10px;
   }
+
   .leadActions {
     margin-left: 0;
     width: 100%;
     align-items: flex-start;
     gap: 20px;
   }
+
   .expired {
     width: 104px;
     height: 35px;
@@ -403,9 +438,11 @@
   .card {
     padding: 16px;
   }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
+
   .category {
     font-size: 12px;
     padding: 4px 8px;
@@ -447,31 +484,39 @@
     font-size: 16px;
     word-break: auto-phrase;
   }
+
   .card {
     padding: 4px 16px;
     margin: 18px auto;
   }
+
   .saveBtnBox {
     display: none;
   }
+
   .category {
     text-wrap: wrap;
     text-align: center;
   }
+
   .mainText {
     font-weight: 500;
     font-size: 14px;
   }
+
   .mainText div {
     margin-bottom: 0px;
     margin-top: 8px;
   }
+
   .desktopOnlyBreak {
     display: none;
   }
+
   .badges {
     margin-top: 0px;
   }
+
   .saveBtnBoxs {
     display: flex;
     align-items: center;
@@ -482,9 +527,11 @@
   .details p {
     font-size: 12px;
   }
+
   .jobDetails {
     gap: 20px;
   }
+
   .highlightText {
     margin-top: 20px;
     font-size: 16px;
@@ -492,6 +539,7 @@
     color: #000000;
     display: block;
   }
+
   .userInfo {
     /* flex-direction: column;
     align-items: flex-start;
@@ -514,9 +562,11 @@
     gap: 24px;
     margin-top: 0px;
   }
+
   .mainText {
     text-align: center;
   }
+
   .viewDetailsBtn {
     padding: 7px 17px;
     background-color: var(--primary-color);
@@ -537,6 +587,7 @@
   .card {
     gap: 20px;
   }
+
   .jobDetails {
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
@@ -551,6 +602,7 @@
     align-items: center;
     gap: 10px;
   }
+
   .leadActionWrapper {
     margin-top: 0px;
     display: flex;
@@ -561,6 +613,7 @@
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
+
   .credits {
     font-size: 12px;
     padding: 0px 7px;
@@ -575,6 +628,7 @@
 .rotated {
   transform: rotate(180deg);
 }
+
 @media screen and (max-width: 370px) {
   .details h3 {
     font-size: 12px;
@@ -584,6 +638,7 @@
   .userInfo {
     flex-wrap: wrap;
   }
+
   .desktopOnlyBreak {
     display: inline;
   }

@@ -10,6 +10,7 @@
   overflow: hidden;
   max-width: 100%;
 }
+
 .maincontainer {
   padding: 16px 88px;
   background: #f9f9fa;
@@ -27,9 +28,11 @@
 .infoContainer,
 .jobContainer,
 .actionsContainer {
-  min-width: 0; /* Prevents content from forcing column to expand */
+  min-width: 0;
+  /* Prevents content from forcing column to expand */
   overflow-wrap: break-word;
 }
+
 .mainTextBox {
   display: flex;
   justify-content: center;
@@ -39,6 +42,7 @@
   /* max-width: 1236px; */
   margin: 0 auto;
 }
+
 .headerBox {
   background-color: #000000;
   padding: 14px 0;
@@ -49,6 +53,7 @@
   align-items: center;
   gap: 18px;
 }
+
 .filterButtonsBox {
   display: none;
 }
@@ -92,6 +97,7 @@
   justify-content: start;
   /* padding: 0 73px 0 44px; */
 }
+
 .selectBox {
   width: 150px;
   margin-left: 10px;
@@ -108,6 +114,7 @@
   gap: 24px;
   /* margin-left: -24px; */
 }
+
 .leadAction {
   display: none;
 }
@@ -130,6 +137,7 @@
   gap: 22px;
   flex-wrap: wrap;
 }
+
 /* width: "60px",
     height: "60px",
     
@@ -156,6 +164,7 @@
   align-items: center;
   justify-content: center;
 }
+
 /* .profile_view {
   display: flex;
   justify-content: space-between;
@@ -166,6 +175,7 @@
   margin-right: 0px;
   margin-top: 0px;
 }
+
 .profile_view p {
   background-color: #e3f6fc;
   padding: 4px 9px;
@@ -178,11 +188,13 @@
   font-weight: 600;
   justify-content: space-between;
 }
+
 .profile_view div {
   display: flex;
   align-items: center;
   gap: 4px;
 }
+
 .profile_view span {
   background-color: #e3f6fc;
   padding: 4px 9px;
@@ -244,6 +256,7 @@
   vertical-align: middle;
   /* cursor: pointer !important; */
 }
+
 .customSelect {
   appearance: none;
   -webkit-appearance: none;
@@ -267,15 +280,18 @@
   /* text-wrap: nowrap; */
   text-align: center;
 }
+
 .saveBtnBox {
   width: 100%;
   display: flex;
   justify-content: center;
   padding-bottom: 12px;
 }
+
 .saveBtnBox img {
   margin-right: 4px;
 }
+
 .saveBtn {
   background-color: var(--primary-color);
   color: #ffffff;
@@ -296,7 +312,9 @@
 
 .verified,
 .additional,
-.frequent {
+.frequent,
+.availability,
+.address {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -306,6 +324,7 @@
   border-radius: 100px;
   color: white;
 }
+
 .frequentHir {
   display: flex;
   align-items: center;
@@ -328,6 +347,16 @@
 .frequent {
   background: #98e6ff;
 }
+
+.availability {
+  background: #9edcf3;
+  ;
+}
+
+.address {
+  background: #b8ee82;
+}
+
 .frequentHir {
   background-color: #ffbebf;
 }
@@ -387,6 +416,7 @@
   /* border: 1px solid var(--primary-color); */
   white-space: nowrap;
 }
+
 .moreDetails {
   display: flex;
   align-items: center;
@@ -396,12 +426,15 @@
   font-size: 18px;
   font-weight: 600;
 }
+
 .moreDetails:hover {
   color: var(--primary-color);
 }
+
 .responseStatus img {
   margin-right: 5px;
 }
+
 .arrowIcon {
   transition: transform 0.3s ease;
 }
@@ -409,6 +442,7 @@
 .rotated {
   transform: rotate(180deg);
 }
+
 .viewMoreBtnWrapper {
   padding-top: 35.66px;
   display: flex;
@@ -457,10 +491,12 @@
   color: white;
   font-weight: bold;
 }
+
 .viewAllText {
   color: #ffffff;
   cursor: pointer !important;
 }
+
 .purchaseText {
   color: #ffffff;
   font-size: 16px;
@@ -469,6 +505,7 @@
 .purchaseText button {
   width: 100px;
 }
+
 .NoDataText {
   display: flex;
   justify-content: center;
@@ -488,6 +525,7 @@
     padding: 16px 60px;
     background: #f9f9fa;
   }
+
   .card {
     gap: 20px;
   }
@@ -506,6 +544,7 @@
     padding: 16px 40px;
     background: #f9f9fa;
   }
+
   .card {
     grid-template-areas:
       "info"
@@ -533,6 +572,7 @@
     align-items: flex-start;
     gap: 10px;
   }
+
   .leadAction {
     margin-left: 0;
     width: 100%;
@@ -540,6 +580,7 @@
     gap: 10px;
     display: none;
   }
+
   .NoDataText {
     display: flex;
     justify-content: center;
@@ -554,6 +595,7 @@
   .mainTextBox {
     width: -webkit-fill-available;
   }
+
   .NoDataText {
     display: flex;
     justify-content: center;
@@ -570,6 +612,7 @@
     padding: 8px 10px;
     background: #f9f9fa;
   }
+
   .card {
     padding: 16px;
   }
@@ -600,11 +643,13 @@
   .credits {
     font-size: 16px;
   }
+
   .headerBox {
     padding: 12px;
     display: flex;
     flex-direction: column;
   }
+
   .NoDataText {
     display: flex;
     justify-content: center;
@@ -623,21 +668,26 @@
     padding-bottom: 24px;
     display: none;
   }
+
   .details h3 {
     font-size: 16px;
   }
+
   .selectBox {
     margin-left: 0px;
   }
+
   .category {
     text-wrap: wrap;
     text-align: center;
   }
+
   .headerBtn {
     flex-direction: column;
     margin-bottom: 5px;
     gap: 8px;
   }
+
   .filterButtonsBox {
     display: flex;
     flex-direction: column;
@@ -655,23 +705,28 @@
     width: 100%;
     gap: 20px;
   }
+
   .filterButton {
     font-size: 14px;
     width: 120px;
     height: 40px;
   }
+
   .selectBox {
     width: 100px;
     margin-top: -12px;
   }
+
   .purchaseText {
     font-size: 10px;
     margin-bottom: 0px;
   }
+
   .filterButton img {
     width: 12px;
     height: 12px;
   }
+
   .details p {
     font-size: 12px;
   }
@@ -696,12 +751,14 @@
   .infoContainer {
     gap: 20px;
   }
+
   .leadAction {
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
+
   .leadActions {
     display: none;
   }
@@ -709,6 +766,7 @@
   .card {
     gap: 20px;
   }
+
   .purchaseSelect {
     display: flex;
     flex-direction: column;
@@ -716,6 +774,7 @@
     gap: 6px;
     margin-top: -12px;
   }
+
   .moreDetails {
     display: flex;
     align-items: center;
@@ -726,6 +785,7 @@
   .mainTextBox {
     padding: 0px;
   }
+
   .jobDetails {
     grid-area: job;
     border-top: 1px solid #d9d9d9;
@@ -733,9 +793,11 @@
     padding-bottom: 20px;
     padding-top: 20px;
   }
+
   .purchaseButton {
     font-size: 16px;
   }
+
   .responseStatus {
     font-weight: 500;
     font-size: 16px;
@@ -748,12 +810,15 @@
     /* border: 1px solid var(--primary-color); */
     white-space: nowrap;
   }
+
   .purchaseText {
     margin-bottom: 8px;
   }
+
   .responseStatus img {
     margin-right: 0px;
   }
+
   .NoDataText {
     display: flex;
     justify-content: center;
@@ -762,6 +827,7 @@
     font-weight: 600;
     margin-right: 0px;
   }
+
   /* .profile_view {
   display: flex;
   justify-content: space-between;
@@ -772,6 +838,7 @@
     margin-right: 0px;
     margin-top: 0px;
   }
+
   .profile_view p {
     background-color: #e3f6fc;
     padding: 4px 7px;
@@ -783,6 +850,7 @@
     align-items: center;
     font-weight: 600;
   }
+
   .profile_view span {
     background-color: #e3f6fc;
     padding: 4px 9px;
@@ -794,6 +862,7 @@
     align-items: center;
   }
 }
+
 @media screen and (max-width: 375px) {
   .filterButton {
     font-size: 10px;
@@ -805,6 +874,7 @@
   .filterButtonsBox {
     padding: 20px 8px;
   }
+
   .profile_view p {
     background-color: #e3f6fc;
     padding: 4px 7px;
@@ -816,6 +886,7 @@
     align-items: center;
     font-weight: 600;
   }
+
   .profile_view span {
     background-color: #e3f6fc;
     padding: 4px 9px;
@@ -826,15 +897,19 @@
     display: flex;
     align-items: center;
   }
+
   .selectBox {
     margin-top: -14px;
   }
+
   .details h3 {
     font-size: 12px;
   }
+
   .userInfo {
     gap: 12px;
   }
+
   .category {
     font-size: 10px;
   }
@@ -845,6 +920,7 @@
     flex-wrap: wrap;
   }
 }
+
 @media screen and (max-width: 320px) {
   .filterButtonsBox {
     display: flex;
@@ -854,9 +930,11 @@
 
     padding: 20px 8px;
   }
+
   .details h3 {
     font-size: 12px;
   }
+
   .profile_view p {
     background-color: #e3f6fc;
     padding: 4px 7px;
@@ -868,6 +946,7 @@
     align-items: center;
     font-weight: 600;
   }
+
   .profile_view span {
     background-color: #e3f6fc;
     padding: 4px 9px;
@@ -878,24 +957,29 @@
     display: flex;
     align-items: center;
   }
+
   .filterButton {
     font-size: 10px;
     width: 80px;
     height: 35px;
     margin-top: 2px;
   }
+
   .selectBox {
     width: 110px;
     margin-top: -8px;
   }
+
   .purchaseText {
     font-size: 10px;
     margin-bottom: 0px;
   }
+
   .filterButton img {
     width: 12px;
     height: 12px;
   }
+
   .purchaseSelect {
     display: flex;
     flex-direction: column;

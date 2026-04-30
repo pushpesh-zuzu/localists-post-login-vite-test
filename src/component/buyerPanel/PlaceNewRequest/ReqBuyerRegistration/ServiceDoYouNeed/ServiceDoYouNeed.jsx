@@ -100,8 +100,36 @@ function ServiceDoYouNeed({
         setErrors((prev) => ({ ...prev, service: "" }));
     };
 
-    const validatePostcode = async (cleaned) => {
-        if (!cleaned) return;
+    const handleCloseClick = () => {
+        dispatch(setbuyerRequestData({
+            ...buyerRequest,
+            postcode: "",
+            city: "",
+        }));
+        if (!getBarkToken()) {
+            // dispatch(setbuyerRequestData({}));
+            setShowConfirmModal(true);
+        } else {
+            onClose();
+        }
+    };
+
+    const handleSubmit = async () => {
+        let newErrors = {};
+        const cleaned = normalizePostcode(pincode);
+
+        if (!selectedService) newErrors.service = "Please select a service!";
+        if (!pincode) {
+            newErrors.pincode = "Postcode is required!";
+        } else if (!isFullPostcode(cleaned)) {
+            newErrors.pincode = "Please enter full postcode!";
+        } else if (!isValidUKPostcode(pincode)) {
+            newErrors.pincode = "Please enter a valid postcode!";
+        }
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) return;
 
         setCheckingPostcode(true);
         try {
@@ -113,6 +141,23 @@ function ServiceDoYouNeed({
                 dispatch(setcitySerach(data.data.city));
                 setPostalCodeValidate(true);
                 setErrors((prev) => ({ ...prev, pincode: "" }));
+
+                dispatch(
+                    setbuyerRequestData({
+                        service_id: selectedService?.id || serviceId,
+                    })
+                );
+                dispatch(
+                    questionAnswerData({
+                        service_id: selectedService?.id || serviceId || service?.[0]?.id,
+                    })
+                );
+                if (getService && selectedService) {
+                    getService(selectedService);
+                }
+                setTimeout(() => {
+                    nextStep();
+                }, 500);
             } else {
                 setPostalCodeValidate(false);
                 setErrors((prev) => ({
@@ -129,91 +174,6 @@ function ServiceDoYouNeed({
         } finally {
             setCheckingPostcode(false);
         }
-    };
-
-    useEffect(() => {
-        const cleaned = normalizePostcode(pincode);
-
-        // Empty
-        if (!pincode) {
-            setPostalCodeValidate(false);
-            setCity("");
-            return;
-        }
-
-        // Partial → no API
-        if (!isFullPostcode(cleaned)) {
-            setPostalCodeValidate(false);
-            setCity("");
-            setErrors((prev) => ({ ...prev, pincode: "" }));
-            return;
-        }
-
-        // Full but invalid
-        if (!isValidUKPostcode(pincode)) {
-            setPostalCodeValidate(false);
-            setCity("");
-            setErrors((prev) => ({
-                ...prev,
-                pincode: "Please enter a valid postcode!",
-            }));
-            return;
-        }
-
-        const delay = setTimeout(() => {
-            validatePostcode(cleaned);
-        }, 500);
-
-        return () => clearTimeout(delay);
-    }, [pincode]);
-
-    const handleCloseClick = () => {
-        dispatch(setbuyerRequestData({
-            ...buyerRequest,
-            postcode: "",
-            city: "",
-        }));
-        if (!getBarkToken()) {
-            // dispatch(setbuyerRequestData({}));
-            setShowConfirmModal(true);
-        } else {
-            onClose();
-        }
-    };
-
-    const handleSubmit = () => {
-        let newErrors = {};
-        const cleaned = normalizePostcode(pincode);
-
-        if (!selectedService) newErrors.service = "Please select a service!";
-        if (!pincode) {
-            newErrors.pincode = "Postcode is required!";
-        } else if (!isFullPostcode(cleaned)) {
-            newErrors.pincode = "Please enter full postcode!";
-        } else if (!isValidUKPostcode(pincode)) {
-            newErrors.pincode = "Please enter a valid postcode!";
-        } else if (!postalCodeValidate) {
-            newErrors.pincode = "Please enter a valid postcode!";
-        }
-
-        setErrors(newErrors);
-
-        if (Object.keys(newErrors).length > 0) return;
-
-        dispatch(
-            setbuyerRequestData({
-                service_id: selectedService?.id || serviceId,
-            })
-        );
-        dispatch(
-            questionAnswerData({
-                service_id: selectedService?.id || serviceId || service?.[0]?.id,
-            })
-        );
-        if (getService && selectedService) {
-            getService(selectedService);
-        }
-        nextStep();
     };
 
     return (
@@ -288,6 +248,7 @@ function ServiceDoYouNeed({
 
                                     setPincode(value);
                                     setPostalCodeValidate(false);
+                                    setCity("");
                                     setErrors((prev) => ({ ...prev, pincode: "" }));
                                 }}
                                 error={errors.pincode}

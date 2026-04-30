@@ -16,6 +16,7 @@ import {
   setLeadListProfileLoader,
   getSellerNotesApi,
   archivePendingLead,
+  totalCreditData,
 } from "../../store/LeadSetting/leadSettingSlice";
 import BlueSmsIcon from "../../assets/Images/Leads/BlueSmsIcon.svg";
 import BluePhoneIcon from "../../assets/Images/Leads/BluePhoneIcon.svg";
@@ -35,6 +36,8 @@ import { showToast } from "../../utils";
 import FeelingStuckFooter from "../Leads/LeadLists/FeelingStuckFooter/FeelingStuckFooter";
 import { LoadingOutlined } from "@ant-design/icons";
 import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
+import AddressVerified from "../../assets/Images/Leads/AddressVerified.svg";
+import AvailabilityVerified from "../../assets/Images/Leads/AvailabilityVerified.svg";
 
 const purchaseOptions = [
   "All Purchase Types",
@@ -54,7 +57,9 @@ const MyResponse = () => {
 
   const { userToken } = useSelector((state) => state.auth);
   const { registerData } = useSelector((state) => state.findJobs);
-  const { data } = useSelector((state) => state.leadSetting);
+  const { data, totalCredit } = useSelector((state) => state.leadSetting);
+
+  const showVerifiedBadges = Number(totalCredit?.total_credit || 0) > 50;
 
   const user_id = userToken?.remember_tokens || registerData?.remember_tokens;
 
@@ -63,9 +68,13 @@ const MyResponse = () => {
   };
 
   useEffect(() => {
+    if (!user_id) return;
+
     dispatch(getSellerRecommendedApi({ user_id }));
     dispatch(getPendingLeadDataApi({ user_id }));
+    dispatch(totalCreditData({ user_id }));
   }, [dispatch, user_id]);
+
 
   const handlePendingApi = () => {
     setSelectedTab("pending");
@@ -199,17 +208,15 @@ const MyResponse = () => {
           <div className={styles.emptySpace}>{""}</div>
           <div className={styles.headerBtn}>
             <button
-              className={`${styles.filterButton} ${
-                selectedTab === "pending" ? styles.activeButton : ""
-              }`}
+              className={`${styles.filterButton} ${selectedTab === "pending" ? styles.activeButton : ""
+                }`}
               onClick={handlePendingApi}
             >
               <img src={pendingImg} alt="pendingImg" /> Pending
             </button>
             <button
-              className={`${styles.filterButton} ${
-                selectedTab === "hired" ? styles.activeButton : ""
-              }`}
+              className={`${styles.filterButton} ${selectedTab === "hired" ? styles.activeButton : ""
+                }`}
               onClick={handleHiredApi}
             >
               {selectedTab === "hired" ? (
@@ -244,17 +251,15 @@ const MyResponse = () => {
       <div className={styles.filterButtonsBox}>
         <div className={styles.mobileTabs}>
           <button
-            className={`${styles.filterButton} ${
-              selectedTab === "pending" ? styles.activeButton : ""
-            }`}
+            className={`${styles.filterButton} ${selectedTab === "pending" ? styles.activeButton : ""
+              }`}
             onClick={handlePendingApi}
           >
             <img src={pendingImg} alt="pendingImg" /> Pending
           </button>
           <button
-            className={`${styles.filterButton} ${
-              selectedTab === "hired" ? styles.activeButton : ""
-            }`}
+            className={`${styles.filterButton} ${selectedTab === "hired" ? styles.activeButton : ""
+              }`}
             onClick={handleHiredApi}
           >
             {selectedTab === "hired" ? (
@@ -366,6 +371,19 @@ const MyResponse = () => {
                       High hiring
                     </span>
                   )}
+                  {showVerifiedBadges && item?.is_availability_verified == 1 && (
+                    <span className={styles.availability}>
+                      <img src={AvailabilityVerified} alt="" />
+                      Availability Verified
+                    </span>
+                  )}
+
+                  {showVerifiedBadges && item?.is_address_verified == 1 && (
+                    <span className={styles.address}>
+                      <img src={AddressVerified} alt="" />
+                      Address Verified
+                    </span>
+                  )}
                 </div>
                 <div className={styles.jobInfo}>
                   {item?.questions && (
@@ -435,9 +453,8 @@ const MyResponse = () => {
                   <img
                     src={pendingArrowIcon}
                     alt="Response"
-                    className={`${styles.arrowIcon} ${
-                      selectedLead === item.id ? "" : styles.rotated
-                    }`}
+                    className={`${styles.arrowIcon} ${selectedLead === item.id ? "" : styles.rotated
+                      }`}
                   />
                 </div>
               </div>
@@ -497,9 +514,8 @@ const MyResponse = () => {
                   <img
                     src={pendingArrowIcon}
                     alt="Response"
-                    className={`${styles.arrowIcon} ${
-                      selectedLead === item.id ? "" : styles.rotated
-                    }`}
+                    className={`${styles.arrowIcon} ${selectedLead === item.id ? "" : styles.rotated
+                      }`}
                   />
                 </div>
               </div>

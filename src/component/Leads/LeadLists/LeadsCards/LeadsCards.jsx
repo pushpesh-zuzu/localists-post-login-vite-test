@@ -5,6 +5,8 @@ import BluePhoneIcon from "../../../../assets/Images/Leads/BluePhoneIcon.svg";
 import VerifiedPhoneIcon from "../../../../assets/Images/Leads/VerifiedPhoneIcon.svg";
 import AdditionalDetailsIcon from "../../../../assets/Images/Leads/AdditionalDetailsIcon.svg";
 import FrequentUserIcon from "../../../../assets/Images/Leads/FrequentUserIcon.svg";
+import AddressVerified from "../../../../assets/Images/Leads/AddressVerified.svg";
+import AvailabilityVerified from "../../../../assets/Images/Leads/AvailabilityVerified.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAddManualBidData,
@@ -24,6 +26,7 @@ import LeadViewDetails from "../LeadViewDetails/LeadViewDetails";
 import { formatUKPhoneNumber } from "../../../../utils/formatUKPhoneNumber";
 import Expired from "../../../../assets/Images/Leads/expired.png";
 import TimeSlots from "./TimeSlots/TimeSlots";
+
 
 const LeadsCards = () => {
   const dispatch = useDispatch();
@@ -148,7 +151,7 @@ const LeadsCards = () => {
         formData.append("lead_spotlights", filters.leadSpotlights.join(","));
         formData.append("unread", filters.unread ? 1 : 0);
 
-        dispatch(getLeadRequestList(formData)).then((result) => {});
+        dispatch(getLeadRequestList(formData)).then((result) => { });
       }
       setSaveLaterLoaderId(null);
     });
@@ -171,6 +174,8 @@ const LeadsCards = () => {
       setViewDetaisOpen(item?.id);
     }
   };
+
+  const showVerifiedBadges = Number(totalCredit?.total_credit) > 50;
 
   return (
     <>
@@ -219,13 +224,13 @@ const LeadsCards = () => {
                                   <h3>
                                     {item?.customer?.name
                                       ? item.customer.name
-                                          .split(" ")[0]
-                                          .charAt(0)
-                                          .toUpperCase() +
-                                        item.customer.name
-                                          .split(" ")[0]
-                                          .slice(1)
-                                          .toLowerCase()
+                                        .split(" ")[0]
+                                        .charAt(0)
+                                        .toUpperCase() +
+                                      item.customer.name
+                                        .split(" ")[0]
+                                        .slice(1)
+                                        .toLowerCase()
                                       : ""}
                                   </h3>
 
@@ -246,8 +251,8 @@ const LeadsCards = () => {
                                 <span className={styles.contactItemNumber}>
                                   {item?.phone
                                     ? `${formatUKPhoneNumber(
-                                        item?.phone.substring(0, 3)
-                                      )}${"*".repeat(item?.phone.length - 2)}`
+                                      item?.phone.substring(0, 3)
+                                    )}${"*".repeat(item?.phone.length - 2)}`
                                     : "N/A"}
                                 </span>
                               </div>
@@ -256,10 +261,9 @@ const LeadsCards = () => {
                                 <span>
                                   {item?.customer?.email
                                     ? `${item?.customer?.email
-                                        .split("@")[0]
-                                        .substring(0, 2)}${"*".repeat(6)}@${
-                                        item?.customer?.email.split("@")[1]
-                                      }`
+                                      .split("@")[0]
+                                      .substring(0, 2)}${"*".repeat(6)}@${item?.customer?.email.split("@")[1]
+                                    }`
                                     : "N/A"}
                                 </span>
                               </div>
@@ -270,14 +274,14 @@ const LeadsCards = () => {
                             <div className={styles.highlightText}>
                               Highlights :
                             </div>
-                            {item?.is_expired !== 1  && <div
+                            {item?.is_expired !== 1 && <div
                               className={styles.saveBtnBox}
                               style={{ position: "relative" }}
                             >
                               <button
                                 style={{
                                   position: "absolute",
-                                  right: "0px",
+                                  right: "-38px",
                                 }}
                                 className={styles.saveBtn}
                                 onClick={() => handleSaveLater(item)}
@@ -335,6 +339,19 @@ const LeadsCards = () => {
                                   High hiring
                                 </span>
                               )}
+                              {showVerifiedBadges && item?.is_availability_verified == 1 && (
+                                <span className={styles.availability}>
+                                  <img src={AvailabilityVerified} alt="" />
+                                  Availability Verified
+                                </span>
+                              )}
+
+                              {showVerifiedBadges && item?.is_address_verified == 1 && (
+                                <span className={styles.address}>
+                                  <img src={AddressVerified} alt="" />
+                                  Address Verified
+                                </span>
+                              )}
                             </div>
                             <div className={styles.jobInfo}>
                               {item?.questions && (
@@ -346,7 +363,7 @@ const LeadsCards = () => {
                               )}
                               {item?.details && <p><strong>Additional Details:</strong> {item?.details}</p>}
                             </div>
-                            <TimeSlots apiData={item}/>
+                            <TimeSlots apiData={item} />
                           </div>
                           <div className={styles.leadActionWrapper}>
                             {item?.is_expired === 1 ? (
@@ -364,7 +381,7 @@ const LeadsCards = () => {
                                 onClick={() => handleContinue(item)}
                                 disabled={item?.is_expired === 1}
                               >
-                                Contact
+                                Buy Now
                               </button>
                               <div
                                 style={{
@@ -373,7 +390,7 @@ const LeadsCards = () => {
                                   justifyContent: "center",
                                 }}
                               >
-                               {item?.is_expired !== 1 && <span className={styles.credits}>
+                                {item?.is_expired !== 1 && <span className={styles.credits}>
                                   {item?.credit_score} Credits
                                 </span>}
                               </div>
@@ -384,7 +401,7 @@ const LeadsCards = () => {
                             </div>
                           </div>
                         </div>
-                       {item?.is_expired !== 1  &&<div>
+                        {item?.is_expired !== 1 && <div>
                           <div className={styles.saveBtnBoxs}>
                             <button
                               className={styles.saveBtn}
@@ -418,11 +435,10 @@ const LeadsCards = () => {
                             <img
                               src={viewDetailsArrow}
                               alt="..."
-                              className={`${styles.arrowIcon} ${
-                                viewDetailsOpen == item?.id
-                                  ? ""
-                                  : styles.rotated
-                              }`}
+                              className={`${styles.arrowIcon} ${viewDetailsOpen == item?.id
+                                ? ""
+                                : styles.rotated
+                                }`}
                             />
                           </button>
                         </div>
