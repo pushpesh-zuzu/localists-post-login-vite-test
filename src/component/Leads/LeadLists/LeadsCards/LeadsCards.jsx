@@ -338,14 +338,14 @@ const LeadsCards = () => {
                                   High hiring
                                 </span>
                               )}
-                              {showVerifiedBadges && item?.is_availability_verified == 0 && (
+                              {showVerifiedBadges && item?.is_availability_verified == 1 && (
                                 <span className={styles.availability}>
                                   <img src={AvailabilityVerified} alt="" />
                                   Availability Verified
                                 </span>
                               )}
 
-                              {showVerifiedBadges && item?.is_address_verified == 0 && (
+                              {showVerifiedBadges && item?.is_address_verified == 1 && (
                                 <span className={styles.address}>
                                   <img src={AddressVerified} alt="" />
                                   Address Verified
