@@ -6,6 +6,7 @@ import {
   getCreditPlanList,
   getLeadRequestList,
   totalCreditData,
+  getCostOfOneCredit,
 } from "../../../store/LeadSetting/leadSettingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,14 +19,18 @@ import AddCardModal from "../../MyCredit/MyPaymentDetails/AddCardModal";
 import localistImg from "../../../assets/Images/Leads/localistImg.svg";
 import getHired from "../../../assets/Images/Setting/newLogoCredit.svg";
 import useWindowHeight from "../../../utils/customHeigth";
-const dummyCreditPlanList = [
-  {
-    description: "Best Value!",
-    no_of_leads: 50,
-    price: 49.99,
-    per_credit: 1.0,
-  },
-];
+
+const singleLeadPurchase = {
+  id: "single-lead-pack",
+  name: "Single Lead Purchase",
+  description: "Single Lead Purchase",
+  no_of_leads: 50,
+  no_of_responses: 1,
+  price: 0,
+  per_credit: 1.45,
+  plan_type: "starter",
+  billing_vat_register: 1,
+};
 
 const ContactConfirmModal = ({
   onClose,
@@ -38,9 +43,11 @@ const ContactConfirmModal = ({
   const [activeLoaderId, setActiveLoaderId] = useState(null);
   const [isChecked, setIsChecked] = useState(true);
   const [creditModal, setCreditModal] = useState(false);
-  const { creditPlanList, totalCredit } = useSelector(
+  const [selectedCreditPlan, setSelectedCreditPlan] = useState(null);
+  const { creditPlanList, totalCredit, costOfOneCredit } = useSelector(
     (state) => state.leadSetting
   );
+  const { addcoupanList } = useSelector((state) => state.myCredit);
   const [activeIndex, setActiveIndex] = useState(null);
   const { registerData } = useSelector((state) => state.findJobs);
   const { userToken } = useSelector((state) => state.auth);
@@ -49,17 +56,32 @@ const ContactConfirmModal = ({
     setActiveIndex(activeIndex === index ? null : index);
   };
   const customHeigth = useWindowHeight();
-  const totalRemaingCredit = creditPlanList[0]?.no_of_leads;
+  const costOfOneCreditValue =
+    typeof costOfOneCredit === "string" || typeof costOfOneCredit === "number"
+      ? costOfOneCredit
+      : singleLeadPurchase.per_credit;
+  const singleLeadPurchasePlan = {
+    ...singleLeadPurchase,
+    no_of_leads: details?.credit_score || singleLeadPurchase.no_of_leads,
+    per_credit: costOfOneCreditValue,
+    price: Number(details?.credit_score || 0) * Number(costOfOneCreditValue),
+  };
+  const totalRemaingCredit =
+    creditPlanList[0]?.no_of_leads || singleLeadPurchasePlan.no_of_leads;
   const creditItems =
     creditPlanList && creditPlanList.length > 0
       ? creditPlanList
-      : dummyCreditPlanList;
+      : [singleLeadPurchasePlan];
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
   useEffect(() => {
     dispatch(getCreditPlanList());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getCostOfOneCredit());
   }, []);
 
   useEffect(() => {
@@ -103,11 +125,14 @@ const ContactConfirmModal = ({
 
   const handleBuyNow = (item) => {
     setActiveLoaderId(item?.id);
+    setSelectedCreditPlan(item);
 
+    const isSingleLeadPurchase = item?.id === singleLeadPurchase.id;
     let credits = item.no_of_leads;
 
-    const vatTotal =
-      item?.billing_vat_register === 0
+    const vatTotal = isSingleLeadPurchase
+      ? (Number(item?.price) * 20) / 100
+      : item?.billing_vat_register === 0
         ? 0
         : Math.floor((item?.price * 20) / 100);
 
@@ -126,7 +151,7 @@ const ContactConfirmModal = ({
       details: item?.name,
       total_amount: (item?.price + vatTotal) * 100,
       vat: vatTotal,
-      top_up: isChecked ? 1 : 0,
+      top_up: isSingleLeadPurchase ? 0 : isChecked ? 1 : 0,
     };
 
     dispatch(addBuyCreditApi(creditData)).then((result) => {
@@ -142,13 +167,91 @@ const ContactConfirmModal = ({
     });
   };
 
+  const renderCreditPlan = (item, key) => (
+    <div key={key} className={styles.offerBox}>
+      <div className={styles.offerHeader}>
+        <span className={styles.discountBadge} style={{}}>
+          {item?.description ? item?.description : item?.name}
+        </span>
+      </div>
+
+      <div className={styles.creditDetails}>
+        <div>
+          <p className={styles.creditbtn}>
+            <img src={localistImg} alt="image" />
+            <strong>{item?.no_of_leads} credits</strong>
+          </p>
+          <p className={styles.paraText}>
+            Enough for about {item.no_of_responses}{" "}
+            {item?.id === singleLeadPurchase.id && item.no_of_responses === 1
+              ? "lead"
+              : "leads"}
+            {item?.id === singleLeadPurchase.id &&
+              item.no_of_responses === 1 && (
+                <span className={styles.hiddenTextSpacer}>s</span>
+              )}
+          </p>
+        </div>
+        <div className={styles.priceDetails}>
+          <p>
+            <strong>&pound;{item?.price}</strong> (Excl. tax)
+          </p>
+          <p className={styles.perCreditText}>
+            &pound;{item?.per_credit}/credit
+          </p>
+        </div>
+      </div>
+      {item?.id !== singleLeadPurchase.id && item?.plan_type !== "normal" && (
+        <div className={styles.getHired}>
+          <img
+            src={getHired}
+            alt="getHired"
+            className={styles.getHiredImage}
+          />
+          {
+            <div className={styles.gethiredText}>
+              Get new local business enquiries - fast. Guaranteed with our New
+              Business Promise.
+            </div>
+          }
+        </div>
+      )}
+
+      <div className={styles.buttonGroup}>
+        <button className={styles.buyButton} onClick={() => handleBuyNow(item)}>
+          Buy {item?.no_of_leads} credits
+        </button>
+        {item?.id !== singleLeadPurchase.id && (
+          <label className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />{" "}
+            Auto top-up next time
+          </label>
+        )}
+        {item?.id === singleLeadPurchase.id && (
+          <span
+            className={`${styles.checkboxLabel} ${styles.hiddenCheckboxSpacer}`}
+          >
+            <input type="checkbox" tabIndex={-1} readOnly /> Auto top-up next
+            time
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <>
       {creditModal ? (
         <AddCardModal
           onClose={() => setCreditModal(false)}
-          detail={creditItems}
-          topup={isChecked}
+          detail={selectedCreditPlan ? [selectedCreditPlan] : creditItems}
+          topup={
+            selectedCreditPlan?.id === singleLeadPurchase.id ? false : isChecked
+          }
           closeModal={() => onClose()}
           details={details}
           newLeadApi={newLeadApi}
@@ -162,10 +265,9 @@ const ContactConfirmModal = ({
             <div className={styles.mainBox}>
               <h2>
                 {enoughCredit != 0
-                  ? `You need ${
-                      Number(details?.credit_score) -
-                      Number(totalCredit?.total_credit)
-                    } credits to contact ${details?.customer?.name}`
+                  ? `You need ${Number(details?.credit_score) -
+                  Number(totalCredit?.total_credit)
+                  } credits to contact ${details?.customer?.name}`
                   : "Please purchase a Credit Pack"}
               </h2>
               <p className={styles.subText}>
@@ -182,9 +284,8 @@ const ContactConfirmModal = ({
                   <div className={styles.accordionContent}>
                     <span>What are credits?</span>
                     <span
-                      className={`${styles.arrowIcon} ${
-                        activeIndex === 0 ? styles.rotate : ""
-                      }`}
+                      className={`${styles.arrowIcon} ${activeIndex === 0 ? styles.rotate : ""
+                        }`}
                     >
                       <img
                         src={arrowIcons}
@@ -215,9 +316,8 @@ const ContactConfirmModal = ({
                   <div className={styles.accordionContent}>
                     <span>What is the starter pack?</span>
                     <span
-                      className={`${styles.arrowIcon} ${
-                        activeIndex === 1 ? styles.rotate : ""
-                      }`}
+                      className={`${styles.arrowIcon} ${activeIndex === 1 ? styles.rotate : ""
+                        }`}
                     >
                       <img
                         src={arrowIcons}
@@ -247,9 +347,8 @@ const ContactConfirmModal = ({
                   <div className={styles.accordionContent}>
                     <span>What is the 100% New Business promise</span>
                     <span
-                      className={`${styles.arrowIcon} ${
-                        activeIndex === 2 ? styles.rotate : ""
-                      }`}
+                      className={`${styles.arrowIcon} ${activeIndex === 2 ? styles.rotate : ""
+                        }`}
                     >
                       <img
                         src={arrowIcons}
@@ -271,103 +370,38 @@ const ContactConfirmModal = ({
               </div>
             </div>
 
-            {creditPlanList && creditPlanList.length > 0 ? (
-              creditPlanList.map((item, index) => (
-                <div key={index} className={styles.offerBox}>
-                  <div className={styles.offerHeader}>
-                    <span className={styles.discountBadge} style={{}}>
-                      {item?.description ? item?.description : item?.name}
-                    </span>
-                  </div>
-
-                  <div className={styles.creditDetails}>
-                    <div>
-                      <p className={styles.creditbtn}>
-                        <img src={localistImg} alt="image" />
-                        <strong>{item?.no_of_leads} credits</strong>
-                      </p>
-                      <p className={styles.paraText}>
-                        Enough for about {item.no_of_responses} leads
-                      </p>
-                    </div>
-                    <div className={styles.priceDetails}>
-                      <p>
-                        <strong>£{item?.price}</strong> (Excl. tax)
-                      </p>
-                      <p className={styles.perCreditText}>
-                        £{item?.per_credit}/credit
-                      </p>
-                    </div>
-                  </div>
-                  {item?.plan_type !== "normal" && (
-                    <div className={styles.getHired}>
-                      <img
-                        src={getHired}
-                        alt="getHired"
-                        className={styles.getHiredImage}
-                      />
-                      {
-                        <div className={styles.gethiredText}>
-                          Get new local business enquiries - fast. Guaranteed
-                          with our New Business Promise.
-                        </div>
-                      }
-                    </div>
-                  )}
-
-                  <div className={styles.buttonGroup}>
-                    <button
-                      className={styles.buyButton}
-                      onClick={() => handleBuyNow(item)}
-                    >
-                      Buy {item?.no_of_leads} credits
-                    </button>
-                    <label className={styles.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                      />{" "}
-                      Auto top-up next time
-                    </label>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className={styles.noPlanText}></p>
+            {renderCreditPlan(singleLeadPurchasePlan, "single-lead-purchase")}
+            {creditPlanList?.map((item, index) =>
+              renderCreditPlan(item, item?.id || index)
             )}
 
             <p className={styles.footerNote}>
               {enoughCredit != 0
-                ? `You Will use ${
-                    Number(details?.credit_score) -
-                    Number(totalCredit?.total_credit)
-                  } of your ${totalRemaingCredit} purchased credits to contact ${
-                    details?.customer?.name
-                      ? details.customer.name
-                          .split(" ")[0]
-                          .charAt(0)
-                          .toUpperCase() +
-                        details.customer.name
-                          .split(" ")[0]
-                          .slice(1)
-                          .toLowerCase()
-                      : ""
-                  }`
-                : `You will use ${
-                    details?.credit_score
-                  } of your ${totalRemaingCredit} purchased credits to contact  ${
-                    details?.customer?.name
-                      ? details.customer.name
-                          .split(" ")[0]
-                          .charAt(0)
-                          .toUpperCase() +
-                        details.customer.name
-                          .split(" ")[0]
-                          .slice(1)
-                          .toLowerCase()
-                      : ""
-                  }`}
+                ? `You Will use ${Number(details?.credit_score) -
+                Number(totalCredit?.total_credit)
+                } of your ${totalRemaingCredit} purchased credits to contact ${details?.customer?.name
+                  ? details.customer.name
+                    .split(" ")[0]
+                    .charAt(0)
+                    .toUpperCase() +
+                  details.customer.name
+                    .split(" ")[0]
+                    .slice(1)
+                    .toLowerCase()
+                  : ""
+                }`
+                : `You will use ${details?.credit_score
+                } of your ${totalRemaingCredit} purchased credits to contact  ${details?.customer?.name
+                  ? details.customer.name
+                    .split(" ")[0]
+                    .charAt(0)
+                    .toUpperCase() +
+                  details.customer.name
+                    .split(" ")[0]
+                    .slice(1)
+                    .toLowerCase()
+                  : ""
+                }`}
             </p>
           </div>
         </div>

@@ -66,6 +66,26 @@ const initialState = {
   getLocationDistanceTypeData: [],
   getLocationDistanceTypeLoader: false,
   updateLocationLoader: false,
+  costOfOneCredit: {},
+  costOfOneCreditLoader: false,
+};
+
+export const getCostOfOneCredit = () => {
+  return async (dispatch) => {
+    dispatch(setCostOfOneCreditLoader(true));
+    try {
+      const response = await axiosInstance.get(`cost-of-one-credit`);
+
+      if (response) {
+        dispatch(setCostOfOneCredit(response?.data?.data));
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(setCostOfOneCreditLoader(false));
+    }
+  };
 };
 
 export const getUserLocationsDistanceType = (payload) => {
@@ -1187,6 +1207,12 @@ const leadSettingSlice = createSlice({
   name: "leadSetting",
   initialState: initialState,
   reducers: {
+    setCostOfOneCreditLoader(state, action) {
+      state.costOfOneCreditLoader = action.payload;
+    },
+    setCostOfOneCredit(state, action) {
+      state.costOfOneCredit = action.payload;
+    },
     setGetLocationDistanceTypeLoader(state, action) {
       state.getLocationDistanceTypeLoader = action.payload;
     },
@@ -1402,6 +1428,8 @@ export const {
   setGetLocationDistanceTypeLoader,
   setGetLocationDistanceTypeData,
   setUpdateLocationLoader,
+  setCostOfOneCreditLoader,
+  setCostOfOneCredit,
 } = leadSettingSlice.actions;
 
 export default leadSettingSlice.reducer;

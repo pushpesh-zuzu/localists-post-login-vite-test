@@ -44,6 +44,8 @@ const LeadsCards = () => {
   const { userToken } = useSelector((state) => state.auth);
   const data = leadRequestList?.length;
 
+  // console.log("leadRequestList", leadRequestList)
+
   useEffect(() => {
     const leadRequestData = {
       user_id: userToken?.remember_tokens

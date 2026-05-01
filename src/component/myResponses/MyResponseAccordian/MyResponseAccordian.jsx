@@ -64,7 +64,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList, setisChangePend
   const { registerData } = useSelector((state) => state.findJobs);
   const { profileLeadViewData, getActivies, getSellerNotes, leadListLoader } =
     useSelector((state) => state.leadSetting);
-  console.log("profileLeadViewData", showAddressVerify)
+    
   const user = {
     phoneNumber: profileLeadViewData?.leads?.phone,
     email: profileLeadViewData?.leads?.customer?.email,
