@@ -20,6 +20,7 @@ import MailImg from "../../../assets/Images/MyResponse/mailIcon.svg";
 import HiredImg from "../../../assets/Images/MyResponse/HiredBtnImg.svg";
 import SMSIcon from "../../../assets/Images/MyResponse/SMSIcon.svg";
 import bidContactIcon from "../../../assets/Images/MyResponse/bidContactIcon.svg";
+import Fulladdress from "../../../assets/Images/MyResponse/full-address.svg";
 import {
   addSellerNotesApi,
   getAddHiredLeadDataApi,
@@ -52,7 +53,7 @@ const TimelineItem = ({ icon, title, description, time, children, isLast }) => (
   </div>
 );
 
-const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendingStatus }) => {
+const MyResponseAccordion = ({ lead, onBack, getPendingLeadList, setisChangePendingStatus, showAddressVerify }) => {
   const { Option } = Select;
   const [note, setNote] = useState("");
   const [activeTab, setActiveTab] = useState("activity");
@@ -63,6 +64,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
   const { registerData } = useSelector((state) => state.findJobs);
   const { profileLeadViewData, getActivies, getSellerNotes, leadListLoader } =
     useSelector((state) => state.leadSetting);
+  console.log("profileLeadViewData", showAddressVerify)
   const user = {
     phoneNumber: profileLeadViewData?.leads?.phone,
     email: profileLeadViewData?.leads?.customer?.email,
@@ -355,6 +357,21 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
               </span>
               {profileLeadViewData?.email}
             </a>
+            {showAddressVerify && profileLeadViewData?.full_crm_address && (
+              <a
+                className={styles.phoneNumberTexts}
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  profileLeadViewData.full_crm_address
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>
+                  <img src={Fulladdress} alt="address" />
+                </span>
+                {profileLeadViewData.full_crm_address}
+              </a>
+            )}
             <div className={styles.btnBox}>
               <button
                 className={styles.buttonSms}
@@ -423,9 +440,8 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                   onClick={() => setActiveTab("activity")}
                 >
                   <span
-                    className={`${styles.tabLabel} ${
-                      activeTab === "activity" ? styles.activeTab : ""
-                    }`}
+                    className={`${styles.tabLabel} ${activeTab === "activity" ? styles.activeTab : ""
+                      }`}
                   >
                     Activity
                   </span>
@@ -436,9 +452,8 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                   onClick={() => setActiveTab("lead")}
                 >
                   <span
-                    className={`${styles.tabLabel} ${
-                      activeTab === "lead" ? styles.activeTab : ""
-                    }`}
+                    className={`${styles.tabLabel} ${activeTab === "lead" ? styles.activeTab : ""
+                      }`}
                   >
                     Lead Details
                   </span>
@@ -449,9 +464,8 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                   onClick={() => setActiveTab("notes")}
                 >
                   <span
-                    className={`${styles.tabLabel} ${
-                      activeTab === "notes" ? styles.activeTab : ""
-                    }`}
+                    className={`${styles.tabLabel} ${activeTab === "notes" ? styles.activeTab : ""
+                      }`}
                   >
                     My Notes
                   </span>
@@ -464,11 +478,11 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                     <div className={styles.date}>
                       {getActivies?.length > 0
                         ? dayjs(
-                            getActivies[getActivies.length - 1]?.created_at
-                          ).format("ddd D, MMMM")
+                          getActivies[getActivies.length - 1]?.created_at
+                        ).format("ddd D, MMMM")
                         : dayjs(profileLeadViewData?.created_at).format(
-                            "ddd D, MMMM"
-                          )}
+                          "ddd D, MMMM"
+                        )}
                     </div>
 
                     {getActivies?.map((item, index) => (
@@ -478,18 +492,18 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                           item?.contact_type === "Manual Bid"
                             ? bidContactIcon
                             : item?.contact_type === "email"
-                            ? EmailImage
-                            : item?.contact_type === "Whatsapp"
-                            ? AddImage
-                            : item?.contact_type === "mobile"
-                            ? CallImage
-                            : item?.contact_type === "Buttons"
-                            ? PurchasedImage
-                            : item?.contact_type === "sms"
-                            ? SMSIcon
-                            : item?.contact_type === "Auto Bid"
-                            ? CallImage
-                            : hirImg
+                              ? EmailImage
+                              : item?.contact_type === "Whatsapp"
+                                ? AddImage
+                                : item?.contact_type === "mobile"
+                                  ? CallImage
+                                  : item?.contact_type === "Buttons"
+                                    ? PurchasedImage
+                                    : item?.contact_type === "sms"
+                                      ? SMSIcon
+                                      : item?.contact_type === "Auto Bid"
+                                        ? CallImage
+                                        : hirImg
                         }
                         title={item.activity_name}
                         description={item.description}
@@ -563,8 +577,8 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList,setisChangePendi
                             <span>
                               {item?.created_at
                                 ? dayjs
-                                    .tz(item.created_at, "Europe/London")
-                                    .format("YYYY-MM-DD HH:mm:ss")
+                                  .tz(item.created_at, "Europe/London")
+                                  .format("YYYY-MM-DD HH:mm:ss")
                                 : ""}
                             </span>
                             |

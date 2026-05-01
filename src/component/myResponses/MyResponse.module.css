@@ -658,6 +658,10 @@
     font-weight: 600;
     margin-right: 0px;
   }
+
+  .contactItem img {
+    margin-top: 2px;
+  }
 }
 
 @media (max-width: 480px) {

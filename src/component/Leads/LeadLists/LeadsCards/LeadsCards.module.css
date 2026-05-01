@@ -184,6 +184,19 @@
   gap: 4px;
 }
 
+@media (min-width: 1024px) {
+  .saveBtn {
+    right: -38px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .saveBtn {
+    right: 0;
+  }
+}
+
 .saveBtn:hover {
   background-color: #0096c4;
 }
@@ -222,7 +235,8 @@
 }
 
 .availability {
-  background: #9edcf3;;
+  background: #9edcf3;
+  ;
 }
 
 .address {

@@ -38,6 +38,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
 import AddressVerified from "../../assets/Images/Leads/AddressVerified.svg";
 import AvailabilityVerified from "../../assets/Images/Leads/AvailabilityVerified.svg";
+import Fulladdress from "../../assets/Images/MyResponse/full-address.svg";
 
 const purchaseOptions = [
   "All Purchase Types",
@@ -321,6 +322,14 @@ const MyResponse = () => {
                     <img src={BlueSmsIcon} alt="" />
                     {item?.customer?.email}
                   </div>
+                  {
+                    showVerifiedBadges && item?.customer?.full_crm_address && (
+                      <div className={styles.contactItem}>
+                        <img src={Fulladdress} alt="" />
+                        {item?.customer?.full_crm_address}
+                      </div>
+                    )
+                  }
                 </div>
                 {item?.profile_view && item?.profile_view_time && (
                   <div className={styles.profile_view}>
@@ -528,6 +537,7 @@ const MyResponse = () => {
                 getPendingLeadList={data.filter(
                   (item) => item.id === selectedLead
                 )}
+                showAddressVerify={showVerifiedBadges}
               />
             )}
           </div>
