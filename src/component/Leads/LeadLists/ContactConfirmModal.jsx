@@ -64,7 +64,7 @@ const ContactConfirmModal = ({
     ...singleLeadPurchase,
     no_of_leads: details?.credit_score || singleLeadPurchase.no_of_leads,
     per_credit: costOfOneCreditValue,
-    price: Number(details?.credit_score || 0) * Number(costOfOneCreditValue),
+    price: (Number(details?.credit_score || 0) * Number(costOfOneCreditValue)).toFixed(2),
   };
   const totalRemaingCredit =
     creditPlanList[0]?.no_of_leads || singleLeadPurchasePlan.no_of_leads;
@@ -128,28 +128,32 @@ const ContactConfirmModal = ({
     setSelectedCreditPlan(item);
 
     const isSingleLeadPurchase = item?.id === singleLeadPurchase.id;
-    let credits = item.no_of_leads;
+    let credits = Number(item?.no_of_leads || 0);
+
+    const price = Number(item?.price || 0);
 
     const vatTotal = isSingleLeadPurchase
-      ? (Number(item?.price) * 20) / 100
+      ? (price * 20) / 100
       : item?.billing_vat_register === 0
         ? 0
-        : Math.floor((item?.price * 20) / 100);
+        : Math.floor((price * 20) / 100);
+
 
     if (typeof addcoupanList === "string" && addcoupanList.includes("%")) {
       const discountPercent = parseFloat(addcoupanList.replace("%", ""));
+      const noOfLeads = Number(item?.no_of_leads || 0);
       const discountAmount = Math.floor(
-        (item.no_of_leads * discountPercent) / 100
+        (noOfLeads * discountPercent) / 100
       );
 
-      credits = item.no_of_leads + discountAmount;
+      credits = noOfLeads + discountAmount;
     }
 
     const creditData = {
-      amount: item?.price,
+      amount: price,
       credits: credits,
       details: item?.name,
-      total_amount: (item?.price + vatTotal) * 100,
+      total_amount: (price + vatTotal) * 100,
       vat: vatTotal,
       top_up: isSingleLeadPurchase ? 0 : isChecked ? 1 : 0,
     };
