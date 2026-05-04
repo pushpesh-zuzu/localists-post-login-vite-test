@@ -240,6 +240,11 @@
   gap: 10px;
 }
 
+.expired {
+  height: 35px;
+  width: 157px;
+}
+
 .bidStatus {
   display: inline-block;
   background: #E3F6FC;
@@ -412,6 +417,26 @@
   background-color: #4ecf00;
 }
 
+.purchaseButton:disabled {
+  background-color: rgb(225, 223, 223);
+  color: black;
+  cursor: auto;
+}
+
+.exclusiveButton {
+  background: #f59e0b;
+}
+
+.exclusiveButton:hover {
+  background-color: #d97706;
+}
+
+.exclusiveButton:disabled {
+  background-color: rgb(225, 223, 223);
+  color: black;
+  cursor: auto;
+}
+
 .credits {
   display: block;
   background: #fce5e3;
@@ -526,6 +551,11 @@
     border-right: none;
     padding: 0;
     width: 100%;
+  }
+
+  .expired {
+    width: 104px;
+    height: 35px;
   }
 
   .leadActions {

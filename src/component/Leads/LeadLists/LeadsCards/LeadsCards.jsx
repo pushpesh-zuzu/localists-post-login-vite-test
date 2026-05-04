@@ -92,7 +92,6 @@ const LeadsCards = () => {
     });
   };
   const handleContinue = (item) => {
-    // console.log("itemmmmmm", totalCredit?.plan_purchased)
     if (!item) return;
     setSelectedItem(item);
     setPlanPurchase(totalCredit?.plan_purchased);

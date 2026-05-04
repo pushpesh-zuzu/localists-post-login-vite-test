@@ -26,6 +26,8 @@ import { Select } from "antd";
 import { SwapOutlined } from "@ant-design/icons";
 import MatchingLeadsFilter from "../Leads/LeadLists/MatchingLeads/MatchingLeadsFilter";
 import { formatUKPhoneNumber } from "../../utils/formatUKPhoneNumber";
+import Expired from "../../assets/Images/Leads/expired.png";
+
 
 const SaveForLater = () => {
   const { Option } = Select;
@@ -39,6 +41,7 @@ const SaveForLater = () => {
   const { saveForLaterDataList, totalCredit } = useSelector(
     (state) => state.leadSetting
   );
+
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -120,16 +123,22 @@ const SaveForLater = () => {
   };
 
   useEffect(() => {
-    const data = {
-      user_id: userToken?.remember_tokens
-        ? userToken?.remember_tokens
-        : registerData?.remember_tokens,
-      sort_type: getSortTypeValue(selectedSort),
-      credit_filter: getCreditFilterValue(selectedFilter),
-      page_type: "saved_leads",
-    };
-    dispatch(getSaveLaterListData(data));
-  }, []);
+    const user_id =
+      userToken?.remember_tokens || registerData?.remember_tokens;
+
+    if (!user_id) return;
+
+    dispatch(totalCreditData({ user_id }));
+
+    dispatch(
+      getSaveLaterListData({
+        user_id,
+        sort_type: getSortTypeValue(selectedSort),
+        credit_filter: getCreditFilterValue(selectedFilter),
+        page_type: "saved_leads",
+      })
+    );
+  }, [userToken?.remember_tokens, registerData?.remember_tokens]);
 
   const addManualBidData = (item) => {
     const formData = new FormData();
@@ -184,6 +193,42 @@ const SaveForLater = () => {
       return;
     }
   };
+
+  const handleBuyExclusively = (item) => {
+    if (!item) return;
+
+    const formData = new FormData();
+    formData.append("buyer_id", item?.customer_id);
+    formData.append(
+      "user_id",
+      userToken?.remember_tokens
+        ? userToken?.remember_tokens
+        : registerData?.remember_tokens
+    );
+    formData.append("bid", item?.exclusive_credit_score);
+    formData.append("lead_id", item?.id);
+    formData.append("bidtype", "purchase_leads");
+    formData.append("service_id", item?.service_id);
+    formData.append("distance", "0");
+    formData.append("is_exclusive", "1")
+
+    dispatch(getAddManualBidData(formData)).then((result) => {
+      if (result) {
+        showToast("success", result?.message);
+        setModalOpen(true);
+      }
+
+      const data = {
+        user_id: userToken?.remember_tokens
+          ? userToken?.remember_tokens
+          : registerData?.remember_tokens,
+      };
+
+      dispatch(totalCreditData(data));
+      dispatch(getLeadRequestList(data));
+    });
+
+  }
 
   const [clikedDetails, setClickedDetails] = useState({});
   const [viewDetailsOpen, setViewDetaisOpen] = useState(null);
@@ -512,11 +557,28 @@ const SaveForLater = () => {
 
                     {/* Right Section - Lead Purchase */}
                     <div className={styles.leadActions}>
+                      {item?.is_expired === 1 ? (
+                        <img
+                          className={styles.expired}
+                          src={Expired}
+                          alt="Expired image"
+                        />
+                      ) : (
+                        ""
+                      )}
                       <button
                         className={styles.purchaseButton}
                         onClick={() => handleContinue(item)}
+                        disabled={item?.is_expired === 1}
                       >
                         Buy Now
+                      </button>
+                      <button
+                        className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
+                        onClick={() => handleBuyExclusively(item)}
+                        disabled={item?.is_expired === 1}
+                      >
+                        Buy Exclusively
                       </button>
                       <span className={styles.credits}>
                         {item?.credit_score} Credits
