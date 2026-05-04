@@ -568,6 +568,7 @@ const SaveForLater = () => {
           enoughCredit={planpurcahse}
           confirmModal={isModalOpen}
           details={selectedItem}
+          newLeadApi={"newLead"}
         />
       )}
     </>
