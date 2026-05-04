@@ -23,6 +23,7 @@
   overflow: hidden;
   max-width: 100%;
 }
+
 .cardParent {
   background: #fff;
   box-shadow: 0px 0px 6px 0px #0000001a;
@@ -31,6 +32,7 @@
   margin-bottom: 10px;
   margin-top: 12px;
 }
+
 .maincontainer {
   padding: 22px 88px;
   /* height: 100%; */
@@ -94,9 +96,11 @@
 .filterButton img {
   margin-right: 8px;
 }
+
 .filterButton:hover {
   color: #c4e8f3;
 }
+
 .filterButton img:hover {
   color: #c4e8f3;
 }
@@ -109,20 +113,24 @@
   /* justify-content: space-between; */
   gap: 72px;
 }
+
 .mainCard {
   background: #fff;
   box-shadow: 0px 0px 6px 0px #0000001a;
   padding: 28.25px 25.26px 28.25px 34px;
 }
+
 .noDataContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 30vh;
 }
+
 .noDataContainer h2 {
   text-align: center;
 }
+
 .highlightText {
   display: none;
 }
@@ -159,6 +167,7 @@
   align-items: center;
   gap: 72px;
 }
+
 .desktopOnlyBreak {
   display: inline;
 }
@@ -207,6 +216,7 @@
   vertical-align: middle;
   /* cursor: pointer !important; */
 }
+
 /* .contactItem a {
   text-decoration: none;
   list-style: none;
@@ -222,9 +232,31 @@
   vertical-align: middle;
   text-wrap: nowrap;
 }
+
+.categoryWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.bidStatus {
+  display: inline-block;
+  background: #E3F6FC;
+  /* color: #000000; */
+  /* border: 1px solid #b9dcff; */
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  /* font-weight: 500; */
+  text-align: center;
+  text-transform: capitalize;
+}
+
 .saveBtnBox img {
   margin-right: 4px;
 }
+
 .saveBtn {
   background-color: var(--primary-color);
   color: #ffffff;
@@ -302,6 +334,7 @@
   word-break: break-word;
   white-space: normal;
 }
+
 .viewDetailsBtn {
   display: flex;
   justify-content: center;
@@ -318,9 +351,11 @@
   /* text-decoration: underline; */
   cursor: pointer !important;
 }
+
 .viewDetailsBtn:hover {
   background-color: #0096c4;
 }
+
 .viewDetailsBtnWrapper {
   display: flex;
   justify-content: center;
@@ -329,12 +364,14 @@
   margin-right: 136px;
   margin-bottom: 20px;
 }
+
 .mainText div {
   color: #ff9933;
   font-size: 22px;
   font-weight: 900;
   margin-top: -8px;
 }
+
 .mainText span {
   color: #000000;
   font-size: 14px;
@@ -348,6 +385,7 @@
 .rotated {
   transform: rotate(180deg);
 }
+
 .purchaseButton {
   background: #57e202;
   color: white;
@@ -485,6 +523,7 @@
     align-items: flex-start;
     gap: 20px;
   }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
@@ -503,10 +542,12 @@
     gap: 16px;
     justify-content: start;
   }
+
   .textSection {
     align-items: center;
     gap: 12px;
   }
+
   .heading {
     font-size: 20px;
   }
@@ -529,9 +570,11 @@
     font-size: 12px;
     padding: 4px 8px;
   }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
+
   .avatar {
     width: 50px;
     height: 50px;
@@ -615,20 +658,24 @@
   }
 
   .filterButtons span {
-    display: none !important; /* hides the text */
+    display: none !important;
+    /* hides the text */
   }
 
   .filterButtons {
-    gap: 0; /* optional: closes extra space */
+    gap: 0;
+    /* optional: closes extra space */
   }
 
   .details h3 {
     font-size: 16px;
     word-break: auto-phrase;
   }
+
   .card {
     padding: 4px 16px;
   }
+
   .heading {
     font-size: 24px;
   }
@@ -674,6 +721,7 @@
   .details p {
     font-size: 12px;
   }
+
   .highlightText {
     margin-top: 20px;
     font-size: 16px;
@@ -681,18 +729,22 @@
     color: #000000;
     display: block;
   }
+
   .category {
     text-wrap: wrap;
     text-align: center;
   }
+
   .mainText {
     font-weight: 500;
     font-size: 14px;
   }
+
   .mainText div {
     margin-bottom: 0px;
     margin-top: 8px;
   }
+
   .desktopOnlyBreak {
     display: none;
   }
@@ -722,34 +774,43 @@
   .card {
     gap: 20px;
   }
+
   .maincontainer {
     padding: 42px 20px;
   }
+
   .mainText {
     text-align: center;
   }
+
   .jobDetails {
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
   }
+
   .badges {
     margin-top: 0px;
   }
+
   .jobDetails {
     gap: 20px;
   }
+
   .jobInfo {
     margin-bottom: 20px;
   }
+
   .leadActions {
     margin-top: 0px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
+
   .viewDetailsBtnWrapper {
     margin-right: 0px;
   }
+
   .viewDetailsBtn {
     display: flex;
     justify-content: center;
@@ -766,17 +827,21 @@
     /* text-decoration: underline; */
     cursor: pointer !important;
   }
+
   .maincontainer {
     margin-top: -12px;
     padding: 10px 16px;
     background-color: white;
-    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.1); /* only bottom and sides */
+    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.1);
+    /* only bottom and sides */
     margin-bottom: 10px;
     margin-top: 12px;
   }
+
   .cardParent {
     margin-top: 8px;
   }
+
   .credits {
     font-size: 12px;
     padding: 0px 7px;
@@ -830,15 +895,19 @@
     font-size: 12px;
     word-break: auto-phrase;
   }
+
   .userInfo {
     flex-wrap: wrap;
   }
+
   .desktopOnlyBreak {
     display: inline;
   }
+
   .heading {
     font-size: 19px;
   }
+
   .customSelect .ant-select-arrow {
     color: #000 !important;
   }

@@ -73,6 +73,8 @@ const LeadsCards = () => {
     formData.append("service_id", item?.service_id);
     formData.append("distance", "0");
 
+    // console.log("formData", item?.credit_score)
+
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {
         showToast("success", result?.message);
@@ -90,6 +92,7 @@ const LeadsCards = () => {
     });
   };
   const handleContinue = (item) => {
+    // console.log("itemmmmmm", item)
     if (!item) return;
     setSelectedItem(item);
     setPlanPurchase(totalCredit?.plan_purchased);
@@ -239,12 +242,19 @@ const LeadsCards = () => {
                                   <p>{item?.postcode?.replace(/\s/g, '').slice(0, 4).toUpperCase()}</p>
                                 </div>
                               </div>
-                              <span
-                                className={styles.category}
-                                style={{ background: "#f9b7b7" }}
-                              >
-                                {item?.category?.name}
-                              </span>
+                              <div className={styles.categoryWrapper}>
+                                <span
+                                  className={styles.category}
+                                  style={{ background: "#f9b7b7" }}
+                                >
+                                  {item?.category?.name}
+                                </span>
+                                {item?.is_exclusive === 0 && item?.is_expired === 0 && item?.bid_status && (
+                                  <span className={styles.bidStatus}>
+                                    {item?.bid_status}
+                                  </span>
+                                )}
+                              </div>
                             </div>
 
                             <div className={styles.contactContainer}>
@@ -384,6 +394,14 @@ const LeadsCards = () => {
                               >
                                 Buy Now
                               </button>
+                              <button
+                                className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
+                                // onClick={() => handleBuyExclusively(item)}
+                                disabled={item?.is_expired === 1}
+                              >
+                                Buy Exclusively
+                              </button>
+
                               <div
                                 style={{
                                   display: "flex",

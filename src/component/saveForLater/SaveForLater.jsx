@@ -46,7 +46,7 @@ const SaveForLater = () => {
   const [selectedFilter, setSelectedFilter] = useState("Sort by Credits");
   const requiredData =
     Array.isArray(saveForLaterDataList) &&
-    Array.isArray(saveForLaterDataList[0]?.savedLeads)
+      Array.isArray(saveForLaterDataList[0]?.savedLeads)
       ? saveForLaterDataList[0]?.savedLeads
       : saveForLaterDataList;
 
@@ -388,22 +388,29 @@ const SaveForLater = () => {
                             <h3>
                               {item?.customer?.name
                                 ? item.customer.name
-                                    .split(" ")[0]
-                                    .charAt(0)
-                                    .toUpperCase() +
-                                  item.customer.name
-                                    .split(" ")[0]
-                                    .slice(1)
-                                    .toLowerCase()
+                                  .split(" ")[0]
+                                  .charAt(0)
+                                  .toUpperCase() +
+                                item.customer.name
+                                  .split(" ")[0]
+                                  .slice(1)
+                                  .toLowerCase()
                                 : ""}
                             </h3>
 
                             <p>{item?.postcode?.replace(/\s/g, '').slice(0, 4).toUpperCase()}</p>
                           </div>
                         </div>
-                        <span className={styles.category}>
-                          {item?.category?.name}
-                        </span>
+                        <div className={styles.categoryWrapper}>
+                          <span className={styles.category}>
+                            {item?.category?.name}
+                          </span>
+                          {item?.is_exclusive === 0 && item?.is_expired === 0 && item?.bid_status && (
+                            <span className={styles.bidStatus}>
+                              {item?.bid_status}
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <div className={styles.contactContainer}>
                         <div className={styles.contactItem}>
@@ -411,8 +418,8 @@ const SaveForLater = () => {
                           <span>
                             {item?.phone
                               ? `${formatUKPhoneNumber(item?.phone.substring(0, 3))}${"*".repeat(
-                                  item?.phone.length - 2
-                                )}`
+                                item?.phone.length - 2
+                              )}`
                               : "N/A"}
                           </span>
                         </div>
@@ -421,12 +428,12 @@ const SaveForLater = () => {
                           <span>
                             {item?.customer?.email
                               ? `${item?.customer?.email
-                                  .split("@")[0]
-                                  .substring(0, 2)}${"*".repeat(
+                                .split("@")[0]
+                                .substring(0, 2)}${"*".repeat(
                                   Math.max(
                                     0,
                                     item?.customer?.email.split("@")[0].length -
-                                      2
+                                    2
                                   )
                                 )}@${item?.customer?.email.split("@")[1]}`
                               : "N/A"}
@@ -492,7 +499,7 @@ const SaveForLater = () => {
                         className={styles.purchaseButton}
                         onClick={() => handleContinue(item)}
                       >
-                        Contact
+                        Buy Now
                       </button>
                       <span className={styles.credits}>
                         {item?.credit_score} Credits
@@ -512,9 +519,8 @@ const SaveForLater = () => {
                       <img
                         src={viewDetailsArrow}
                         alt="..."
-                        className={`${styles.arrowIcon} ${
-                          viewDetailsOpen == item?.id ? "" : styles.rotated
-                        }`}
+                        className={`${styles.arrowIcon} ${viewDetailsOpen == item?.id ? "" : styles.rotated
+                          }`}
                       />
                     </button>
                   </div>
@@ -525,12 +531,13 @@ const SaveForLater = () => {
               </>
             );
           })}
-        </div>
+        </div >
         {saveForLaterDataList?.[0]?.savedLeads?.length > visibleCount && (
           <div className={styles.viewMoreBtnWrapper}>
             <button onMouseEnter={handleMouseEnter}>View More</button>
           </div>
-        )}
+        )
+        }
         <FeelingStuckFooter />
       </div>
       <ContactSuccessModal
