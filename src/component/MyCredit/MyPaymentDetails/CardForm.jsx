@@ -53,9 +53,12 @@ const CardPaymentForm = ({
   const [error, setError] = useState("");
   const { registerData } = useSelector((state) => state.findJobs);
   const { userToken } = useSelector((state) => state.auth);
-  const { sellerBillingLoader } = useSelector((state) => state.myCredit);
+  const { sellerBillingLoader, addcoupanList } = useSelector((state) => state.myCredit);
   const item = data?.map((item) => item)[0] || {};
   const items = newLeadData?.[0] || {};
+
+  // console.log("dataaaaaa", items)
+
 
   const addManualBidData = () => {
     const formData = new FormData();
@@ -99,24 +102,51 @@ const CardPaymentForm = ({
     const billing_vat_register =
       items?.billing_vat_register ?? item?.billing_vat_register;
 
-    const vatTotal =
-      billing_vat_register === 0 ? 0 : Math.floor((price * 20) / 100);
+    const isSingleLeadPurchase =
+      (items?.id ? items.id : item?.id) === "single-lead-pack";
 
-    // ✅ If coupon exists and is percentage-based
-    if (typeof addcoupanList === "string" && addcoupanList.includes("%")) {
+    // const vatTotal =
+    //   billing_vat_register === 0 ? 0 : Math.floor((price * 20) / 100);
+
+    const vatTotal = isSingleLeadPurchase
+      ? billing_vat_register === 0
+        ? 0
+        : (price * 20) / 100
+      : billing_vat_register === 0
+        ? 0
+        : Math.floor((price * 20) / 100);
+
+    // // ✅ If coupon exists and is percentage-based
+    // if (typeof addcoupanList === "string" && addcoupanList.includes("%")) {
+    //   const discountPercent = parseFloat(addcoupanList.replace("%", ""));
+    //   const discountAmount = Math.floor((no_of_leads * discountPercent) / 100);
+    //   credits = no_of_leads + discountAmount;
+    // }
+
+    if (
+      !isSingleLeadPurchase &&
+      typeof addcoupanList === "string" &&
+      addcoupanList.includes("%")
+    ) {
       const discountPercent = parseFloat(addcoupanList.replace("%", ""));
       const discountAmount = Math.floor((no_of_leads * discountPercent) / 100);
       credits = no_of_leads + discountAmount;
     }
 
+    const totalAmount = isSingleLeadPurchase
+      ? Math.floor((Number(price) + vatTotal) * 100)
+      : (Number(price) + vatTotal) * 100;
+
     const creditData = {
       amount: price,
       credits: credits,
       details: name,
-      total_amount: (price + vatTotal) * 100,
+      total_amount: totalAmount,
       vat: vatTotal,
-      top_up: topup ? 1 : 0,
+      top_up: isSingleLeadPurchase ? 0 : topup ? 1 : 0,
     };
+
+    // console.log("creditData", creditData)
 
     dispatch(addBuyCreditApi(creditData)).then((result) => {
       if (result?.success) {
@@ -173,6 +203,8 @@ const CardPaymentForm = ({
         cvc: "xxx",
         stripe_payment_method_id: paymentMethod?.id,
       };
+
+      // console.log("dataaaaaa", data)
 
       dispatch(AddSellerCardDetailsApi(data)).then((result) => {
         if (result) {

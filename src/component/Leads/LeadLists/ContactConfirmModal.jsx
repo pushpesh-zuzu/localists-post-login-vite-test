@@ -66,6 +66,9 @@ const ContactConfirmModal = ({
     no_of_leads: details?.credit_score || singleLeadPurchase.no_of_leads,
     per_credit: Number(costOfOneCreditValue),
     price: (Number(details?.credit_score || 0) * Number(costOfOneCreditValue)).toFixed(2),
+    billing_vat_register:
+      costOfOneCredit?.billing_vat_register ??
+      costOfOneCredit?.billing_vat_register,
   };
   const totalRemaingCredit =
     creditPlanList[0]?.no_of_leads || singleLeadPurchasePlan.no_of_leads;
@@ -73,6 +76,8 @@ const ContactConfirmModal = ({
     creditPlanList && creditPlanList.length > 0
       ? creditPlanList
       : [singleLeadPurchasePlan];
+
+  // console.log("creditItems", creditItems)
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -125,6 +130,7 @@ const ContactConfirmModal = ({
   };
 
   const handleBuyNow = (item) => {
+    // console.log("ggdgdgd", item)
     setActiveLoaderId(item?.id);
     setSelectedCreditPlan(item);
 
@@ -150,14 +156,21 @@ const ContactConfirmModal = ({
       credits = noOfLeads + discountAmount;
     }
 
+    const totalAmount = isSingleLeadPurchase
+      ? Math.floor((Number(price) + vatTotal) * 100)
+      : (Number(price) + vatTotal) * 100;
+
+
     const creditData = {
       amount: price,
       credits: credits,
       details: item?.name,
-      total_amount: (price + vatTotal) * 100,
+      total_amount: totalAmount,
       vat: vatTotal,
       top_up: isSingleLeadPurchase ? 0 : isChecked ? 1 : 0,
     };
+
+    // console.log("aaaaaaaaaaa", creditData)
 
     dispatch(addBuyCreditApi(creditData)).then((result) => {
       if (result?.success) {

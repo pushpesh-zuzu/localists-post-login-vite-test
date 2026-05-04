@@ -12,6 +12,8 @@ import BluePhoneIcon from "../../assets/Images/Leads/BluePhoneIcon.svg";
 import VerifiedPhoneIcon from "../../assets/Images/Leads/VerifiedPhoneIcon.svg";
 import AdditionalDetailsIcon from "../../assets/Images/Leads/AdditionalDetailsIcon.svg";
 import FrequentUserIcon from "../../assets/Images/Leads/FrequentUserIcon.svg";
+import AddressVerified from "../../assets/Images/Leads/AddressVerified.svg";
+import AvailabilityVerified from "../../assets/Images/Leads/AvailabilityVerified.svg";
 import { showToast } from "../../utils";
 import viewDetailsArrow from "../../assets/Images/Setting/viewDetailsArrow.svg";
 import SavedViewDetails from "./SavedViewDetails/SaveViewDetails";
@@ -220,6 +222,8 @@ const SaveForLater = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const showVerifiedBadges = Number(totalCredit?.total_credit) > 50;
 
   return (
     <>
@@ -478,6 +482,19 @@ const SaveForLater = () => {
                             {" "}
                             <img src={FrequentUserIcon} alt="" />
                             High hiring
+                          </span>
+                        )}
+                        {showVerifiedBadges && item?.is_availability_verified == 0 && (
+                          <span className={styles.availability}>
+                            <img src={AvailabilityVerified} alt="" />
+                            Availability Verified
+                          </span>
+                        )}
+
+                        {showVerifiedBadges && item?.is_address_verified == 0 && (
+                          <span className={styles.address}>
+                            <img src={AddressVerified} alt="" />
+                            Address Verified
                           </span>
                         )}
                       </div>

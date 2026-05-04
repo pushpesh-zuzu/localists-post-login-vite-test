@@ -275,7 +275,9 @@
 
 .verified,
 .additional,
-.frequent {
+.frequent,
+.availability,
+.address {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -296,6 +298,15 @@
 
 .frequent {
   background: #98e6ff;
+}
+
+.availability {
+  background: #9edcf3;
+  ;
+}
+
+.address {
+  background: #b8ee82;
 }
 
 .jobInfo {

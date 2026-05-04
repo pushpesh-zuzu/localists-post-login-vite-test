@@ -92,7 +92,7 @@ const LeadsCards = () => {
     });
   };
   const handleContinue = (item) => {
-    // console.log("itemmmmmm", item)
+    // console.log("itemmmmmm", totalCredit?.plan_purchased)
     if (!item) return;
     setSelectedItem(item);
     setPlanPurchase(totalCredit?.plan_purchased);
@@ -110,6 +110,44 @@ const LeadsCards = () => {
       return;
     }
   };
+
+  const handleBuyExclusively = (item) => {
+    if (!item) return;
+
+    const formData = new FormData();
+    formData.append("buyer_id", item?.customer_id);
+    formData.append(
+      "user_id",
+      userToken?.remember_tokens
+        ? userToken?.remember_tokens
+        : registerData?.remember_tokens
+    );
+    formData.append("bid", item?.exclusive_credit_score);
+    formData.append("lead_id", item?.id);
+    formData.append("bidtype", "purchase_leads");
+    formData.append("service_id", item?.service_id);
+    formData.append("distance", "0");
+    formData.append("is_exclusive", "1")
+
+    dispatch(getAddManualBidData(formData)).then((result) => {
+      if (result) {
+        showToast("success", result?.message);
+        setModalOpen(true);
+      }
+
+      const data = {
+        user_id: userToken?.remember_tokens
+          ? userToken?.remember_tokens
+          : registerData?.remember_tokens,
+      };
+
+      dispatch(totalCreditData(data));
+      dispatch(getLeadRequestList(data));
+    });
+
+  }
+
+
   // useEffect(() => {
   //   const data = {
   //     user_id: userToken?.remember_tokens
@@ -396,7 +434,7 @@ const LeadsCards = () => {
                               </button>
                               <button
                                 className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
-                                // onClick={() => handleBuyExclusively(item)}
+                                onClick={() => handleBuyExclusively(item)}
                                 disabled={item?.is_expired === 1}
                               >
                                 Buy Exclusively
