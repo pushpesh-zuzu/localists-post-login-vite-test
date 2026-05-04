@@ -27,7 +27,7 @@ const singleLeadPurchase = {
   no_of_leads: 50,
   no_of_responses: 1,
   price: 0,
-  per_credit: 1.45,
+  per_credit: 0,
   plan_type: "starter",
   billing_vat_register: 1,
 };
@@ -57,13 +57,14 @@ const ContactConfirmModal = ({
   };
   const customHeigth = useWindowHeight();
   const costOfOneCreditValue =
-    typeof costOfOneCredit === "string" || typeof costOfOneCredit === "number"
-      ? costOfOneCredit
+    typeof costOfOneCredit?.cost_of_one_credit === "string" || typeof costOfOneCredit?.cost_of_one_credit === "number"
+      ? costOfOneCredit?.cost_of_one_credit
       : singleLeadPurchase.per_credit;
+
   const singleLeadPurchasePlan = {
     ...singleLeadPurchase,
     no_of_leads: details?.credit_score || singleLeadPurchase.no_of_leads,
-    per_credit: costOfOneCreditValue,
+    per_credit: Number(costOfOneCreditValue),
     price: (Number(details?.credit_score || 0) * Number(costOfOneCreditValue)).toFixed(2),
   };
   const totalRemaingCredit =
@@ -133,7 +134,7 @@ const ContactConfirmModal = ({
     const price = Number(item?.price || 0);
 
     const vatTotal = isSingleLeadPurchase
-      ? (price * 20) / 100
+      ? costOfOneCredit?.billing_vat_register === 0 ? 0 : (price * 20) / 100
       : item?.billing_vat_register === 0
         ? 0
         : Math.floor((price * 20) / 100);

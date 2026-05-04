@@ -74,7 +74,7 @@ export const getCostOfOneCredit = () => {
   return async (dispatch) => {
     dispatch(setCostOfOneCreditLoader(true));
     try {
-      const response = await axiosInstance.get(`cost-of-one-credit`);
+      const response = await axiosInstance.get(`users/cost-of-one-credit`);
 
       if (response) {
         dispatch(setCostOfOneCredit(response?.data?.data));
