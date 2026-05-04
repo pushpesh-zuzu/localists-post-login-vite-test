@@ -10,6 +10,7 @@ import AvailabilityVerified from "../../../../assets/Images/Leads/AvailabilityVe
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAddManualBidData,
+  getLeadProfileRequestList,
   getLeadRequestList,
   saveForLaterApi,
   totalCreditData,
@@ -73,12 +74,20 @@ const LeadsCards = () => {
     formData.append("service_id", item?.service_id);
     formData.append("distance", "0");
 
-    // console.log("formData", item?.credit_score)
-
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {
         showToast("success", result?.message);
-        setModalOpen(true);
+
+        const profileData = {
+          customer_id: item?.customer_id,
+          lead_id: item?.id,
+          user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+        };
+
+        dispatch(getLeadProfileRequestList(profileData)).then((response) => {
+          setSelectedItem(response.data);
+          setModalOpen(true);
+        });
       }
 
       const data = {
@@ -94,7 +103,7 @@ const LeadsCards = () => {
   const handleContinue = (item) => {
     // console.log("itemmmmmm", totalCredit?.plan_purchased)
     if (!item) return;
-    setSelectedItem(item);
+    // setSelectedItem(item);
     setPlanPurchase(totalCredit?.plan_purchased);
 
     if (totalCredit?.plan_purchased === 0) {
