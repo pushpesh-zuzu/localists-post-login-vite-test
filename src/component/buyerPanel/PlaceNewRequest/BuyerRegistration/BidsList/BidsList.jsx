@@ -309,7 +309,6 @@ const BidsList = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <>
       <Helmet>
@@ -595,7 +594,15 @@ const BidsList = () => {
               )}
             </div>
             {/* {bidListLoader ? <Spin size="small"/> :  <> */}
-            {autoBidList?.every((item) => item?.sellers?.length === 0) ? (
+              {autoBidList?.some((item) => item?.is_exclusive === 1) ? (
+              <div className={styles.noBidWrapper}>
+                <h1 className={styles.noBidText}>
+                  A professional contacted you exclusively, please view the details in "Replies" section.
+                </h1>
+              </div>
+            ) : 
+              autoBidList?.every((item) => item?.sellers?.length === 0
+              ) ? (
               <div className={styles.noBidWrapper}>
                 <h1 className={styles.noBidText}>
                   {repliesListCount > 0

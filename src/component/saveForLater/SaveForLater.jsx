@@ -188,6 +188,7 @@ const SaveForLater = () => {
   const handleContinue = (item) => {
     if (!item) return;
     setSelectedItem(item);
+    setIsExclusive(false)
     setPlanPurchase(totalCredit?.plan_purchased);
 
     // Condition 1: Plan not purchased
