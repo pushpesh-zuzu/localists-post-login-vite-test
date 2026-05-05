@@ -37,6 +37,7 @@ const ContactConfirmModal = ({
   enoughCredit,
   details,
   newLeadApi,
+  isExclusive
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -105,11 +106,18 @@ const ContactConfirmModal = ({
         ? userToken?.remember_tokens
         : registerData?.remember_tokens
     );
-    formData.append("bid", details?.credit_score);
+    if(isExclusive){
+    formData.append("bid", details?.exclusive_credit_score);
+    }else{
+      formData.append("bid", details?.credit_score);
+    }
     formData.append("lead_id", details?.id);
     formData.append("bidtype", "purchase_leads");
     formData.append("service_id", details?.service_id);
     formData.append("distance", "0");
+    if (isExclusive) {
+    formData.append("is_exclusive", "1"); // ← ye add karo
+  }
 
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {

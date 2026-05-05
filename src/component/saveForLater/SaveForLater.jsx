@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAddManualBidData,
   getLeadFiterApiList,
+  getLeadProfileRequestList,
   getSaveLaterListData,
   totalCreditData,
 } from "../../store/LeadSetting/leadSettingSlice";
@@ -37,6 +38,7 @@ const SaveForLater = () => {
   const [visibleCount, setVisibleCount] = useState(5);
   const [isopen, setIsOpen] = useState(false);
   const [planpurcahse, setPlanPurchase] = useState("");
+  const [isExclusive, setIsExclusive] = useState(false);
   const { registerData } = useSelector((state) => state.findJobs);
   const { saveForLaterDataList, totalCredit } = useSelector(
     (state) => state.leadSetting
@@ -196,7 +198,27 @@ const SaveForLater = () => {
 
   const handleBuyExclusively = (item) => {
     if (!item) return;
-
+  
+    // Modified item — credit_score ko exclusive_credit_score se override karo
+    // const exclusiveItem = {
+    //   ...item,
+    //   credit_score: item?.exclusive_credit_score,
+    // };
+  
+    setSelectedItem(item);
+    setIsExclusive(true);
+    setPlanPurchase(totalCredit?.plan_purchased);
+  
+    if (totalCredit?.plan_purchased === 0) {
+      setIsOpen(true);
+      return;
+    }
+    if (Number(totalCredit?.total_credit) < Number(item?.exclusive_credit_score)) {
+      setIsOpen(true);
+      return;
+    }
+    if (Number(totalCredit?.total_credit) >= Number(item?.exclusive_credit_score)) {
+      // Direct API call
     const formData = new FormData();
     formData.append("buyer_id", item?.customer_id);
     formData.append(
@@ -215,7 +237,16 @@ const SaveForLater = () => {
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {
         showToast("success", result?.message);
-        setModalOpen(true);
+            const profileData = {
+          customer_id: item?.customer_id,
+          lead_id: item?.id,
+          user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+        };
+
+        dispatch(getLeadProfileRequestList(profileData)).then((response) => {
+          setSelectedItem(response.data);
+          setModalOpen(true);
+        })
       }
 
       const data = {
@@ -229,7 +260,8 @@ const SaveForLater = () => {
     });
 
   }
-
+};
+console.log(isModalOpen,'ismodal')
   const [clikedDetails, setClickedDetails] = useState({});
   const [viewDetailsOpen, setViewDetaisOpen] = useState(null);
 
@@ -557,7 +589,7 @@ const SaveForLater = () => {
 
                     {/* Right Section - Lead Purchase */}
                     <div className={styles.leadActions}>
-                      {item?.is_expired === 1 ? (
+                      {item?.is_expired === 1 || item?.is_exclusive === 1 ? (
                         <img
                           className={styles.expired}
                           src={Expired}
@@ -569,20 +601,29 @@ const SaveForLater = () => {
                       <button
                         className={styles.purchaseButton}
                         onClick={() => handleContinue(item)}
-                        disabled={item?.is_expired === 1}
+                        disabled={item?.is_expired === 1 || item?.is_exclusive === 1}
                       >
                         Buy Now
                       </button>
                       <button
                         className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
                         onClick={() => handleBuyExclusively(item)}
-                        disabled={item?.is_expired === 1}
+                        disabled={item?.is_expired === 1 || item?.is_exclusive === 1}
                       >
                         Buy Exclusively
                       </button>
+                      <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+
                       <span className={styles.credits}>
                         {item?.credit_score} Credits
                       </span>
+                      </div>
 
                       <div className={styles.mainText}>
                         <div>ACT FAST</div>{" "}
@@ -631,6 +672,8 @@ const SaveForLater = () => {
           confirmModal={isModalOpen}
           details={selectedItem}
           newLeadApi={"newLead"}
+          isExclusive={isExclusive}
+
         />
       )}
     </>
