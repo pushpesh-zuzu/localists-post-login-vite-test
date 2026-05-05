@@ -286,6 +286,7 @@ const ContactConfirmModal = ({
           closeModal={() => onClose()}
           details={details}
           newLeadApi={newLeadApi}
+          isExclusive={isExclusive}
         />
       ) : (
         <div className={styles.modalOverlay}>

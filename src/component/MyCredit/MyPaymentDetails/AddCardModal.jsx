@@ -15,6 +15,7 @@ const AddCardModal = ({
   newLeadApi,
   noLeadApiCall,
   newLeadData,
+  isExclusive
 }) => {
   const [formData, setFormData] = useState({
     cardNumber: "",
@@ -48,6 +49,7 @@ const AddCardModal = ({
             newLeadApi={newLeadApi}
             noLeadApiCall={noLeadApiCall}
             newLeadData={newLeadData}
+            isExclusive={isExclusive}
           />
         </StripeProvider>
 
