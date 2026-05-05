@@ -70,14 +70,13 @@ const ContactConfirmModal = ({
       costOfOneCredit?.billing_vat_register ??
       costOfOneCredit?.billing_vat_register,
   };
+
   const totalRemaingCredit =
     creditPlanList[0]?.no_of_leads || singleLeadPurchasePlan.no_of_leads;
   const creditItems =
     creditPlanList && creditPlanList.length > 0
       ? creditPlanList
       : [singleLeadPurchasePlan];
-
-  // console.log("creditItems", creditItems)
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
@@ -130,7 +129,6 @@ const ContactConfirmModal = ({
   };
 
   const handleBuyNow = (item) => {
-    // console.log("ggdgdgd", item)
     setActiveLoaderId(item?.id);
     setSelectedCreditPlan(item);
 
@@ -161,6 +159,7 @@ const ContactConfirmModal = ({
       : (Number(price) + vatTotal) * 100;
 
 
+
     const creditData = {
       amount: price,
       credits: credits,
@@ -169,8 +168,6 @@ const ContactConfirmModal = ({
       vat: vatTotal,
       top_up: isSingleLeadPurchase ? 0 : isChecked ? 1 : 0,
     };
-
-    // console.log("aaaaaaaaaaa", creditData)
 
     dispatch(addBuyCreditApi(creditData)).then((result) => {
       if (result?.success) {

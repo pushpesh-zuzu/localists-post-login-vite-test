@@ -45,8 +45,6 @@ const LeadsCards = () => {
   const { userToken } = useSelector((state) => state.auth);
   const data = leadRequestList?.length;
 
-  // console.log("leadRequestList", leadRequestList)
-
   useEffect(() => {
     const leadRequestData = {
       user_id: userToken?.remember_tokens
@@ -102,7 +100,7 @@ const LeadsCards = () => {
   };
   const handleContinue = (item) => {
     if (!item) return;
-    // setSelectedItem(item);
+    setSelectedItem(item);
     setPlanPurchase(totalCredit?.plan_purchased);
 
     if (totalCredit?.plan_purchased === 0) {
