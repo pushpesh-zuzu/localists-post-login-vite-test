@@ -159,9 +159,19 @@ const SaveForLater = () => {
 
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {
-        showToast("success", result?.message);
-        setModalOpen(true);
-      }
+          showToast("success", result?.message);
+
+          const profileData = {
+            customer_id: item?.customer_id,
+            lead_id: item?.id,
+            user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+          };
+
+          dispatch(getLeadProfileRequestList(profileData)).then((response) => {
+            setSelectedItem(response.data);
+            setModalOpen(true);
+          });
+        }
 
       const data = {
         user_id: userToken?.remember_tokens
