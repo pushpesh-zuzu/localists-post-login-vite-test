@@ -65,10 +65,16 @@ const ContactConfirmModal = ({
   const singleLeadPurchasePlan = {
     ...singleLeadPurchase,
     no_of_leads: isExclusive
-  ? details?.exclusive_credit_score
-  : details?.credit_score ?? singleLeadPurchase.no_of_leads,
+  ? Number(details?.exclusive_credit_score)
+  : Number(details?.credit_score ?? singleLeadPurchase.no_of_leads),
     per_credit: Number(costOfOneCreditValue),
-    price: (Number(details?.credit_score || 0) * Number(costOfOneCreditValue)).toFixed(2),
+    price: (
+      Number(
+        isExclusive
+          ? details?.exclusive_credit_score
+          : details?.credit_score ?? 0
+      ) * Number(costOfOneCreditValue)
+    ).toFixed(2),
     billing_vat_register:
       costOfOneCredit?.billing_vat_register ??
       costOfOneCredit?.billing_vat_register,
