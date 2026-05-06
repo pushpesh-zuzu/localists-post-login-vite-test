@@ -65,8 +65,8 @@ const ContactConfirmModal = ({
   const singleLeadPurchasePlan = {
     ...singleLeadPurchase,
     no_of_leads: isExclusive
-  ? Number(details?.exclusive_credit_score)
-  : Number(details?.credit_score ?? singleLeadPurchase.no_of_leads),
+      ? Number(details?.exclusive_credit_score)
+      : Number(details?.credit_score ?? singleLeadPurchase.no_of_leads),
     per_credit: Number(costOfOneCreditValue),
     price: (
       Number(
@@ -114,9 +114,9 @@ const ContactConfirmModal = ({
         ? userToken?.remember_tokens
         : registerData?.remember_tokens
     );
-    if(isExclusive){
-    formData.append("bid", details?.exclusive_credit_score);
-    }else{
+    if (isExclusive) {
+      formData.append("bid", details?.exclusive_credit_score);
+    } else {
       formData.append("bid", details?.credit_score);
     }
     formData.append("lead_id", details?.id);
@@ -124,8 +124,8 @@ const ContactConfirmModal = ({
     formData.append("service_id", details?.service_id);
     formData.append("distance", "0");
     if (isExclusive) {
-    formData.append("is_exclusive", "1"); // ← ye add karo
-  }
+      formData.append("is_exclusive", "1"); // ← ye add karo
+    }
 
     dispatch(getAddManualBidData(formData)).then((result) => {
       if (result) {
@@ -159,7 +159,6 @@ const ContactConfirmModal = ({
         ? 0
         : Math.floor((price * 20) / 100);
 
-
     if (typeof addcoupanList === "string" && addcoupanList.includes("%")) {
       const discountPercent = parseFloat(addcoupanList.replace("%", ""));
       const noOfLeads = Number(item?.no_of_leads || 0);
@@ -171,10 +170,8 @@ const ContactConfirmModal = ({
     }
 
     const totalAmount = isSingleLeadPurchase
-      ? Math.floor((Number(price) + vatTotal) * 100)
-      : (Number(price) + vatTotal) * 100;
-
-
+      ? Number(((price + Number(vatTotal)) * 100).toFixed(2))
+      : Number((price + vatTotal) * 100);
 
     const creditData = {
       amount: price,
@@ -225,7 +222,12 @@ const ContactConfirmModal = ({
         </div>
         <div className={styles.priceDetails}>
           <p>
-            <strong>&pound;{item?.price}</strong> (Excl. tax)
+            {/* <strong>&pound;{item?.price}</strong> (Excl. tax) */}
+            <strong>&pound; {item?.id === singleLeadPurchase.id
+              ? item?.price?.endsWith(".00")
+                ? parseInt(item?.price)
+                : item?.price
+              : item?.price}</strong> (Excl. tax)
           </p>
           <p className={styles.perCreditText}>
             &pound;{item?.per_credit}/credit
