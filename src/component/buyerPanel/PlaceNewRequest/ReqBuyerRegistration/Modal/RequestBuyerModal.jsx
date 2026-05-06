@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { X } from "lucide-react";
 import { createPortal } from "react-dom";
 import styles from "./RequestBuyerModal.module.css";
 import BackButtonOTP from "../../../../../ReactIcon/BackButtonOTP";
 import Paragraph from "../UI/Paragraph";
 import NewBuyerRequestProgressBarQuotesRequest from "../ProgressBarQuoteRequest/NewBuyerRequestProgressBarQuotesRequest ";
+import CloseIcon from "../../../../../ReactIcon/CloseIcon";
 
 const RequestBuyerModal = ({
   isOpen,
@@ -83,7 +83,7 @@ const RequestBuyerModal = ({
               className={showClosIcon ? styles.closeBtn : styles.closeBtnHidden}
               aria-label="Close modal"
             >
-              <X size={20} />
+              <CloseIcon size={20} />
             </button>
           </div>
 
