@@ -256,7 +256,7 @@ const LeadsCards = () => {
   };
 
   const showVerifiedBadges = Number(totalCredit?.total_credit) > 50;
-  // console.log(leadRequestList,'leadRequestList')
+  console.log(leadRequestList,'leadRequestList')
   return (
     <>
       {leadRequestLoader ? (
@@ -324,9 +324,9 @@ const LeadsCards = () => {
                                 >
                                   {item?.category?.name}
                                 </span>
-                                {item?.is_exclusive === 0 && item?.is_expired === 0 && item?.bid_status && (
+                                {item?.is_exclusive === 0 && item?.is_expired === 0 && (
                                   <span className={styles.bidStatus}>
-                                    {item?.bid_status}
+                                    {item?.bid_count}/{item?.max_bid}
                                   </span>
                                 )}
                               </div>
@@ -469,13 +469,13 @@ const LeadsCards = () => {
                               >
                                 Buy Now
                               </button>
-                              <button
+                              { !item?.bid_count > 0 && <button
                                 className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
                                 onClick={() => handleBuyExclusively(item)}
                                 disabled={item?.is_expired === 1 || item?.is_exclusive === 1}
                               >
                                 Buy Exclusively
-                              </button>
+                              </button>}
 
                               <div
                                 style={{
