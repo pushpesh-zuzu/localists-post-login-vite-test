@@ -1,0 +1,96 @@
+/* RequestInputField.module.css */
+
+.wrapper {
+  width: 100%;
+}
+
+/* ── Label ── */
+.label {
+  display: block;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-family: Arial, sans-serif;
+  color: #253238;
+}
+
+@media (max-width: 768px) {
+  .label {
+    font-size: 16px;
+  }
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+/* ── Input wrapper ── */
+.inputWrapper {
+  /* marginBottom is applied inline via style prop */
+}
+
+/* ── Input ── */
+.input {
+  width: 100%;
+  padding: 14px 0 13px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(146, 153, 156, 0.30); /* #92999C4D */
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  color: #253238;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .input {
+    font-size: 16px;
+  }
+}
+
+.input::placeholder {
+  color: #C5C7C8;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .input::placeholder {
+    font-size: 16px;
+  }
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Border states */
+.inputError {
+  border-bottom-color: #ef4444;
+}
+
+.inputNormal {
+  border-bottom-color: rgba(146, 153, 156, 0.30);
+}
+
+/* ── Error message ── */
+.errorWrapper {
+  margin-top: 6px; /* mt-1.5 = 6px */
+}
+
+.errorText {
+  font-size: 12px;
+  color: #ef4444;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
