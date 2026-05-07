@@ -9,7 +9,7 @@
   display: block;
   text-align: left;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
   font-family: Arial, sans-serif;
@@ -40,7 +40,7 @@
   border: none;
   border-bottom: 2px solid rgba(146, 153, 156, 0.30); /* #92999C4D */
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   font-family: Arial, sans-serif;
   color: #253238;
   outline: none;
@@ -58,7 +58,7 @@
 .input::placeholder {
   color: #C5C7C8;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   font-family: Arial, sans-serif;
 }
 
