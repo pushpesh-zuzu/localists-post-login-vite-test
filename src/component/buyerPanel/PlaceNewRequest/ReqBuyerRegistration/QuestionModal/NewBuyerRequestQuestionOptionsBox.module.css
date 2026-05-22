@@ -1,0 +1,59 @@
+/* NewBuyerRequestQuestionOptionsBox.module.css */
+
+.btn {
+  position: relative;
+  width: 100%;
+  padding: 8px 12px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.btn:hover {
+  border: 2px solid #00afe3;
+  background-color: #f7fdff;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 8px 16px;
+    min-height: 80px;
+    height: 100%;
+    max-height: 100px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+/* ── Selected state ── */
+.selected {
+  border: 2px solid #00afe3;
+  background-color: #e9f8ff;
+  color: #00aef3;
+  filter: drop-shadow(0px 4px 0px rgba(0, 0, 0, 0.1));
+}
+
+.selected:hover {
+  border: 2px solid #00afe3;
+  background-color: #e9f8ff;
+}   

@@ -11,10 +11,11 @@ import gardening from "../../../assets/Images/gardening.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getPopularServiceList } from "../../../store/FindJobs/findJobSlice";
 // import BuyerRegistration from "../PlaceNewRequest/BuyerRegistration/BuyerRegistration";
-import ReqBuyerRegistration from "../PlaceNewRequest/ReqBuyerRegistration/ReqBuyerRegistration"
+// import ReqBuyerRegistration from "../PlaceNewRequest/ReqBuyerRegistration/ReqBuyerRegistration"
 import imgBanner from "../../../assets/Images/houseCleaner.svg"
 import { BASE_URL_IMAGE } from "../../../utils";
 import { Spin } from "antd";
+import NewReqBuyerRegistration from "../PlaceNewRequest/NewReqBuyerRegistration/NewReqBuyerRegistration";
 
 const serviceData = [
   { title: "Personal Trainers", image: personalTrainers },
@@ -154,7 +155,8 @@ const YouMayAlsoNeed = () => {
       )} */}
       {show && (
         <>
-          <ReqBuyerRegistration onClose={handleClose} service_Id={selectedServiceId?.id} serviceName={selectedServiceId.name} />
+          {/* <ReqBuyerRegistration onClose={handleClose} service_Id={selectedServiceId?.id} serviceName={selectedServiceId.name} /> */}
+        <NewReqBuyerRegistration onClose={handleClose} service_Id={selectedServiceId?.id} serviceName={selectedServiceId.name} />
         </>
       )}
     </div>

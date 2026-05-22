@@ -1,0 +1,314 @@
+/* RequestBuyerModal.module.css */
+
+/* ── Overlay ── */
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+/* ── Modal container ── */
+.modal {
+  position: relative;
+  min-width: 300px;
+  width: 90%;
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    max-width: 700px;
+    width: 700px;
+    max-height: 550px;
+  }
+}
+
+/* ── Inner wrapper ── */
+.inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  padding: 28px 20px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 28px 48px;
+  }
+}
+
+/* ── Header row ── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 40px;
+  }
+}
+
+/* ── Title ── */
+.titleWrap {
+  margin-right: 16px;
+}
+
+.title {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-size: 24px;
+  line-height: 25px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+/* ── Close button ── */
+.closeBtn {
+  margin-left: auto;
+  color: #ffffff;
+  background-color: #00afe3;
+  height: 36px;
+  width: 36px;
+  min-height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 6px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background-color: #0096c4;
+}
+
+.closeBtnHidden {
+  display: none;
+}
+
+/* ── Progress bar wrapper ── */
+.progressWrap {
+  margin-bottom: 30px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .progressWrap {
+    margin-bottom: 40px;
+  }
+}
+
+.progressWrapFixed {
+  flex-shrink: 0;
+}
+
+/* ── Sub-heading ── */
+.subHeading {
+  text-align: center;
+}
+
+/* ── Description ── */
+.description {
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+/* ── Scrollable content ── */
+.content {
+  flex: 1;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+/* ── Error message ── */
+.errorMessage {
+  font-size: 14px;
+  color: #dc2626;
+  padding: 8px 0;
+  margin: 0;
+  text-align: left;
+}
+
+/* ── Button group ── */
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .buttonGroup {
+    width: 608px;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttonGroup {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonGroup {
+    gap: 8px;
+  }
+  .content{
+    max-height: 300px;
+  }
+}
+
+/* ── Back button ── */
+.backBtn {
+  height: 50px;
+  min-width: 119px;
+  background-color: #7dd6f1;
+  color: #ffffff;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.backBtn:hover {
+  background-color: #0096c4;
+}
+
+.backBtn:active {
+  transform: translateY(1px);
+}
+
+.backBtn:disabled {
+  background-color: #dbdfe4;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .backBtn {
+    min-width: 214px;
+  }
+}
+
+@media (max-width: 768px) {
+  .backBtn {
+    width: 242px;
+    height: 52px;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .backBtn {
+    width: 119px;
+    height: 48px;
+  }
+}
+
+.backBtnLabel {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ── Next button ── */
+.nextBtn {
+  flex: 1;
+  height: 50px;
+  background-color: #00afe3;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 24px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.nextBtn:hover {
+  background-color: #0096c4;
+}
+
+.nextBtn:active {
+  transform: translateY(1px);
+}
+
+.nextBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .nextBtn {
+    font-size: 18px;
+    height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nextBtn {
+    font-size: 16px;
+    height: 48px;
+  }
+}
+
+/* ── Privacy row ── */
+.privacyRow {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.privacyText {
+  color: #838383;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+}
+
+.privacyLink {
+  color: #00afe3;
+  text-decoration: none;
+}
+
+.privacyLink:hover {
+  text-decoration: underline;
+}
