@@ -21,7 +21,10 @@ import {
   updateProfileData,
 } from "../../../store/Buyer/BuyerSlice";
 import { getBarkUserData, setCookie } from "../../../utils/getCookies";
-import { addViewProfileList } from "../../../store/LeadSetting/leadSettingSlice";
+import {
+  addViewProfileList,
+  getleadPreferencesList,
+} from "../../../store/LeadSetting/leadSettingSlice";
 
 const LogSwitch = () => {
   const navigate = useNavigate();
@@ -50,7 +53,7 @@ const LogSwitch = () => {
 
   const { service } = useSelector((state) => state.findJobs);
 
-  const { viewProfileData, reviewProfileData } = useSelector(
+  const { viewProfileData, reviewProfileData, preferenceList } = useSelector(
     (state) => state.leadSetting,
   );
   const [selectedServiceIds, setSelectedServiceIds] = useState(null);
@@ -71,6 +74,7 @@ const LogSwitch = () => {
     callback();
     return true;
   };
+
   useEffect(() => {
     setDataSave(getBarkUserData()?.active_status);
   }, [getBarkUserData()]);
@@ -271,6 +275,25 @@ const LogSwitch = () => {
     }
   }, [getuploadImg, dispatch]);
 
+  useEffect(() => {
+    const barkUserData = getBarkUserData();
+    const userType = barkUserData?.remember_tokens
+      ? barkUserData?.active_status
+      : registerData?.active_status;
+    const userId =
+      barkUserData?.remember_tokens || registerData?.remember_tokens;
+
+    if (userType == 1 && userId) {
+      dispatch(getleadPreferencesList({ user_id: userId }));
+    }
+  }, [dispatch, registerData?.active_status, registerData?.remember_tokens]);
+
+  const hideLeadTabServiceIds = [18, 19, 46];
+
+  const hideNewAndSavedLeadsTabs = preferenceList?.some((service) =>
+    hideLeadTabServiceIds.includes(Number(service?.id)),
+  );
+
   return (
     <>
       <div className={styles.logSwitchContainer}>
@@ -380,33 +403,39 @@ const LogSwitch = () => {
                 Dashboard
               </Link>
 
-              <Link
-                to="/sellers/leads"
-                style={{ textDecoration: "none" }}
-                className={`${styles.navItem} ${location.pathname === "/sellers/leads" ? styles.active : ""
-                  }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavigation("/sellers/leads");
-                }}
-              >
-                New Leads
-              </Link>
+              {
+                !hideNewAndSavedLeadsTabs && (
+                  <>
+                    <Link
+                      to="/sellers/leads"
+                      style={{ textDecoration: "none" }}
+                      className={`${styles.navItem} ${location.pathname === "/sellers/leads" ? styles.active : ""
+                        }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigation("/sellers/leads");
+                      }}
+                    >
+                      New Leads
+                    </Link>
 
-              <Link
-                to="/sellers/leads/save-for-later"
-                style={{ textDecoration: "none" }}
-                className={`${styles.navItem} ${location.pathname === "/sellers/leads/save-for-later"
-                  ? styles.active
-                  : ""
-                  }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavigation("/sellers/leads/save-for-later");
-                }}
-              >
-                Saved Leads
-              </Link>
+                    <Link
+                      to="/sellers/leads/save-for-later"
+                      style={{ textDecoration: "none" }}
+                      className={`${styles.navItem} ${location.pathname === "/sellers/leads/save-for-later"
+                        ? styles.active
+                        : ""
+                        }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigation("/sellers/leads/save-for-later");
+                      }}
+                    >
+                      Saved Leads
+                    </Link>
+                  </>
+                )
+              }
 
               <Link
                 to="/sellers/leads/my-responses"

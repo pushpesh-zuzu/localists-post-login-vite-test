@@ -110,7 +110,7 @@ const routes = [
       {
         path: "sellers/leads",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute blockRestrictedLeadServices>
             <Leads />
           </ProtectedRoute>
         ),
@@ -118,7 +118,7 @@ const routes = [
       {
         path: "/leads",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute blockRestrictedLeadServices>
             <Leads />
           </ProtectedRoute>
         ),
@@ -240,7 +240,7 @@ const routes = [
       {
         path: "sellers/leads/save-for-later",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute blockRestrictedLeadServices>
             <SaveForLater />
           </ProtectedRoute>
         ),

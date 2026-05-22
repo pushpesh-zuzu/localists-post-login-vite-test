@@ -256,7 +256,7 @@ const LeadsCards = () => {
   };
 
   const showVerifiedBadges = Number(totalCredit?.total_credit) > 50;
-  console.log(leadRequestList,'leadRequestList')
+  // console.log(leadRequestList,'leadRequestList')
   return (
     <>
       {leadRequestLoader ? (
