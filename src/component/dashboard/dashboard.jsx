@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getDashboardListData());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const timer = setInterval(() => {
