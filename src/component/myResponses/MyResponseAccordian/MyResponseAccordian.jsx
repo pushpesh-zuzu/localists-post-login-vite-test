@@ -357,7 +357,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList, setisChangePend
               </span>
               {profileLeadViewData?.email}
             </a>
-            {showAddressVerify && profileLeadViewData?.full_crm_address && (
+            {/* {showAddressVerify && profileLeadViewData?.full_crm_address && (
               <a
                 className={styles.phoneNumberTexts}
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -371,7 +371,7 @@ const MyResponseAccordion = ({ lead, onBack, getPendingLeadList, setisChangePend
                 </span>
                 {profileLeadViewData.full_crm_address}
               </a>
-            )}
+            )} */}
             <div className={styles.btnBox}>
               <button
                 className={styles.buttonSms}

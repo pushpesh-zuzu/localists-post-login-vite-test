@@ -332,14 +332,14 @@ const MyResponse = () => {
                     <img src={BlueSmsIcon} alt="" />
                     {item?.customer?.email}
                   </div>
-                  {
+                  {/* {
                     showVerifiedBadges && item?.customer?.full_crm_address && (
                       <div className={styles.contactItem}>
                         <img src={Fulladdress} alt="" />
                         {item?.customer?.full_crm_address}
                       </div>
                     )
-                  }
+                  } */}
                 </div>
                 {item?.profile_view && item?.profile_view_time && (
                   <div className={styles.profile_view}>
@@ -390,7 +390,7 @@ const MyResponse = () => {
                       High hiring
                     </span>
                   )}
-                  {showVerifiedBadges && item?.is_availability_verified == 1 && (
+                  {/* {showVerifiedBadges && item?.is_availability_verified == 1 && (
                     <span className={styles.availability}>
                       <img src={AvailabilityVerified} alt="" />
                       Availability Verified
@@ -402,7 +402,7 @@ const MyResponse = () => {
                       <img src={AddressVerified} alt="" />
                       Address Verified
                     </span>
-                  )}
+                  )} */}
                 </div>
                 <div className={styles.jobInfo}>
                   {item?.questions && (

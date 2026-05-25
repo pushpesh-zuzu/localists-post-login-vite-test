@@ -76,16 +76,17 @@ const LeadsCards = () => {
       if (result) {
         showToast("success", result?.message);
 
-        const profileData = {
-          customer_id: item?.customer_id,
-          lead_id: item?.id,
-          user_id: userToken?.remember_tokens || registerData?.remember_tokens,
-        };
+        // const profileData = {
+        //   customer_id: item?.customer_id,
+        //   lead_id: item?.id,
+        //   user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+        // };
 
-        dispatch(getLeadProfileRequestList(profileData)).then((response) => {
-          setSelectedItem(response.data);
-          setModalOpen(true);
-        });
+        // dispatch(getLeadProfileRequestList(profileData)).then((response) => {
+        //   setSelectedItem(response.data);
+        //   setModalOpen(true);
+        // });
+        setModalOpen(true);
       }
 
       const data = {
@@ -119,70 +120,70 @@ const LeadsCards = () => {
   };
 
   const handleBuyExclusively = (item) => {
-  if (!item) return;
+    if (!item) return;
 
-  // Modified item — credit_score ko exclusive_credit_score se override karo
-  // const exclusiveItem = {
-  //   ...item,
-  //   credit_score: item?.exclusive_credit_score,
-  // };
+    // Modified item — credit_score ko exclusive_credit_score se override karo
+    // const exclusiveItem = {
+    //   ...item,
+    //   credit_score: item?.exclusive_credit_score,
+    // };
 
-  setSelectedItem(item);
-  setIsExclusive(true);
-  setPlanPurchase(totalCredit?.plan_purchased);
+    setSelectedItem(item);
+    setIsExclusive(true);
+    setPlanPurchase(totalCredit?.plan_purchased);
 
-  if (totalCredit?.plan_purchased === 0) {
-    setIsOpen(true);
-    return;
-  }
-  if (Number(totalCredit?.total_credit) < Number(item?.exclusive_credit_score)) {
-    setIsOpen(true);
-    return;
-  }
-  if (Number(totalCredit?.total_credit) >= Number(item?.exclusive_credit_score)) {
-    // Direct API call
-    const formData = new FormData();
-    formData.append("buyer_id", item?.customer_id);
-    formData.append(
-      "user_id",
-      userToken?.remember_tokens
-        ? userToken?.remember_tokens
-        : registerData?.remember_tokens
-    );
-    formData.append("bid", item?.exclusive_credit_score);
-    formData.append("lead_id", item?.id);
-    formData.append("bidtype", "purchase_leads");
-    formData.append("service_id", item?.service_id);
-    formData.append("distance", "0");
-    formData.append("is_exclusive", "1")
+    if (totalCredit?.plan_purchased === 0) {
+      setIsOpen(true);
+      return;
+    }
+    if (Number(totalCredit?.total_credit) < Number(item?.exclusive_credit_score)) {
+      setIsOpen(true);
+      return;
+    }
+    if (Number(totalCredit?.total_credit) >= Number(item?.exclusive_credit_score)) {
+      // Direct API call
+      const formData = new FormData();
+      formData.append("buyer_id", item?.customer_id);
+      formData.append(
+        "user_id",
+        userToken?.remember_tokens
+          ? userToken?.remember_tokens
+          : registerData?.remember_tokens
+      );
+      formData.append("bid", item?.exclusive_credit_score);
+      formData.append("lead_id", item?.id);
+      formData.append("bidtype", "purchase_leads");
+      formData.append("service_id", item?.service_id);
+      formData.append("distance", "0");
+      formData.append("is_exclusive", "1")
 
-    dispatch(getAddManualBidData(formData)).then((result) => {
-      if (result) {
-        showToast("success", result?.message);
-            const profileData = {
-          customer_id: item?.customer_id,
-          lead_id: item?.id,
-          user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+      dispatch(getAddManualBidData(formData)).then((result) => {
+        if (result) {
+          showToast("success", result?.message);
+          const profileData = {
+            customer_id: item?.customer_id,
+            lead_id: item?.id,
+            user_id: userToken?.remember_tokens || registerData?.remember_tokens,
+          };
+
+          dispatch(getLeadProfileRequestList(profileData)).then((response) => {
+            setSelectedItem(response.data);
+            setModalOpen(true);
+          });
+        }
+
+        const data = {
+          user_id: userToken?.remember_tokens
+            ? userToken?.remember_tokens
+            : registerData?.remember_tokens,
         };
 
-        dispatch(getLeadProfileRequestList(profileData)).then((response) => {
-          setSelectedItem(response.data);
-          setModalOpen(true);
-        })
-      }
+        dispatch(totalCreditData(data));
+        dispatch(getLeadRequestList(data));
+      });
 
-      const data = {
-        user_id: userToken?.remember_tokens
-          ? userToken?.remember_tokens
-          : registerData?.remember_tokens,
-      };
-
-      dispatch(totalCreditData(data));
-      dispatch(getLeadRequestList(data));
-    });
-
-  }
-};
+    }
+  };
 
 
   // useEffect(() => {
@@ -324,11 +325,11 @@ const LeadsCards = () => {
                                 >
                                   {item?.category?.name}
                                 </span>
-                                {item?.is_exclusive === 0 && item?.is_expired === 0 && (
+                                {/* {item?.is_exclusive === 0 && item?.is_expired === 0 && (
                                   <span className={styles.bidStatus}>
                                     {item?.bid_count}/{item?.max_bid}
                                   </span>
-                                )}
+                                )} */}
                               </div>
                             </div>
 
@@ -425,7 +426,7 @@ const LeadsCards = () => {
                                   High hiring
                                 </span>
                               )}
-                              {showVerifiedBadges && item?.is_availability_verified == 1 && (
+                              {/* {showVerifiedBadges && item?.is_availability_verified == 1 && (
                                 <span className={styles.availability}>
                                   <img src={AvailabilityVerified} alt="" />
                                   Availability Verified
@@ -437,7 +438,7 @@ const LeadsCards = () => {
                                   <img src={AddressVerified} alt="" />
                                   Address Verified
                                 </span>
-                              )}
+                              )} */}
                             </div>
                             <div className={styles.jobInfo}>
                               {item?.questions && (
@@ -452,7 +453,8 @@ const LeadsCards = () => {
                             <TimeSlots apiData={item} />
                           </div>
                           <div className={styles.leadActionWrapper}>
-                            {item?.is_expired === 1 || item?.is_exclusive === 1 ? (
+                            {/* {item?.is_expired === 1 || item?.is_exclusive === 1 ? ( */}
+                            {item?.is_expired === 1 ? (
                               <img
                                 className={styles.expired}
                                 src={Expired}
@@ -465,17 +467,19 @@ const LeadsCards = () => {
                               <button
                                 className={styles.purchaseButton}
                                 onClick={() => handleContinue(item)}
-                                disabled={item?.is_expired === 1 || item?.is_exclusive === 1 }
+                                // disabled={item?.is_expired === 1 || item?.is_exclusive === 1 }
+                                disabled={item?.is_expired === 1}
                               >
-                                Buy Now
+                                {/* Buy Now */}
+                                Contact
                               </button>
-                              { !item?.bid_count > 0 && <button
+                              {/* { !item?.bid_count > 0 && <button
                                 className={`${styles.purchaseButton} ${styles.exclusiveButton}`}
                                 onClick={() => handleBuyExclusively(item)}
                                 disabled={item?.is_expired === 1 || item?.is_exclusive === 1}
                               >
                                 Buy Exclusively
-                              </button>}
+                              </button>} */}
 
                               <div
                                 style={{

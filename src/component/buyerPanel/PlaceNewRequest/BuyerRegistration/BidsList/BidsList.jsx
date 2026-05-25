@@ -95,8 +95,8 @@ const BidsList = () => {
           item.value === "no_rating"
             ? "No Rating"
             : item.value < 5
-            ? `${item.value} Star & up`
-            : `${item.value} Star`,
+              ? `${item.value} Star & up`
+              : `${item.value} Star`,
       }));
   }, [ratingFilterData]);
 
@@ -471,7 +471,7 @@ const BidsList = () => {
                   >
                     {ratingList
                       ? ratingOptions.find((opt) => opt.value === ratingList)
-                          ?.label || "All Ratings"
+                        ?.label || "All Ratings"
                       : "All Ratings"}
                   </button>
                   <button
@@ -508,8 +508,8 @@ const BidsList = () => {
                   {activeSortType === "rating"
                     ? "Sort by Ratings"
                     : activeSortType === "location"
-                    ? "Sort by Distance"
-                    : "Sort by Response Time"}
+                      ? "Sort by Distance"
+                      : "Sort by Response Time"}
                 </h3>
               </div>
               <Radio.Group
@@ -533,16 +533,16 @@ const BidsList = () => {
                   activeSortType === "rating"
                     ? ratingList
                     : activeSortType === "location"
-                    ? locationSort
-                    : responseSort
+                      ? locationSort
+                      : responseSort
                 }
                 className={styles.radioGroup}
               >
                 {(activeSortType === "rating"
                   ? ratingOptions
                   : activeSortType === "location"
-                  ? locationOptions
-                  : responseOptions
+                    ? locationOptions
+                    : responseOptions
                 ).map((opt) => (
                   <Radio
                     key={opt.value}
@@ -582,9 +582,8 @@ const BidsList = () => {
                 //   Request Your 5 Top Matches Here
                 // </button>
                 <button
-                  className={`${styles.requestBtnMatchBox} ${
-                    isFixed ? styles.fixedRequestBtn : ""
-                  }`}
+                  className={`${styles.requestBtnMatchBox} ${isFixed ? styles.fixedRequestBtn : ""
+                    }`}
                   onClick={handleMultple}
                   disabled={isButtonDisabled}
                 >
@@ -594,15 +593,15 @@ const BidsList = () => {
               )}
             </div>
             {/* {bidListLoader ? <Spin size="small"/> :  <> */}
-              {autoBidList?.some((item) => item?.is_exclusive === 1) ? (
+            {/* {autoBidList?.some((item) => item?.is_exclusive === 1) ? (
               <div className={styles.noBidWrapper}>
                 <h1 className={styles.noBidText}>
                   A professional contacted you exclusively, please view the details in "Replies" section.
                 </h1>
               </div>
-            ) : 
-              autoBidList?.every((item) => item?.sellers?.length === 0
-              ) ? (
+            ) :  */}
+            {autoBidList?.every((item) => item?.sellers?.length === 0
+            ) ? (
               <div className={styles.noBidWrapper}>
                 <h1 className={styles.noBidText}>
                   {repliesListCount > 0
@@ -837,7 +836,7 @@ const BidsList = () => {
                             disabled={
                               !selectedSellers.includes(seller.id) &&
                               selectedSellers.length >=
-                                parseInt(autoBidList?.[0]?.displayCount || 0)
+                              parseInt(autoBidList?.[0]?.displayCount || 0)
                             }
                           />
                         </div>

@@ -15,8 +15,8 @@ import dayjs from "../../../utils/dayjs";
 import { Spin } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import HiredProfessional from "./BuyerRegistration/HiredProfessional/HiredProfessional";
-// import ReqBuyerRegistration from "./ReqBuyerRegistration/ReqBuyerRegistration";
-import NewReqBuyerRegistration from "./NewReqBuyerRegistration/NewReqBuyerRegistration";
+import ReqBuyerRegistration from "./ReqBuyerRegistration/ReqBuyerRegistration";
+// import NewReqBuyerRegistration from "./NewReqBuyerRegistration/NewReqBuyerRegistration";
 
 const PlaceNewRequest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -210,10 +210,10 @@ const PlaceNewRequest = () => {
 
       {isModalOpen && (
         <>
-          {/* <ReqBuyerRegistration onClose={closeModal} setSelectedService={setSelectedService}
-          setFromImageModal={setFromImageModal} /> */}
-          <NewReqBuyerRegistration onClose={closeModal} setSelectedService={setSelectedService}
+          <ReqBuyerRegistration onClose={closeModal} setSelectedService={setSelectedService}
           setFromImageModal={setFromImageModal} />
+          {/* <NewReqBuyerRegistration onClose={closeModal} setSelectedService={setSelectedService}
+          setFromImageModal={setFromImageModal} /> */}
         </>
       )}
 

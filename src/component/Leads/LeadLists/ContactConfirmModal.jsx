@@ -404,7 +404,7 @@ const ContactConfirmModal = ({
               </div>
             </div>
 
-            {renderCreditPlan(singleLeadPurchasePlan, "single-lead-purchase")}
+            {/* {renderCreditPlan(singleLeadPurchasePlan, "single-lead-purchase")} */}
             {creditPlanList?.map((item, index) =>
               renderCreditPlan(item, item?.id || index)
             )}
